@@ -9,6 +9,7 @@ import { getColor } from './ParkingMarker'
 import { getBikeColor } from './BikeMarker'
 import { getTransitColor } from './TransitMarker'
 import { haversineMetres, formatDistance, formatWalkingTime } from '../utils/distance'
+import { useDevCosts } from '../hooks/useDevCosts'
 
 interface SidebarProps {
   // parking
@@ -91,6 +92,7 @@ export function Sidebar({
 }: SidebarProps) {
   const { t, i18n: i18nInstance } = useTranslation()
   const [sortByNearest, setSortByNearest] = useState(false)
+  const devCosts = useDevCosts()
 
   const isParking = activeTab === 'parking'
   const isBikes = activeTab === 'bikes'
@@ -564,6 +566,11 @@ export function Sidebar({
       <div className="sidebar-footer">
         <span>{t('data.label')} </span>
         <a href="https://opencom.no" target="_blank" rel="noopener noreferrer">opencom.no</a>
+        {devCosts && (
+          <span className="dev-cost-label" title={`${devCosts.sessions.length} AI sessions`}>
+            AI dev: ~{Math.round(devCosts.totalNOK)} kr
+          </span>
+        )}
       </div>
 
       <div

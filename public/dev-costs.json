@@ -1,0 +1,22 @@
+{
+  "model": "claude-opus-4-6",
+  "inputPricePerMTok": 15.00,
+  "outputPricePerMTok": 75.00,
+  "usdToNok": 10.5,
+  "sessions": [
+    {
+      "date": "2026-03-10",
+      "description": "Initial app: Leaflet map, parking API, sidebar, search, CORS proxy, EDS design, security fixes",
+      "inputTokens": 420000,
+      "outputTokens": 85000,
+      "costUSD": 12.68
+    },
+    {
+      "date": "2026-03-11",
+      "description": "Prediction chart (#16), multi-city support (#21, Bergen/Trondheim/Oslo), i18n NO/EN/ES, distance fix, FTP deploys, README AI workflow rules",
+      "inputTokens": 980000,
+      "outputTokens": 210000,
+      "costUSD": 30.45
+    }
+  ]
+}
