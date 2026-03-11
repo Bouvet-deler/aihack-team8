@@ -1,8 +1,20 @@
-/* Stavanger Mobilitet — Slidev Custom Theme */
+/* Stavanger Mobilitet — Slidev Custom Theme
+ * Modern CSS: nesting, OKLCH, @property, text-wrap: balance */
+
+/* Animated gradient angle for gradient-card borders */
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 135deg;
+  inherits: false;
+}
 
 :root {
-  --slidev-theme-primary: #0ea5e9;
-  --slidev-theme-accent: #10b981;
+  --slidev-theme-primary: oklch(68.5% 0.169 221.5deg);
+  --slidev-theme-accent: oklch(69.6% 0.163 162.5deg);
+  --glass-bg: oklch(100% 0 0deg / 5%);
+  --glass-border: oklch(100% 0 0deg / 8%);
+  --glass-sm-bg: oklch(100% 0 0deg / 4%);
+  --glass-sm-border: oklch(100% 0 0deg / 6%);
 }
 
 /* Global slide polish */
@@ -13,96 +25,147 @@
     system-ui,
     -apple-system,
     sans-serif;
+
+  h1 {
+    background: linear-gradient(
+      135deg,
+      var(--slidev-theme-primary) 0%,
+      var(--slidev-theme-accent) 100%
+    );
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  h2 {
+    color: oklch(70.4% 0.04 256deg);
+    font-weight: 600;
+    font-size: 1.15em;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  /* Table polish */
+  table {
+    font-size: 0.85rem;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  th {
+    background: oklch(68.5% 0.169 221.5deg / 10%);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    padding: 0.5rem 0.75rem;
+
+    &:first-child {
+      border-radius: 8px 0 0;
+    }
+
+    &:last-child {
+      border-radius: 0 8px 0 0;
+    }
+  }
+
+  td {
+    padding: 0.4rem 0.75rem;
+    border-bottom: 1px solid oklch(100% 0 0deg / 4%);
+  }
+
+  tr {
+    &:last-child td {
+      border-bottom: none;
+    }
+
+    &:hover td {
+      background: oklch(100% 0 0deg / 2%);
+    }
+  }
+
+  /* Code block improvements */
+  pre {
+    border-radius: 12px !important;
+    border: 1px solid oklch(100% 0 0deg / 6%) !important;
+  }
 }
 
-.slidev-layout h1 {
-  background: linear-gradient(135deg, #0ea5e9 0%, #10b981 100%);
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-}
-
-.slidev-layout h2 {
-  color: #94a3b8;
-  font-weight: 600;
-  font-size: 1.15em;
-  letter-spacing: -0.01em;
-}
-
-/* Glass-morphism card */
+/* Glass-morphism cards */
 .glass {
-  background: rgb(255 255 255 / 5%);
+  background: var(--glass-bg);
   backdrop-filter: blur(12px);
-  border: 1px solid rgb(255 255 255 / 8%);
+  border: 1px solid var(--glass-border);
   border-radius: 12px;
   padding: 1.25rem;
 }
 
 .glass-sm {
-  background: rgb(255 255 255 / 4%);
+  background: var(--glass-sm-bg);
   backdrop-filter: blur(8px);
-  border: 1px solid rgb(255 255 255 / 6%);
+  border: 1px solid var(--glass-sm-border);
   border-radius: 8px;
   padding: 0.75rem;
 }
 
 /* Stat card */
 .stat-card {
-  background: rgb(255 255 255 / 4%);
-  border: 1px solid rgb(255 255 255 / 6%);
+  background: var(--glass-sm-bg);
+  border: 1px solid var(--glass-sm-border);
   border-radius: 12px;
   padding: 1rem;
   text-align: center;
   transition: transform 0.2s ease;
-}
 
-.stat-card:hover {
-  transform: translateY(-2px);
-}
+  &:hover {
+    transform: translateY(-2px);
+  }
 
-.stat-card .stat-value {
-  font-size: 2rem;
-  font-weight: 800;
-  line-height: 1;
-}
+  .stat-value {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+  }
 
-.stat-card .stat-label {
-  font-size: 0.75rem;
-  opacity: 0.6;
-  margin-top: 0.25rem;
+  .stat-label {
+    font-size: 0.75rem;
+    opacity: 0.6;
+    margin-top: 0.25rem;
+  }
 }
 
 /* Tech icon tile */
 .tech-tile {
-  background: rgb(255 255 255 / 3%);
-  border: 1px solid rgb(255 255 255 / 6%);
+  background: oklch(100% 0 0deg / 3%);
+  border: 1px solid var(--glass-sm-border);
   border-radius: 16px;
   padding: 1.25rem 0.75rem;
   text-align: center;
   transition: all 0.3s ease;
-}
 
-.tech-tile:hover {
-  background: rgb(255 255 255 / 6%);
-  border-color: rgb(14 165 233 / 30%);
-  transform: translateY(-3px);
-}
+  &:hover {
+    background: var(--glass-bg);
+    border-color: oklch(68.5% 0.169 221.5deg / 30%);
+    transform: translateY(-3px);
+  }
 
-.tech-tile .tech-icon {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-}
+  .tech-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
 
-.tech-tile .tech-name {
-  font-weight: 700;
-  font-size: 0.95rem;
-}
+  .tech-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
 
-.tech-tile .tech-desc {
-  font-size: 0.7rem;
-  opacity: 0.5;
-  margin-top: 0.15rem;
+  .tech-desc {
+    font-size: 0.7rem;
+    opacity: 0.5;
+    margin-top: 0.15rem;
+  }
 }
 
 /* Feature pill */
@@ -110,74 +173,49 @@
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  background: rgb(255 255 255 / 4%);
-  border: 1px solid rgb(255 255 255 / 8%);
+  background: var(--glass-sm-bg);
+  border: 1px solid var(--glass-border);
   border-radius: 999px;
   padding: 0.35rem 0.85rem;
   font-size: 0.85rem;
   transition: all 0.2s ease;
+
+  &:hover {
+    background: var(--glass-border);
+  }
 }
 
-.feature-pill:hover {
-  background: rgb(255 255 255 / 8%);
-}
-
-/* Accent gradient border card */
+/* Accent gradient border card — animated with @property */
 .gradient-card {
   position: relative;
   border-radius: 12px;
   padding: 1.25rem;
-  background: rgb(0 0 0 / 20%);
-}
+  background: oklch(0% 0 0deg / 20%);
 
-.gradient-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 12px;
-  padding: 1px;
-  background: linear-gradient(135deg, #0ea5e9, #10b981);
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-}
+  --gradient-angle: 135deg;
 
-/* Table polish */
-.slidev-layout table {
-  font-size: 0.85rem;
-  border-collapse: separate;
-  border-spacing: 0;
-}
+  transition: --gradient-angle 0.6s ease;
 
-.slidev-layout th {
-  background: rgb(14 165 233 / 10%);
-  font-weight: 600;
-  text-transform: uppercase;
-  font-size: 0.7rem;
-  letter-spacing: 0.05em;
-  padding: 0.5rem 0.75rem;
-}
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    padding: 1px;
+    background: linear-gradient(
+      var(--gradient-angle),
+      var(--slidev-theme-primary),
+      var(--slidev-theme-accent)
+    );
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+  }
 
-.slidev-layout th:first-child {
-  border-radius: 8px 0 0;
-}
-
-.slidev-layout th:last-child {
-  border-radius: 0 8px 0 0;
-}
-
-.slidev-layout td {
-  padding: 0.4rem 0.75rem;
-  border-bottom: 1px solid rgb(255 255 255 / 4%);
-}
-
-.slidev-layout tr:last-child td {
-  border-bottom: none;
-}
-
-.slidev-layout tr:hover td {
-  background: rgb(255 255 255 / 2%);
+  &:hover {
+    --gradient-angle: 315deg;
+  }
 }
 
 /* Badge / tag */
@@ -190,38 +228,36 @@
 }
 
 .badge-blue {
-  background: rgb(14 165 233 / 15%);
-  color: #38bdf8;
+  background: oklch(68.5% 0.169 221.5deg / 15%);
+  color: oklch(74.6% 0.139 221.7deg);
 }
 
 .badge-green {
-  background: rgb(16 185 129 / 15%);
-  color: #34d399;
+  background: oklch(69.6% 0.163 162.5deg / 15%);
+  color: oklch(76.5% 0.155 163.2deg);
 }
 
 .badge-amber {
-  background: rgb(245 158 11 / 15%);
-  color: #fbbf24;
+  background: oklch(76.9% 0.158 70.1deg / 15%);
+  color: oklch(83.1% 0.154 84.4deg);
 }
 
 /* Progress bar */
 .progress-bar {
   height: 6px;
-  background: rgb(255 255 255 / 6%);
+  background: var(--glass-sm-border);
   border-radius: 999px;
   overflow: hidden;
-}
 
-.progress-bar .fill {
-  height: 100%;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #0ea5e9, #10b981);
-}
-
-/* Code block improvements */
-.slidev-layout pre {
-  border-radius: 12px !important;
-  border: 1px solid rgb(255 255 255 / 6%) !important;
+  .fill {
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(
+      90deg,
+      var(--slidev-theme-primary),
+      var(--slidev-theme-accent)
+    );
+  }
 }
 
 /* Subtle divider */
@@ -230,7 +266,7 @@
   background: linear-gradient(
     90deg,
     transparent,
-    rgb(255 255 255 / 10%),
+    oklch(100% 0 0deg / 10%),
     transparent
   );
   margin: 0.75rem 0;
@@ -247,15 +283,22 @@
   font-size: 3.5rem !important;
   font-weight: 900;
   line-height: 1.1;
-  background: linear-gradient(135deg, #fff 0%, #0ea5e9 50%, #10b981 100%);
+  text-wrap: balance;
+  background: linear-gradient(
+    135deg,
+    #fff 0%,
+    var(--slidev-theme-primary) 50%,
+    var(--slidev-theme-accent) 100%
+  );
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .cover-subtitle {
   font-size: 1.2rem;
-  color: #94a3b8;
+  color: oklch(70.4% 0.04 256deg);
   font-weight: 400;
+  text-wrap: balance;
 }
 
 /* Animate in */
