@@ -20,3 +20,10 @@ export function formatDistance(metres: number): string {
   if (metres < 1000) return `${Math.round(metres)} m`
   return `${(metres / 1000).toFixed(1)} km`
 }
+
+// Walking speed ~5 km/h = 83.3 m/min
+export function formatWalkingTime(metres: number): string {
+  const minutes = Math.round(metres / 83.3)
+  if (minutes < 1) return '🚶 < 1 min'
+  return `🚶 ${minutes} min`
+}

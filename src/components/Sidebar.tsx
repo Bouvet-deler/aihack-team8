@@ -5,7 +5,7 @@ import type { ParkingSpot } from '../types/parking'
 import type { BikeStation } from '../types/bike'
 import { getColor } from './ParkingMarker'
 import { getBikeColor } from './BikeMarker'
-import { haversineMetres, formatDistance } from '../utils/distance'
+import { haversineMetres, formatDistance, formatWalkingTime } from '../utils/distance'
 
 interface SidebarProps {
   // parking
@@ -289,11 +289,19 @@ export function Sidebar({
                   .map((spot) => {
                     const isSelected = selectedSpot?.Sted === spot.Sted
                     const color = getColor(spot.Antall_ledige_plasser)
+                    const dist = userPosition
+                      ? haversineMetres(userPosition.latitude, userPosition.longitude, parseFloat(spot.Latitude), parseFloat(spot.Longitude))
+                      : null
                     return (
                       <div key={`fav-${spot.Sted}`} className={`spot-item ${isSelected ? 'selected' : ''}`}>
                         <button className="spot-item-main" onClick={() => onSelectSpot(spot)}>
                           <span className="spot-indicator" style={{ background: color }} aria-hidden="true" />
-                          <span className="spot-name">{spot.Sted}</span>
+                          <span className="spot-name">
+                            {spot.Sted}
+                            {dist !== null && (
+                              <span className="spot-walk-row">{formatDistance(dist)} · {formatWalkingTime(dist)}</span>
+                            )}
+                          </span>
                           <span className="spot-count" style={{ color }}>{spot.Antall_ledige_plasser}</span>
                         </button>
                         <button
@@ -319,9 +327,9 @@ export function Sidebar({
               const isSelected = selectedSpot?.Sted === spot.Sted
               const color = getColor(spot.Antall_ledige_plasser)
               const fav = isFavorite('parking', spot.Sted)
-              const dist = canSortNearest
+              const dist = userPosition
                 ? haversineMetres(
-                    userPosition!.latitude, userPosition!.longitude,
+                    userPosition.latitude, userPosition.longitude,
                     parseFloat(spot.Latitude), parseFloat(spot.Longitude),
                   )
                 : null
@@ -329,12 +337,15 @@ export function Sidebar({
                 <div key={spot.Sted} className={`spot-item ${isSelected ? 'selected' : ''}`}>
                   <button className="spot-item-main" onClick={() => onSelectSpot(spot)}>
                     <span className="spot-indicator" style={{ background: color }} aria-hidden="true" />
-                    <span className="spot-name">{spot.Sted}</span>
-                    <span className="spot-count" style={{ color }}>
-                      {dist !== null
-                        ? <span className="spot-distance">{formatDistance(dist)}</span>
-                        : spot.Antall_ledige_plasser}
+                    <span className="spot-name">
+                      {spot.Sted}
+                      {dist !== null && (
+                        <span className="spot-walk-row">
+                          {formatDistance(dist)} · {formatWalkingTime(dist)}
+                        </span>
+                      )}
                     </span>
+                    <span className="spot-count" style={{ color }}>{spot.Antall_ledige_plasser}</span>
                   </button>
                   <button
                     className={`fav-btn ${fav ? 'active' : ''}`}
@@ -356,11 +367,19 @@ export function Sidebar({
                   .map((station) => {
                     const isSelected = selectedStation?.station_id === station.station_id
                     const color = getBikeColor(station)
+                    const dist = userPosition
+                      ? haversineMetres(userPosition.latitude, userPosition.longitude, station.lat, station.lon)
+                      : null
                     return (
                       <div key={`fav-${station.station_id}`} className={`spot-item ${isSelected ? 'selected' : ''} ${!station.is_renting ? 'inactive' : ''}`}>
                         <button className="spot-item-main" onClick={() => onSelectStation(station)}>
                           <span className="spot-indicator bike-indicator" style={{ background: color }} aria-hidden="true" />
-                          <span className="spot-name">{station.name}</span>
+                          <span className="spot-name">
+                            {station.name}
+                            {dist !== null && (
+                              <span className="spot-walk-row">{formatDistance(dist)} · {formatWalkingTime(dist)}</span>
+                            )}
+                          </span>
                           <span className="spot-count" style={{ color }}>{station.num_vehicles_available}</span>
                         </button>
                         <button
@@ -386,9 +405,9 @@ export function Sidebar({
               const isSelected = selectedStation?.station_id === station.station_id
               const color = getBikeColor(station)
               const fav = isFavorite('bikes', station.station_id)
-              const dist = canSortNearest
+              const dist = userPosition
                 ? haversineMetres(
-                    userPosition!.latitude, userPosition!.longitude,
+                    userPosition.latitude, userPosition.longitude,
                     station.lat, station.lon,
                   )
                 : null
@@ -396,12 +415,16 @@ export function Sidebar({
                 <div key={station.station_id} className={`spot-item ${isSelected ? 'selected' : ''} ${!station.is_renting ? 'inactive' : ''}`}>
                   <button className="spot-item-main" onClick={() => onSelectStation(station)}>
                     <span className="spot-indicator bike-indicator" style={{ background: color }} aria-hidden="true" />
-                    <span className="spot-name">{station.name}</span>
+                    <span className="spot-name">
+                      {station.name}
+                      {dist !== null && (
+                        <span className="spot-walk-row">
+                          {formatDistance(dist)} · {formatWalkingTime(dist)}
+                        </span>
+                      )}
+                    </span>
                     <div className="bike-counts">
-                      {dist !== null
-                        ? <span className="spot-distance">{formatDistance(dist)}</span>
-                        : <span className="spot-count" style={{ color }} title={t('bike.available')}>{station.num_vehicles_available}</span>
-                      }
+                      <span className="spot-count" style={{ color }} title={t('bike.available')}>{station.num_vehicles_available}</span>
                     </div>
                   </button>
                   <button
