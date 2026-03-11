@@ -1,0 +1,18 @@
+# Lefthook git hooks — runs linters on staged files before commit
+# Docs: https://github.com/evilmartians/lefthook
+
+pre-commit:
+  parallel: true
+  commands:
+    prettier:
+      glob: "*.{md,json,yml,yaml,css,html}"
+      run: npx prettier --check {staged_files}
+    markdown:
+      glob: "*.md"
+      run: npx markdownlint-cli2 {staged_files}
+    stylelint:
+      glob: "*.css"
+      run: npx stylelint {staged_files}
+    typescript:
+      glob: "*.{ts,tsx}"
+      run: npx tsc --noEmit
