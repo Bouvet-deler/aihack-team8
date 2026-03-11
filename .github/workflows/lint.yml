@@ -20,25 +20,19 @@ jobs:
           fetch-depth: 0
 
       - name: Run Super-Linter
-        uses: super-linter/super-linter@v7
+        uses: super-linter/super-linter/slim@v7
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BRANCH: main
 
+          # Only enable relevant linters (include-mode)
           VALIDATE_TYPESCRIPT_ES: true
           VALIDATE_CSS: true
           VALIDATE_HTML: true
           VALIDATE_JSON: true
           VALIDATE_MARKDOWN: true
           VALIDATE_YAML: true
-
-          # Disable linters not relevant for this project
-          VALIDATE_JSCPD: false
-          VALIDATE_JAVASCRIPT_ES: false
-          VALIDATE_JAVASCRIPT_STANDARD: false
-          VALIDATE_TYPESCRIPT_STANDARD: false
-          VALIDATE_NATURAL_LANGUAGE: false
-          VALIDATE_GITLEAKS: false
+          VALIDATE_GITHUB_ACTIONS: true
 
           # Only lint new/changed files on PRs
           VALIDATE_ALL_CODEBASE: ${{ github.event_name == 'push' }}
