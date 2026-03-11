@@ -54,14 +54,14 @@ Informasjonen er spredt over ulike apper og nettsider. Ingen viser **begge deler
 
 ## Ingen dekker Stavanger
 
-| Løsning | Parkering | Sykkel | Stavanger |
-| --------- | :---------: | :------: | :---------: |
-| Citymapper | ❌ | ✅ | ❌ |
-| Moovit | ❌ | ❌ | ⚠️ |
-| SpotHero | ✅ | ❌ | ❌ |
-| Parkopedia | ✅ | ❌ | ⚠️ |
-| CityBikes | ❌ | ✅ | ❌ |
-| **Vår app** | **✅** | **✅** | **✅** |
+| Løsning     | Parkering | Sykkel | Stavanger |
+| ----------- | :-------: | :----: | :-------: |
+| Citymapper  |    ❌     |   ✅   |    ❌     |
+| Moovit      |    ❌     |   ❌   |    ⚠️     |
+| SpotHero    |    ✅     |   ❌   |    ❌     |
+| Parkopedia  |    ✅     |   ❌   |    ⚠️     |
+| CityBikes   |    ❌     |   ✅   |    ❌     |
+| **Vår app** |  **✅**   | **✅** |  **✅**   |
 
 </div>
 
@@ -159,13 +159,13 @@ Copilot CLI var med i **hele arbeidsflyten** — ikke bare koding
 
 ## Hva AI gjorde for oss
 
-| Oppgave | Verktøy |
-| --------- | --------- |
-| Kodeanalyse | Utforsket hele kodebasen på minutter |
-| Konkurrentanalyse | 7 globale plattformer analysert |
+| Oppgave             | Verktøy                                  |
+| ------------------- | ---------------------------------------- |
+| Kodeanalyse         | Utforsket hele kodebasen på minutter     |
+| Konkurrentanalyse   | 7 globale plattformer analysert          |
 | Prosjektplanlegging | 24 GitHub Issues med akseptansekriterier |
-| Kvalitetssikring | UAT-template + automatisert testing |
-| Presentasjon | Denne Slidev-presentasjonen |
+| Kvalitetssikring    | UAT-template + automatisert testing      |
+| Presentasjon        | Denne Slidev-presentasjonen              |
 
 </div>
 <div>
@@ -246,14 +246,14 @@ Automatisert UAT-test med **Playwright** mot 14 kategorier
 
 ## Issues
 
-| Status | Antall |
-| -------- | :------: |
-| ✅ Lukket | 4 |
-| 📋 Åpen (Phase 1) | 4 |
-| 📋 Åpen (Phase 2) | 6 |
-| 📋 Åpen (Phase 3) | 6 |
-| 📋 Åpen (Phase 4) | 6 |
-| **Totalt** | **26** |
+| Status            | Antall |
+| ----------------- | :----: |
+| ✅ Lukket         |   4    |
+| 📋 Åpen (Phase 1) |   4    |
+| 📋 Åpen (Phase 2) |   6    |
+| 📋 Åpen (Phase 3) |   6    |
+| 📋 Åpen (Phase 4) |   6    |
+| **Totalt**        | **26** |
 
 </div>
 

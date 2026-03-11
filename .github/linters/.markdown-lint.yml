@@ -6,3 +6,6 @@ MD041: false
 
 # Inline HTML is used in README badges, Slidev components, and task lists
 MD033: false
+
+# Line length — not practical for tables, URLs, and prose
+MD013: false

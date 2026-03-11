@@ -1,0 +1,10 @@
+// Local markdownlint config — mirrors .github/linters/.markdown-lint.yml
+// Super-linter reads from .github/linters/, local CLI reads from here
+{
+  "config": {
+    "MD041": false,
+    "MD033": false,
+    "MD013": false
+  },
+  "ignores": ["node_modules/**"]
+}
