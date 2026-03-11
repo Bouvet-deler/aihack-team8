@@ -26,7 +26,7 @@ labels: "testing, uat"
 - [ ] Ingen feil eller konsoll-feil ved oppstart
 
 > **Notat:**
-> 
+>
 
 ---
 
@@ -40,7 +40,7 @@ labels: "testing, uat"
 - [ ] Panorering (dra) fungerer
 
 > **Notat:**
-> 
+>
 
 ---
 
@@ -64,7 +64,7 @@ labels: "testing, uat"
 - [ ] Dimmet markør er mindre (32px parkering / 34px sykkel)
 
 > **Notat:**
-> 
+>
 
 ---
 
@@ -88,7 +88,7 @@ labels: "testing, uat"
 - [ ] Markøren får blå ramme (#007079) når valgt
 
 > **Notat:**
-> 
+>
 
 ---
 
@@ -103,7 +103,7 @@ labels: "testing, uat"
 - [ ] Inaktive sykkelstasjoner vises med 50% gjennomsiktighet i listen
 
 > **Notat:**
-> 
+>
 
 ---
 
@@ -117,7 +117,7 @@ labels: "testing, uat"
 - [ ] Begge lag kan være på samtidig (alle markører vises)
 
 > **Notat:**
-> 
+>
 
 ---
 
@@ -136,7 +136,7 @@ labels: "testing, uat"
 - [ ] Slett søketekst → alle elementer vises igjen
 
 > **Notat:**
-> 
+>
 
 ---
 
@@ -154,7 +154,7 @@ labels: "testing, uat"
 - [ ] Bytt til 5 min → verifiser at det tar lengre tid mellom oppdateringer
 
 > **Notat:**
-> 
+>
 
 ---
 
@@ -179,7 +179,7 @@ labels: "testing, uat"
 - [ ] Språkvalg lagres i localStorage
 
 > **Notat:**
-> 
+>
 
 ---
 
@@ -202,7 +202,7 @@ labels: "testing, uat"
 - [ ] Endre vindusbredde over/under 768px → layout bytter uten feil
 
 > **Notat:**
-> 
+>
 
 ---
 
@@ -215,7 +215,7 @@ labels: "testing, uat"
 - [ ] Appen krasjer ikke ved API-feil – UI forblir interaktivt
 
 > **Notat:**
-> 
+>
 
 ---
 
@@ -233,7 +233,7 @@ labels: "testing, uat"
 - [ ] Feilbanner vises for nye data-forespørsler som feiler
 
 > **Notat:**
-> 
+>
 
 ---
 
@@ -247,7 +247,7 @@ labels: "testing, uat"
 - [ ] Kontrast mellom tekst og bakgrunn er tilstrekkelig lesbar
 
 > **Notat:**
-> 
+>
 
 ---
 
@@ -260,7 +260,7 @@ labels: "testing, uat"
 - [ ] Ingen minnelekkasjer ved gjentatte oppdateringer (sjekk DevTools → Memory)
 
 > **Notat:**
-> 
+>
 
 ---
 
@@ -291,5 +291,5 @@ labels: "testing, uat"
 
 ### Funn og kommentarer
 
-> 
+>
 
