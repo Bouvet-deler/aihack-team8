@@ -80,6 +80,7 @@ export default function App() {
         onToggleBikes={() => setShowBikes((v) => !v)}
         width={sidebarWidth}
         onResizeHandleMouseDown={handleResizeMouseDown}
+        userPosition={geo.position}
       />
 
       <main

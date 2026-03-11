@@ -1,9 +1,11 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import i18n from '../i18n'
 import type { ParkingSpot } from '../types/parking'
 import type { BikeStation } from '../types/bike'
 import { getColor } from './ParkingMarker'
 import { getBikeColor } from './BikeMarker'
+import { haversineMetres, formatDistance } from '../utils/distance'
 
 interface SidebarProps {
   // parking
@@ -33,6 +35,7 @@ interface SidebarProps {
   onToggleBikes: () => void
   width: number | undefined
   onResizeHandleMouseDown: (e: React.MouseEvent) => void
+  userPosition: GeolocationCoordinates | null
 }
 
 const INTERVAL_OPTIONS = [
@@ -57,20 +60,51 @@ export function Sidebar({
   showParking, onToggleParking,
   showBikes, onToggleBikes,
   width, onResizeHandleMouseDown,
+  userPosition,
 }: SidebarProps) {
   const { t, i18n: i18nInstance } = useTranslation()
+  const [sortByNearest, setSortByNearest] = useState(false)
+
   const isParking = activeTab === 'parking'
   const loading = isParking ? parkingLoading : bikeLoading
   const lastUpdated = isParking ? parkingLastUpdated : bikeLastUpdated
   const onRefresh = isParking ? onRefreshParking : onRefreshBikes
 
+  const canSortNearest = sortByNearest && userPosition !== null
+
   const filteredSpots = spots
     .filter((s) => s.Sted.toLowerCase().includes(searchQuery.toLowerCase()))
-    .sort((a, b) => b.Antall_ledige_plasser - a.Antall_ledige_plasser)
+    .sort((a, b) => {
+      if (canSortNearest) {
+        const distA = haversineMetres(
+          userPosition!.latitude, userPosition!.longitude,
+          parseFloat(a.Latitude), parseFloat(a.Longitude),
+        )
+        const distB = haversineMetres(
+          userPosition!.latitude, userPosition!.longitude,
+          parseFloat(b.Latitude), parseFloat(b.Longitude),
+        )
+        return distA - distB
+      }
+      return b.Antall_ledige_plasser - a.Antall_ledige_plasser
+    })
 
   const filteredStations = bikeStations
     .filter((s) => s.name.toLowerCase().includes(searchQuery.toLowerCase()))
-    .sort((a, b) => b.num_vehicles_available - a.num_vehicles_available)
+    .sort((a, b) => {
+      if (canSortNearest) {
+        const distA = haversineMetres(
+          userPosition!.latitude, userPosition!.longitude,
+          a.lat, a.lon,
+        )
+        const distB = haversineMetres(
+          userPosition!.latitude, userPosition!.longitude,
+          b.lat, b.lon,
+        )
+        return distA - distB
+      }
+      return b.num_vehicles_available - a.num_vehicles_available
+    })
 
   return (
     <aside className="sidebar" style={width !== undefined ? { width } : undefined}>
@@ -190,6 +224,21 @@ export function Sidebar({
           </button>
         </div>
 
+        {/* Nearest sort toggle — only shown when location is available */}
+        {userPosition && (
+          <button
+            className={`nearest-btn ${sortByNearest ? 'active' : ''}`}
+            onClick={() => setSortByNearest((v) => !v)}
+          >
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="3" />
+              <path d="M12 2v3M12 19v3M2 12h3M19 12h3" />
+              <circle cx="12" cy="12" r="9" />
+            </svg>
+            {sortByNearest ? t('sort.default') : t('sort.nearest')}
+          </button>
+        )}
+
         {lastUpdated && (
           <div className="last-updated">{t('lastUpdated')} {formatTime(lastUpdated)}</div>
         )}
@@ -209,6 +258,12 @@ export function Sidebar({
             {filteredSpots.map((spot) => {
               const isSelected = selectedSpot?.Sted === spot.Sted
               const color = getColor(spot.Antall_ledige_plasser)
+              const dist = canSortNearest
+                ? haversineMetres(
+                    userPosition!.latitude, userPosition!.longitude,
+                    parseFloat(spot.Latitude), parseFloat(spot.Longitude),
+                  )
+                : null
               return (
                 <button
                   key={spot.Sted}
@@ -217,7 +272,11 @@ export function Sidebar({
                 >
                   <span className="spot-indicator" style={{ background: color }} aria-hidden="true" />
                   <span className="spot-name">{spot.Sted}</span>
-                  <span className="spot-count" style={{ color }}>{spot.Antall_ledige_plasser}</span>
+                  <span className="spot-count" style={{ color }}>
+                    {dist !== null
+                      ? <span className="spot-distance">{formatDistance(dist)}</span>
+                      : spot.Antall_ledige_plasser}
+                  </span>
                 </button>
               )
             })}
@@ -234,6 +293,12 @@ export function Sidebar({
             {filteredStations.map((station) => {
               const isSelected = selectedStation?.station_id === station.station_id
               const color = getBikeColor(station)
+              const dist = canSortNearest
+                ? haversineMetres(
+                    userPosition!.latitude, userPosition!.longitude,
+                    station.lat, station.lon,
+                  )
+                : null
               return (
                 <button
                   key={station.station_id}
@@ -243,9 +308,10 @@ export function Sidebar({
                   <span className="spot-indicator bike-indicator" style={{ background: color }} aria-hidden="true" />
                   <span className="spot-name">{station.name}</span>
                   <div className="bike-counts">
-                    <span className="spot-count" style={{ color }} title={t('bike.available')}>
-                      {station.num_vehicles_available}
-                    </span>
+                    {dist !== null
+                      ? <span className="spot-distance">{formatDistance(dist)}</span>
+                      : <span className="spot-count" style={{ color }} title={t('bike.available')}>{station.num_vehicles_available}</span>
+                    }
                   </div>
                 </button>
               )

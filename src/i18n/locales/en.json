@@ -49,5 +49,9 @@
   },
   "geo": {
     "recenter": "My location"
+  },
+  "sort": {
+    "nearest": "Nearest to me",
+    "default": "Default order"
   }
 }
