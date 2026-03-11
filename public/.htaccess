@@ -1,7 +1,17 @@
+AddType application/json .json
+
 RewriteEngine On
 RewriteRule ^api/parking$ api/parking.php [L]
 RewriteRule ^api/bikes$ api/bikes.php [L]
 RewriteRule ^api/transit$ api/transit.php [L]
 RewriteRule ^api/gbfs/(.+)$ api/gbfs.php/$1 [L]
+RewriteRule ^api/dev-costs$ api/dev-costs.php [L]
 
 Header always set X-Frame-Options "DENY"
+
+# Prevent caching of index.html so deploys take effect immediately
+<Files "index.html">
+  Header set Cache-Control "no-cache, no-store, must-revalidate"
+  Header set Pragma "no-cache"
+  Header set Expires "0"
+</Files>
