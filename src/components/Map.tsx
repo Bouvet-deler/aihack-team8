@@ -9,8 +9,9 @@ import { ParkingMarker } from './ParkingMarker'
 import { BikeMarker } from './BikeMarker'
 import { TransitMarker } from './TransitMarker'
 import type { TransitStop } from '../types/transit'
+import type { CityConfig } from '../config/cities'
 
-const STAVANGER_CENTER: [number, number] = [58.97, 5.73]
+const DEFAULT_CENTER: [number, number] = [58.97, 5.73]
 const DEFAULT_ZOOM = 13
 
 function FlyToSpot({ spot }: { spot: ParkingSpot | null }) {
@@ -122,6 +123,7 @@ interface MapProps {
   reCenterKey: number
   isFavorite: (type: 'parking' | 'bikes', id: string) => boolean
   onToggleFavorite: (type: 'parking' | 'bikes', id: string) => void
+  city: CityConfig
 }
 
 export function Map({
@@ -143,8 +145,15 @@ export function Map({
   reCenterKey,
   isFavorite,
   onToggleFavorite,
+  city,
 }: MapProps) {
   const mapRef = useRef<LeafletMap | null>(null)
+
+  // Fly to new city center when city changes
+  useEffect(() => {
+    if (!mapRef.current) return
+    mapRef.current.flyTo(city.center, city.zoom, { duration: 1.0 })
+  }, [city])
 
   useEffect(() => {
     if (!selectedTransitStop || !mapRef.current) return
@@ -157,7 +166,7 @@ export function Map({
 
   return (
     <MapContainer
-      center={STAVANGER_CENTER}
+      center={DEFAULT_CENTER}
       zoom={DEFAULT_ZOOM}
       style={{ height: '100%', width: '100%' }}
     >

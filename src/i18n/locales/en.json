@@ -79,6 +79,9 @@
     "nearest": "Nearest to me",
     "default": "Default order"
   },
+  "city": {
+    "select": "Select city"
+  },
   "prediction": {
     "title": "Expected availability (next 8h)",
     "now": "Now",

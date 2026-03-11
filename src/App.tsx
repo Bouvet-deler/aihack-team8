@@ -9,6 +9,7 @@ import { useGeolocation } from './hooks/useGeolocation'
 import { useSidebarResize } from './hooks/useSidebarResize'
 import { useDarkMode } from './hooks/useDarkMode'
 import { useFavorites } from './hooks/useFavorites'
+import { useCity } from './hooks/useCity'
 import type { ParkingSpot } from './types/parking'
 import type { BikeStation } from './types/bike'
 import type { TransitStop } from './types/transit'
@@ -29,9 +30,10 @@ export default function App() {
   const [showTransit, setShowTransit] = useState(true)
   const [reCenterKey, setReCenterKey] = useState(0)
 
-  const parking = useParking(refreshInterval)
-  const bikes = useBikes(refreshInterval)
-  const transit = useTransit(refreshInterval)
+  const { city, selectCity, cities } = useCity()
+  const parking = useParking(refreshInterval, city)
+  const bikes = useBikes(refreshInterval, city)
+  const transit = useTransit(refreshInterval, city)
   const geo = useGeolocation()
   const { width: sidebarWidth, isDragging, handleMouseDown: handleResizeMouseDown } = useSidebarResize()
   const { isDark, toggle: toggleDark } = useDarkMode()
@@ -103,6 +105,9 @@ export default function App() {
         favorites={favorites}
         isFavorite={isFavorite}
         onToggleFavorite={toggleFavorite}
+        city={city}
+        cities={cities}
+        onSelectCity={selectCity}
       />
 
       <main
@@ -128,6 +133,7 @@ export default function App() {
           reCenterKey={reCenterKey}
           isFavorite={isFavorite}
           onToggleFavorite={toggleFavorite}
+          city={city}
         />
 
         {geo.position && (
