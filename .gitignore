@@ -4,3 +4,5 @@ dist-slides/
 .claude/
 *.local
 .DS_Store
+
+lefthook-local.yml
