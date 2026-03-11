@@ -431,11 +431,11 @@ body {
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 16px;
+  gap: 0;
+  padding: 0 4px 0 16px;
   background: none;
   border: none;
-  cursor: pointer;
+  cursor: default;
   text-align: left;
   transition: background 0.1s;
   border-left: 3px solid transparent;
@@ -555,6 +555,71 @@ body {
   border-top-color: var(--eds-primary);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
+}
+
+/* ── Favorites ── */
+.fav-btn {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 1;
+  color: var(--eds-bg-medium);
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: color 0.12s;
+  opacity: 0;
+}
+
+.spot-item:hover .fav-btn,
+.fav-btn.active {
+  opacity: 1;
+}
+
+.fav-btn.active {
+  color: #f59e0b;
+}
+
+.fav-btn:hover:not(.active) {
+  color: var(--eds-text-tertiary);
+}
+
+.spot-item-main {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px 4px 10px 0;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
+.tab-fav-badge {
+  font-size: 10px;
+  font-weight: 700;
+  color: #f59e0b;
+  margin-left: 2px;
+}
+
+.list-section-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--eds-text-tertiary);
+  padding: 8px 12px 4px;
+}
+
+.list-divider {
+  height: 1px;
+  background: var(--eds-bg-medium);
+  margin: 4px 12px 4px;
 }
 
 /* ── Nearest-to-me sort button ── */

@@ -42,15 +42,21 @@ interface BikeMarkerProps {
   station: BikeStation
   isSelected: boolean
   dimmed: boolean
+  isFavorite: boolean
   onClick: () => void
+  onToggleFavorite: () => void
 }
 
-export function BikeMarker({ station, isSelected, dimmed, onClick }: BikeMarkerProps) {
+export function BikeMarker({ station, isSelected, dimmed, isFavorite, onClick, onToggleFavorite }: BikeMarkerProps) {
   const { t } = useTranslation()
   const color = getBikeColor(station)
   const textColor = getTextColor(station)
   const size = isSelected ? 52 : dimmed ? 34 : 44
-  const border = isSelected ? '3px solid #007079' : '2px solid rgba(0,0,0,0.3)'
+  const border = isFavorite
+    ? '2.5px solid #f59e0b'
+    : isSelected
+    ? '3px solid #007079'
+    : '2px solid rgba(0,0,0,0.3)'
   const opacity = dimmed ? 0.25 : 1
   const count = Number.isFinite(station.num_vehicles_available) ? station.num_vehicles_available : '?'
 
@@ -74,9 +80,11 @@ export function BikeMarker({ station, isSelected, dimmed, onClick }: BikeMarkerP
         box-shadow: 0 2px 8px rgba(0,0,0,0.25);
         opacity: ${opacity};
         transition: all 0.15s ease;
+        position: relative;
       ">
         <div style="display:flex; color:${textColor}; line-height:1">${BIKE_ICON}</div>
         <div style="font-size: 10px; line-height:1">${count}</div>
+        ${isFavorite ? `<span style="position:absolute;top:-4px;right:-4px;font-size:10px;line-height:1">★</span>` : ''}
       </div>
     `,
     iconSize: [size, size],
@@ -88,8 +96,25 @@ export function BikeMarker({ station, isSelected, dimmed, onClick }: BikeMarkerP
     <Marker position={[station.lat, station.lon]} icon={icon} eventHandlers={{ click: onClick }}>
       <Popup>
         <div style={{ fontFamily: 'Equinor, sans-serif', minWidth: '180px' }}>
-          <div style={{ fontWeight: 700, fontSize: '14px', marginBottom: '6px', color: '#3d3d3d' }}>
-            {station.name}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
+            <div style={{ fontWeight: 700, fontSize: '14px', color: '#3d3d3d' }}>
+              {station.name}
+            </div>
+            <button
+              onClick={onToggleFavorite}
+              title={isFavorite ? t('favorites.remove') : t('favorites.add')}
+              style={{
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                fontSize: '18px',
+                lineHeight: 1,
+                color: isFavorite ? '#f59e0b' : '#c0c0c0',
+                padding: '2px',
+              }}
+            >
+              {isFavorite ? '★' : '☆'}
+            </button>
           </div>
 
           <div style={{ display: 'flex', gap: '12px', marginBottom: '6px' }}>

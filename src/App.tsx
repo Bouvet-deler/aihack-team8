@@ -7,6 +7,7 @@ import { useBikes } from './hooks/useBikes'
 import { useGeolocation } from './hooks/useGeolocation'
 import { useSidebarResize } from './hooks/useSidebarResize'
 import { useDarkMode } from './hooks/useDarkMode'
+import { useFavorites } from './hooks/useFavorites'
 import type { ParkingSpot } from './types/parking'
 import type { BikeStation } from './types/bike'
 import './App.css'
@@ -29,6 +30,7 @@ export default function App() {
   const geo = useGeolocation()
   const { width: sidebarWidth, isDragging, handleMouseDown: handleResizeMouseDown } = useSidebarResize()
   const { isDark, toggle: toggleDark } = useDarkMode()
+  const { favorites, isFavorite, toggle: toggleFavorite } = useFavorites()
 
   const anyError = parking.error || bikes.error
 
@@ -85,6 +87,9 @@ export default function App() {
         userPosition={geo.position}
         isDark={isDark}
         onToggleDark={toggleDark}
+        favorites={favorites}
+        isFavorite={isFavorite}
+        onToggleFavorite={toggleFavorite}
       />
 
       <main
@@ -104,6 +109,8 @@ export default function App() {
           showBikes={showBikes}
           userPosition={geo.position}
           reCenterKey={reCenterKey}
+          isFavorite={isFavorite}
+          onToggleFavorite={toggleFavorite}
         />
 
         {geo.position && (

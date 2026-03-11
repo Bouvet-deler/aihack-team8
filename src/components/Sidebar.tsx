@@ -38,6 +38,9 @@ interface SidebarProps {
   userPosition: GeolocationCoordinates | null
   isDark: boolean
   onToggleDark: () => void
+  favorites: { parking: string[], bikes: string[] }
+  isFavorite: (type: 'parking' | 'bikes', id: string) => boolean
+  onToggleFavorite: (type: 'parking' | 'bikes', id: string) => void
 }
 
 const INTERVAL_OPTIONS = [
@@ -64,6 +67,7 @@ export function Sidebar({
   width, onResizeHandleMouseDown,
   userPosition,
   isDark, onToggleDark,
+  favorites, isFavorite, onToggleFavorite,
 }: SidebarProps) {
   const { t, i18n: i18nInstance } = useTranslation()
   const [sortByNearest, setSortByNearest] = useState(false)
@@ -188,6 +192,9 @@ export function Sidebar({
           >
             {t('tab.parking')}
             <span className="tab-badge">{spots.length}</span>
+            {favorites.parking.length > 0 && (
+              <span className="tab-fav-badge">★{favorites.parking.length}</span>
+            )}
           </button>
           <button
             className={`tab ${!isParking ? 'active' : ''}`}
@@ -195,6 +202,9 @@ export function Sidebar({
           >
             {t('tab.bikes')}
             <span className="tab-badge">{bikeStations.length}</span>
+            {favorites.bikes.length > 0 && (
+              <span className="tab-fav-badge">★{favorites.bikes.length}</span>
+            )}
           </button>
         </div>
 
@@ -270,6 +280,34 @@ export function Sidebar({
       <div className="spot-list">
         {isParking ? (
           <>
+            {/* Favorited parking spots pinned at top */}
+            {favorites.parking.length > 0 && !searchQuery && (
+              <>
+                <div className="list-section-label">{t('favorites.label')}</div>
+                {spots
+                  .filter((s) => isFavorite('parking', s.Sted))
+                  .map((spot) => {
+                    const isSelected = selectedSpot?.Sted === spot.Sted
+                    const color = getColor(spot.Antall_ledige_plasser)
+                    return (
+                      <div key={`fav-${spot.Sted}`} className={`spot-item ${isSelected ? 'selected' : ''}`}>
+                        <button className="spot-item-main" onClick={() => onSelectSpot(spot)}>
+                          <span className="spot-indicator" style={{ background: color }} aria-hidden="true" />
+                          <span className="spot-name">{spot.Sted}</span>
+                          <span className="spot-count" style={{ color }}>{spot.Antall_ledige_plasser}</span>
+                        </button>
+                        <button
+                          className="fav-btn active"
+                          onClick={() => onToggleFavorite('parking', spot.Sted)}
+                          aria-label={t('favorites.remove')}
+                        >★</button>
+                      </div>
+                    )
+                  })}
+                <div className="list-divider" />
+              </>
+            )}
+
             {filteredSpots.length === 0 && !loading && (
               <div className="empty-state">
                 {searchQuery
@@ -280,6 +318,7 @@ export function Sidebar({
             {filteredSpots.map((spot) => {
               const isSelected = selectedSpot?.Sted === spot.Sted
               const color = getColor(spot.Antall_ledige_plasser)
+              const fav = isFavorite('parking', spot.Sted)
               const dist = canSortNearest
                 ? haversineMetres(
                     userPosition!.latitude, userPosition!.longitude,
@@ -287,24 +326,55 @@ export function Sidebar({
                   )
                 : null
               return (
-                <button
-                  key={spot.Sted}
-                  className={`spot-item ${isSelected ? 'selected' : ''}`}
-                  onClick={() => onSelectSpot(spot)}
-                >
-                  <span className="spot-indicator" style={{ background: color }} aria-hidden="true" />
-                  <span className="spot-name">{spot.Sted}</span>
-                  <span className="spot-count" style={{ color }}>
-                    {dist !== null
-                      ? <span className="spot-distance">{formatDistance(dist)}</span>
-                      : spot.Antall_ledige_plasser}
-                  </span>
-                </button>
+                <div key={spot.Sted} className={`spot-item ${isSelected ? 'selected' : ''}`}>
+                  <button className="spot-item-main" onClick={() => onSelectSpot(spot)}>
+                    <span className="spot-indicator" style={{ background: color }} aria-hidden="true" />
+                    <span className="spot-name">{spot.Sted}</span>
+                    <span className="spot-count" style={{ color }}>
+                      {dist !== null
+                        ? <span className="spot-distance">{formatDistance(dist)}</span>
+                        : spot.Antall_ledige_plasser}
+                    </span>
+                  </button>
+                  <button
+                    className={`fav-btn ${fav ? 'active' : ''}`}
+                    onClick={() => onToggleFavorite('parking', spot.Sted)}
+                    aria-label={fav ? t('favorites.remove') : t('favorites.add')}
+                  >{fav ? '★' : '☆'}</button>
+                </div>
               )
             })}
           </>
         ) : (
           <>
+            {/* Favorited bike stations pinned at top */}
+            {favorites.bikes.length > 0 && !searchQuery && (
+              <>
+                <div className="list-section-label">{t('favorites.label')}</div>
+                {bikeStations
+                  .filter((s) => isFavorite('bikes', s.station_id))
+                  .map((station) => {
+                    const isSelected = selectedStation?.station_id === station.station_id
+                    const color = getBikeColor(station)
+                    return (
+                      <div key={`fav-${station.station_id}`} className={`spot-item ${isSelected ? 'selected' : ''} ${!station.is_renting ? 'inactive' : ''}`}>
+                        <button className="spot-item-main" onClick={() => onSelectStation(station)}>
+                          <span className="spot-indicator bike-indicator" style={{ background: color }} aria-hidden="true" />
+                          <span className="spot-name">{station.name}</span>
+                          <span className="spot-count" style={{ color }}>{station.num_vehicles_available}</span>
+                        </button>
+                        <button
+                          className="fav-btn active"
+                          onClick={() => onToggleFavorite('bikes', station.station_id)}
+                          aria-label={t('favorites.remove')}
+                        >★</button>
+                      </div>
+                    )
+                  })}
+                <div className="list-divider" />
+              </>
+            )}
+
             {filteredStations.length === 0 && !loading && (
               <div className="empty-state">
                 {searchQuery
@@ -315,6 +385,7 @@ export function Sidebar({
             {filteredStations.map((station) => {
               const isSelected = selectedStation?.station_id === station.station_id
               const color = getBikeColor(station)
+              const fav = isFavorite('bikes', station.station_id)
               const dist = canSortNearest
                 ? haversineMetres(
                     userPosition!.latitude, userPosition!.longitude,
@@ -322,20 +393,23 @@ export function Sidebar({
                   )
                 : null
               return (
-                <button
-                  key={station.station_id}
-                  className={`spot-item ${isSelected ? 'selected' : ''} ${!station.is_renting ? 'inactive' : ''}`}
-                  onClick={() => onSelectStation(station)}
-                >
-                  <span className="spot-indicator bike-indicator" style={{ background: color }} aria-hidden="true" />
-                  <span className="spot-name">{station.name}</span>
-                  <div className="bike-counts">
-                    {dist !== null
-                      ? <span className="spot-distance">{formatDistance(dist)}</span>
-                      : <span className="spot-count" style={{ color }} title={t('bike.available')}>{station.num_vehicles_available}</span>
-                    }
-                  </div>
-                </button>
+                <div key={station.station_id} className={`spot-item ${isSelected ? 'selected' : ''} ${!station.is_renting ? 'inactive' : ''}`}>
+                  <button className="spot-item-main" onClick={() => onSelectStation(station)}>
+                    <span className="spot-indicator bike-indicator" style={{ background: color }} aria-hidden="true" />
+                    <span className="spot-name">{station.name}</span>
+                    <div className="bike-counts">
+                      {dist !== null
+                        ? <span className="spot-distance">{formatDistance(dist)}</span>
+                        : <span className="spot-count" style={{ color }} title={t('bike.available')}>{station.num_vehicles_available}</span>
+                      }
+                    </div>
+                  </button>
+                  <button
+                    className={`fav-btn ${fav ? 'active' : ''}`}
+                    onClick={() => onToggleFavorite('bikes', station.station_id)}
+                    aria-label={fav ? t('favorites.remove') : t('favorites.add')}
+                  >{fav ? '★' : '☆'}</button>
+                </div>
               )
             })}
           </>
