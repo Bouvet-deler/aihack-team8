@@ -11,7 +11,7 @@ transition: slide-left
 mdc: true
 ---
 
-<!-- markdownlint-disable MD025 MD003 -->
+<!-- markdownlint-disable MD003 MD013 MD022 MD024 MD025 MD033 -->
 <!-- MD025: Slidev uses # per slide (multiple h1 by design) -->
 <!-- MD003: Slidev --- separators are misread as setext headings -->
 
@@ -55,7 +55,7 @@ Informasjonen er spredt over ulike apper og nettsider. Ingen viser **begge deler
 ## Ingen dekker Stavanger
 
 | Løsning | Parkering | Sykkel | Stavanger |
-|---------|:---------:|:------:|:---------:|
+| --------- | :---------: | :------: | :---------: |
 | Citymapper | ❌ | ✅ | ❌ |
 | Moovit | ❌ | ❌ | ⚠️ |
 | SpotHero | ✅ | ❌ | ❌ |
@@ -74,6 +74,7 @@ Informasjonen er spredt over ulike apper og nettsider. Ingen viser **begge deler
 <div>
 
 ## Kjernefunksjoner
+
 - 🗺️ Interaktivt kart med **parkering + sykkel**
 - 🎨 Fargekodede markører (grønn → rød)
 - 🔍 Søk og filtrering
@@ -86,6 +87,7 @@ Informasjonen er spredt over ulike apper og nettsider. Ingen viser **begge deler
 <div>
 
 ## Nye funksjoner (Phase 1 ✅)
+
 - 🌙 **Mørk modus** — respekterer system-tema
 - ⭐ **Favoritter** — lagre favorittplasser
 - 📏 **Gangavstand** — tid og distanse
@@ -158,7 +160,7 @@ Copilot CLI var med i **hele arbeidsflyten** — ikke bare koding
 ## Hva AI gjorde for oss
 
 | Oppgave | Verktøy |
-|---------|---------|
+| --------- | --------- |
 | Kodeanalyse | Utforsket hele kodebasen på minutter |
 | Konkurrentanalyse | 7 globale plattformer analysert |
 | Prosjektplanlegging | 24 GitHub Issues med akseptansekriterier |
@@ -193,7 +195,7 @@ Copilot CLI var med i **hele arbeidsflyten** — ikke bare koding
 
 # Copilot CLI i praksis 📸
 
-<img src="./assets/copilot-cli-research.png" class="rounded shadow-xl" />
+<img src="./assets/copilot-cli-research.png" alt="Copilot CLI research analysis" class="rounded shadow-xl" />
 
 <div class="text-xs opacity-50 mt-2 text-center">
 Copilot CLI gjør konkurranseanalyse, søker GitHub-repos og analyserer markedet — direkte i terminalen
@@ -245,7 +247,7 @@ Automatisert UAT-test med **Playwright** mot 14 kategorier
 ## Issues
 
 | Status | Antall |
-|--------|:------:|
+| -------- | :------: |
 | ✅ Lukket | 4 |
 | 📋 Åpen (Phase 1) | 4 |
 | 📋 Åpen (Phase 2) | 6 |
@@ -260,6 +262,7 @@ Automatisert UAT-test med **Playwright** mot 14 kategorier
 ## Teamets bidrag
 
 **Knut Erik** (knu73r1k)
+
 - i18n (NO/EN/ES)
 - Dark mode
 - Favoritter
@@ -268,6 +271,7 @@ Automatisert UAT-test med **Playwright** mot 14 kategorier
 - Walking time format fix
 
 **Einar** (einaren)
+
 - Prosjektledelse med AI
 - Konkurranseanalyse
 - 24 feature issues
@@ -339,6 +343,7 @@ Gjøre appen til **den** mobilitetsappen for Stavanger
 ## Arkitektur-inspirasjon
 
 **Digitransit** (Helsinki) 🇫🇮
+
 - Open source, React, Leaflet
 - Nordisk kontekst
 - Multi-modal
@@ -347,6 +352,7 @@ Gjøre appen til **den** mobilitetsappen for Stavanger
 <br>
 
 **Entur** (Norge) 🇳🇴
+
 - Gratis API-er
 - Nasjonal transportdata
 - Reiseplanlegger-motor

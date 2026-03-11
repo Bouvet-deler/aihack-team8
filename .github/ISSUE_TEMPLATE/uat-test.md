@@ -8,7 +8,7 @@ labels: "testing, uat"
 ## Testmiljø
 
 | Felt | Verdi |
-|------|-------|
+| --- | --- |
 | **Tester** | |
 | **Dato** | |
 | **Nettleser (desktop)** | |
@@ -285,7 +285,7 @@ labels: "testing, uat"
 ## Oppsummering
 
 | Kategori | Bestått | Feil | Ikke testet |
-|----------|---------|------|-------------|
+| --- | --- | --- | --- |
 | Oppstart og lasting | | | |
 | Kart – visning | | | |
 | Markør-farger | | | |
@@ -309,5 +309,4 @@ labels: "testing, uat"
 
 ### Funn og kommentarer
 
->
-
+> 
