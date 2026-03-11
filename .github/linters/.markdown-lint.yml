@@ -9,3 +9,7 @@ MD033: false
 
 # Line length — not practical for tables, URLs, and prose
 MD013: false
+
+# Table column alignment — emoji characters have variable width,
+# causing false positives on tables with emoji content
+MD060: false
