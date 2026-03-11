@@ -2,6 +2,7 @@ import { divIcon } from 'leaflet'
 import { Marker, Popup } from 'react-leaflet'
 import { useTranslation } from 'react-i18next'
 import type { ParkingSpot } from '../types/parking'
+import { PredictionChart } from './PredictionChart'
 
 export function getColor(freeSpots: number): string {
   if (freeSpots > 100) return '#22c55e'
@@ -118,6 +119,7 @@ export function ParkingMarker({ spot, isSelected, dimmed, isFavorite, onClick, o
           <div style={{ fontSize: '12px', color: '#6f6f6f', marginTop: '6px' }}>
             {spot.Dato} kl. {spot.Klokkeslett}
           </div>
+          <PredictionChart currentFree={spot.Antall_ledige_plasser} />
         </div>
       </Popup>
     </Marker>

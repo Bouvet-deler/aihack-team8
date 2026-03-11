@@ -78,5 +78,10 @@
   "sort": {
     "nearest": "Nærmest meg",
     "default": "Standard rekkefølge"
+  },
+  "prediction": {
+    "title": "Forventet tilgjengelighet (neste 8t)",
+    "now": "Nå",
+    "best": "Beste tidspunkt: {{time}} — ca. {{count}} ledige"
   }
 }

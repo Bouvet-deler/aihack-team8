@@ -78,5 +78,10 @@
   "sort": {
     "nearest": "Más cercano",
     "default": "Orden predeterminado"
+  },
+  "prediction": {
+    "title": "Disponibilidad prevista (próximas 8h)",
+    "now": "Ahora",
+    "best": "Mejor momento: {{time}} — ~{{count}} libres"
   }
 }
