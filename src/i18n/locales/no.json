@@ -18,11 +18,13 @@
   },
   "tab": {
     "parking": "Parkering",
-    "bikes": "Bysykkel"
+    "bikes": "Bysykkel",
+    "transit": "Kollektiv"
   },
   "search": {
     "parking": "Søk etter parkeringsplass…",
     "bikes": "Søk etter sykkelpunkt…",
+    "transit": "Søk etter holdeplass…",
     "label": "Søk",
     "clear": "Tøm søk"
   },
@@ -35,7 +37,9 @@
     "parkingSearch": "Ingen treff på \"{{query}}\"",
     "parking": "Ingen parkeringsdata tilgjengelig",
     "bikesSearch": "Ingen treff på \"{{query}}\"",
-    "bikes": "Ingen sykkeldata tilgjengelig"
+    "bikes": "Ingen sykkeldata tilgjengelig",
+    "transitSearch": "Ingen treff på \"{{query}}\"",
+    "transit": "Ingen kollektivdata tilgjengelig"
   },
   "bike": {
     "available": "Ledige sykler",
@@ -49,6 +53,17 @@
   },
   "geo": {
     "recenter": "Min posisjon"
+  },
+  "transit": {
+    "label": "Kollektiv",
+    "toggle": "Vis/skjul kollektivstopp",
+    "mode": {
+      "bus": "Buss",
+      "rail": "Tog",
+      "water": "Ferje",
+      "metro": "Metro",
+      "tram": "Trikk"
+    }
   },
   "favorites": {
     "label": "Favoritter",
