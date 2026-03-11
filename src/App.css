@@ -676,6 +676,29 @@ body {
   color: #fff;
 }
 
+/* ── Enable location hint ── */
+.enable-location-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: Equinor, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--eds-text-tertiary);
+  background: none;
+  border: 1px dashed var(--eds-text-tertiary);
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 2px;
+}
+
+.enable-location-btn:hover {
+  color: var(--eds-primary);
+  border-color: var(--eds-primary);
+}
+
 /* ── Distance label in list ── */
 .spot-distance {
   font-size: 11px;

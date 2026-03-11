@@ -63,7 +63,8 @@
     "label": "Data:"
   },
   "geo": {
-    "recenter": "My location"
+    "recenter": "My location",
+    "enable": "Enable location for distances"
   },
   "favorites": {
     "label": "Favorites",

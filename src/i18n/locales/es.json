@@ -63,7 +63,8 @@
     "label": "Datos:"
   },
   "geo": {
-    "recenter": "Mi ubicación"
+    "recenter": "Mi ubicación",
+    "enable": "Activar ubicación para distancias"
   },
   "favorites": {
     "label": "Favoritos",

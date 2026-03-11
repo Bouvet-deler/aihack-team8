@@ -31,6 +31,19 @@ export default function App() {
   const [reCenterKey, setReCenterKey] = useState(0)
 
   const { city, selectCity, cities } = useCity()
+
+  function handleSelectCity(c: typeof city) {
+    selectCity(c)
+    // If the new city has no parking, switch away from the parking tab
+    if (!c.parking && activeTab === 'parking') {
+      setActiveTab('bikes')
+    }
+    // Clear selections when switching cities
+    setSelectedSpot(null)
+    setSelectedStation(null)
+    setSelectedTransitStop(null)
+    setSearchQuery('')
+  }
   const parking = useParking(refreshInterval, city)
   const bikes = useBikes(refreshInterval, city)
   const transit = useTransit(refreshInterval, city)
@@ -100,6 +113,7 @@ export default function App() {
         width={sidebarWidth}
         onResizeHandleMouseDown={handleResizeMouseDown}
         userPosition={geo.position}
+        onRequestLocation={geo.request}
         isDark={isDark}
         onToggleDark={toggleDark}
         favorites={favorites}
@@ -107,7 +121,7 @@ export default function App() {
         onToggleFavorite={toggleFavorite}
         city={city}
         cities={cities}
-        onSelectCity={selectCity}
+        onSelectCity={handleSelectCity}
       />
 
       <main
