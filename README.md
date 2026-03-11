@@ -71,7 +71,7 @@ All documentation lives in the repo and follows [docs-as-code](https://www.write
 | **Slide assets** | [`docs/assets/`](docs/assets/) | PNG |
 | **Manual test templates** | [`.github/ISSUE_TEMPLATE/`](.github/ISSUE_TEMPLATE/) | GitHub Issue Template |
 | **Automated tests** | [`tests/`](tests/) | Playwright / Node.js |
-| **AI project guide** | [`CLAUDE.md`](CLAUDE.md) | Markdown |
+| **Contributing guide** | [`CONTRIBUTING.md`](CONTRIBUTING.md) | Markdown |
 | **Feature backlog** | [GitHub Issues](https://github.com/Bouvet-deler/aihack-team8/issues) | GitHub |
 
 ### 📊 Presentation
@@ -109,7 +109,32 @@ Open data from [opencom.no](https://opencom.no), proxied through Vite dev server
 
 ---
 
+## API reference
+
+### Parking API
+
+- **Proxy**: `/api/parking` → opencom.no parking dataset
+- **Fields**: `Dato`, `Klokkeslett`, `Sted`, `Latitude`,
+  `Longitude`, `Antall_ledige_plasser`
+- **⚠️ Note**: `Antall_ledige_plasser` is returned as a
+  **string** — always call `Number()` when using it
+
+### City bikes API
+
+- **Proxy**: `/api/bikes` → opencom.no city bikes dataset
+- **Fields**: `station_id`, `name`, `lat`, `lon`, `capacity`,
+  `num_vehicles_available`, `num_docks_available`,
+  `is_renting`, `is_returning`, `last_reported`
+- All fields are typed correctly (lat/lon are numbers)
+- ~248 stations, ~224 active
+
+CORS proxy configured in `vite.config.ts` via `server.proxy`.
+
+---
+
 ## Color coding
+
+**Design tokens**: Primary `#007079` (Moss Green), Font: Equinor (loaded from EDS CDN)
 
 ### Parking (circles)
 
@@ -150,10 +175,10 @@ Open data from [opencom.no](https://opencom.no), proxied through Vite dev server
 
 ## Project structure
 
-```
+```text
 ├── docs/
 │   ├── slides.md                  # 📊 Slidev status report
-│   └── img/                       # Slide/doc images
+│   └── assets/                    # Slide/doc images
 ├── tests/
 │   ├── uat-test.cjs               # 🧪 Automated UAT (Playwright)
 │   └── uat-results.json           # Latest test results
@@ -177,7 +202,7 @@ Open data from [opencom.no](https://opencom.no), proxied through Vite dev server
 │   ├── img/                       # Images served by Slidev & app
 │   └── icons/                     # PWA icons
 ├── .github/ISSUE_TEMPLATE/        # Manual UAT test templates
-├── CLAUDE.md                      # AI project guide
+├── CONTRIBUTING.md            # 🤝 Development guide
 └── vite.config.ts                 # Vite + PWA + API proxy
 ```
 
@@ -205,6 +230,19 @@ See [GitHub Issues](https://github.com/Bouvet-deler/aihack-team8/issues) — org
 | **2 — Multi-modal Hub** | Entur buses, e-scooters, EV charging, routing | 📋 Planned |
 | **3 — Smart Features** | Push notifications, ML prediction, trip planner | 📋 Planned |
 | **4 — Platform Scale** | Multi-city, OpenTripPlanner, accounts, open API | 📋 Planned |
+
+---
+
+## Security
+
+- **XSS protection**: `Antall_ledige_plasser` coerced with
+  `Number()` before HTML interpolation in DivIcon markers
+- **API validation**: `isValidSpot()` / `isValidStation()` type
+  guards filter malformed records before rendering
+- **CSP**: Content Security Policy meta tag in `index.html`
+  (script-src self, connect-src for API endpoints)
+- **Error handling**: Generic error messages shown to users —
+  raw fetch errors never exposed
 
 ---
 
