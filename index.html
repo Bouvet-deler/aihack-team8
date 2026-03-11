@@ -7,6 +7,7 @@
     <meta name="theme-color" content="#007079" />
     <link rel="apple-touch-icon" href="/icons/icon-180.png" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <!-- NOTE: frame-ancestors must be set via HTTP header in production (ignored in meta tags) -->
     <meta http-equiv="Content-Security-Policy" content="
       default-src 'self';
       script-src 'self';
@@ -14,7 +15,6 @@
       font-src 'self' https://cdn.eds.equinor.com;
       img-src 'self' https://*.tile.openstreetmap.org data: blob:;
       connect-src 'self';
-      frame-ancestors 'none';
     " />
     <link rel="stylesheet" href="https://cdn.eds.equinor.com/font/eds-uprights-vf.css" />
     <title>Stavanger Parkering</title>
