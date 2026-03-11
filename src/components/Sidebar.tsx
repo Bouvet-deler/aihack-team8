@@ -188,6 +188,7 @@ export function Sidebar({
             className={`layer-toggle ${showParking ? 'active' : ''}`}
             onClick={onToggleParking}
             title={t('parking.toggle')}
+            aria-label={t('parking.toggle')}
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <rect x="3" y="3" width="18" height="18" rx="2"/>
@@ -199,6 +200,7 @@ export function Sidebar({
             className={`layer-toggle ${showBikes ? 'active' : ''}`}
             onClick={onToggleBikes}
             title={t('bikes.toggle')}
+            aria-label={t('bikes.toggle')}
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="5.5" cy="17.5" r="3.5"/>
@@ -212,6 +214,7 @@ export function Sidebar({
             className={`layer-toggle ${showTransit ? 'active' : ''}`}
             onClick={onToggleTransit}
             title={t('transit.toggle')}
+            aria-label={t('transit.toggle')}
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <rect x="3" y="3" width="18" height="13" rx="2"/>
@@ -291,6 +294,7 @@ export function Sidebar({
             onClick={onRefresh}
             disabled={loading}
             title={t('refresh.now')}
+            aria-label={t('refresh.now')}
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className={loading ? 'spin' : ''}>
               <path d="M23 4v6h-6" />
@@ -305,6 +309,8 @@ export function Sidebar({
           <button
             className={`nearest-btn ${sortByNearest ? 'active' : ''}`}
             onClick={() => setSortByNearest((v) => !v)}
+            title={t('sort.nearest')}
+            aria-label={t('sort.nearest')}
           >
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="12" r="3" />
