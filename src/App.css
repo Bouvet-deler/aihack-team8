@@ -537,6 +537,18 @@ body {
   font-size: 11px;
   color: var(--eds-text-tertiary);
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.dev-cost-label {
+  margin-left: auto;
+  font-size: 10px;
+  color: var(--eds-text-tertiary);
+  opacity: 0.7;
+  cursor: default;
 }
 
 /* ── Error banner ── */
