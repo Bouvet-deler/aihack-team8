@@ -464,6 +464,8 @@ body {
   color: var(--eds-text-default);
   overflow: hidden;
   text-overflow: ellipsis;
+  display: flex;
+  flex-direction: column;
   white-space: nowrap;
 }
 
@@ -658,6 +660,14 @@ body {
   font-weight: 600;
   color: var(--eds-primary);
   white-space: nowrap;
+}
+
+.spot-walk-row {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--eds-text-tertiary);
+  margin-top: 1px;
 }
 
 /* ── Sidebar resize handle ── */
