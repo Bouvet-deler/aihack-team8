@@ -8,6 +8,7 @@ and switch between a parking list and a bike station list in the sidebar.
 ---
 
 ## Tech stack
+
 | Layer | Choice |
 |-------|--------|
 | Build | Vite 6 |
@@ -27,7 +28,8 @@ and switch between a parking list and a bike station list in the sidebar.
 ---
 
 ## Project structure
-```
+
+```text
 src/
   i18n/
     index.ts              # i18next setup (NO/EN/ES, localStorage persistence)
@@ -73,6 +75,7 @@ CORS proxy is configured in `vite.config.ts` via `server.proxy`.
 - Font: "Equinor" — loaded from `https://cdn.eds.equinor.com/font/eds-uprights-vf.css`
 
 ### Parking marker colours
+
 | Free spots | Colour |
 |-----------|--------|
 | > 100 | `#22c55e` green |
@@ -81,6 +84,7 @@ CORS proxy is configured in `vite.config.ts` via `server.proxy`.
 | < 20 | `#ef4444` red |
 
 ### Bike marker colours
+
 | Condition | Colour |
 |-----------|--------|
 | Not renting | `#9ca3af` grey |
