@@ -1,5 +1,6 @@
 node_modules/
 dist/
+dist-slides/
 .claude/
 *.local
 .DS_Store
