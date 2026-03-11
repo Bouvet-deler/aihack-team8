@@ -1,13 +1,3 @@
 {
-  "extends": "stylelint-config-standard",
-  "rules": {
-    "no-descending-specificity": null,
-    "declaration-block-single-line-max-declarations": null,
-    "shorthand-property-no-redundant-values": null,
-    "color-hex-length": null,
-    "color-function-alias-notation": null,
-    "color-function-notation": null,
-    "alpha-value-notation": null,
-    "font-family-name-quotes": null
-  }
+  "extends": "stylelint-config-standard"
 }

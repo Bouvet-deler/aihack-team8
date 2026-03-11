@@ -1,10 +1,8 @@
-{
-  "MD001": false,
-  "MD003": false,
-  "MD013": false,
-  "MD025": false,
-  "MD033": false,
-  "MD040": false,
-  "MD041": false,
-  "MD058": false
-}
+# Markdownlint configuration
+# Strict rules — only disable what cannot be fixed project-wide
+
+# Issue templates start with YAML frontmatter, not a heading
+MD041: false
+
+# Inline HTML is used in README badges, Slidev components, and task lists
+MD033: false
