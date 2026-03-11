@@ -16,6 +16,7 @@ mdc: true
 <!-- MD003: Slidev --- separators are misread as setext headings -->
 
 <div class="flex flex-col items-center justify-center h-full">
+  <div class="text-lg opacity-50 mb-6">Hvor mange apper trenger du for parkering, bysykler og buss i Stavanger?</div>
   <div class="cover-title mb-4">Stavanger Mobilitet</div>
   <div class="cover-subtitle mb-8">Sanntids parkering, bysykler og kollektivtransport — på ett kart</div>
 
@@ -38,8 +39,8 @@ mdc: true
 
 <!--
 Presenter notes:
-Velkommen! Stavanger Mobilitet samler all mobilitetsinformasjon på ett kart.
-Start med en kort hook: "Hvor mange apper bruker du for å sjekke parkering, sykler og buss?"
+Åpne med hook-spørsmålet: "Hvor mange apper trenger du...?"
+La det synke inn et øyeblikk, deretter presenter løsningen.
 -->
 
 ---
@@ -102,7 +103,7 @@ layoutClass: gap-8
 
 <div class="mt-3 space-y-2 text-sm">
   <div v-click>🗺️ Interaktivt kart — <b>parkering + sykkel + buss</b></div>
-  <div v-click>🎨 Fargekodede markører <span class="text-green-400">grønn</span> → <span class="text-red-400">rød</span></div>
+  <div v-click>🎨 Fargekodede markører [grønn]{.text-green-400} → [rød]{.text-red-400}</div>
   <div v-click>🔍 Søk og filtrering</div>
   <div v-click>📱 PWA — installerbar på mobil</div>
   <div v-click>🌍 Flerspråklig (NO / EN / ES)</div>
@@ -139,9 +140,34 @@ layout: center
 class: text-center
 ---
 
+# Demo 🎬
+
+<div class="cover-subtitle mt-4 mb-8">La oss se appen i aksjon</div>
+
+<div class="flex gap-4 justify-center">
+  <span class="feature-pill">🗺️ Kartet</span>
+  <span class="feature-pill">🔍 Søk & filter</span>
+  <span class="feature-pill">🌙 Mørk modus</span>
+  <span class="feature-pill">📱 Mobil PWA</span>
+</div>
+
+<div class="text-sm opacity-40 mt-8">Bytt til nettleseren og vis localhost:5173</div>
+
+<!--
+Presenter notes:
+LIVE DEMO — bytt til nettleseren.
+Vis: kartet med alle lag, søk, filtrer, bytt by, mørk modus, installer PWA.
+Bruk ca. 2-3 minutter her — dette er presentasjonens høydepunkt.
+-->
+
+---
+layout: center
+class: text-center
+---
+
 # Tech Stack 🛠️
 
-<div class="grid grid-cols-4 gap-6 mt-6">
+<div v-click class="grid grid-cols-4 gap-6 mt-6">
   <div class="tech-tile">
     <div class="tech-icon">⚛️</div>
     <div class="tech-name">React 19</div>
@@ -164,7 +190,7 @@ class: text-center
   </div>
 </div>
 
-<div class="grid grid-cols-4 gap-6 mt-4">
+<div v-click class="grid grid-cols-4 gap-6 mt-4">
   <div class="tech-tile">
     <div class="tech-icon">📦</div>
     <div class="tech-name">PWA</div>
@@ -195,12 +221,12 @@ PWA gjør appen installerbar. i18next for 3 språk. Open Data fra opencom.no og 
 
 ---
 layout: two-cols
-layoutClass: gap-6
+layoutClass: gap-5
 ---
 
 # AI-drevet utvikling 🤖
 
-<div class="text-sm opacity-70 mb-4">Copilot CLI var med i <b>hele arbeidsflyten</b> — ikke bare koding</div>
+<div class="text-sm opacity-70 mb-3">Copilot CLI var med i <b>hele arbeidsflyten</b> — ikke bare koding</div>
 
 ## Hva AI gjorde for oss
 
@@ -213,127 +239,44 @@ layoutClass: gap-6
 | Kodekvalitet      | CSS + alle lint-feil fikset     |
 | Dokumentasjon     | README, CONTRIBUTING, Slidev    |
 | Testing           | UAT-template + Playwright       |
-| Deep research     | 4 rapporter, 62 000+ ord        |
+| Deep research     | 5 rapporter, 80 000+ ord        |
 
 ::right::
 
 <div class="mt-12">
 
-## AI som utviklingspartner
+## 5 dype research-analyser
 
-<div class="gradient-card mt-2">
+<div v-click class="glass-sm mb-2">
+<div class="text-sm">🔍 <b>Konkurranseanalyse</b> — 7 plattformer</div>
+</div>
 
-```text
-Copilot CLI ≠ kodegenerator
+<div v-click class="glass-sm mb-2">
+<div class="text-sm">💰 <b>Utviklingskostnader</b> — DRY + CI-strategi</div>
+</div>
 
-Copilot CLI = utviklingspartner som:
+<div v-click class="glass-sm mb-2">
+<div class="text-sm">🎤 <b>Presentasjonsteknikk</b> — Narrativ + design</div>
+</div>
 
-✓ Analyserer kodebasen
-✓ Planlegger arkitektur
-✓ Skriver og fikser kode
-✓ Setter opp CI/CD
-✓ Kjører tester
-✓ Dokumenterer
+<div v-click class="glass-sm mb-2">
+<div class="text-sm">📝 <b>Ren Markdown</b> — Comark/MDC i Slidev</div>
+</div>
 
-Alt fra terminalen — ingen kontekst-
-bytting mellom verktøy.
-```
+<div v-click class="glass-sm">
+<div class="text-sm">🎨 <b>Moderne CSS</b> — Nesting, OKLCH, @property</div>
+</div>
 
+<div class="gradient-card mt-3 text-center text-sm">
+Copilot CLI = <b>utviklingspartner</b>, ikke kodegenerator
 </div>
 
 </div>
 
 <!--
 Presenter notes:
-Tabellen viser bredden av AI-bruk — ikke bare koding, men hele arbeidsflyten.
-Copilot CLI er en utviklingspartner, ikke bare en kodegenerator.
--->
-
----
-layout: two-cols
-layoutClass: gap-5
----
-
-# AI-drevet research 🔬
-
-<div class="text-sm opacity-70 mb-3">Copilot CLI utførte <b>4 dype research-analyser</b> — fra markedsanalyse til presentasjonsdesign</div>
-
-<div class="glass mb-4">
-
-## Konkurranseanalyse
-
-<div class="text-sm mt-2">7 plattformer analysert: Citymapper, Moovit, Digitransit, SpotHero, Parkopedia, CityBikes, Entur</div>
-
-<div class="divider"></div>
-
-<div class="text-xs opacity-60">→ Konklusjon: Ingen dekker Stavanger med P + 🚲 + 🚌 samlet</div>
-
-</div>
-
-<div class="glass">
-
-## Utviklingskostnader
-
-<div class="text-sm mt-2">CI-kostnad, verktøy-overlap, DRY-analyse og pre-commit vs. CI-strategi</div>
-
-<div class="divider"></div>
-
-<div class="text-xs opacity-60">→ Resultat: Lefthook + Super-linter, ~$0.37 i CI-kostnader</div>
-
-</div>
-
-::right::
-
-<div class="mt-12">
-
-<div class="glass mb-4">
-
-## Presentasjonsteknikk
-
-<div class="text-sm mt-2">Narrativ struktur, visuell design, Slidev-teknikker, timing og leveranse</div>
-
-<div class="divider"></div>
-
-<div class="text-xs opacity-60">→ Rammeverk: Problem → Løsning → Bevis → Visjon</div>
-
-</div>
-
-<div class="glass">
-
-## Ren Markdown i Slidev
-
-<div class="text-sm mt-2">Comark/MDC-syntax, UnoCSS attributify, scoped styles — eliminere HTML</div>
-
-<div class="divider"></div>
-
-<div class="text-xs opacity-60">→ Funn: ~70% av HTML kan erstattes med ren Markdown</div>
-
-</div>
-
-</div>
-
-<!--
-Presenter notes:
-Fire dype research-analyser utført av Copilot CLI, totalt 62 000+ ord.
-Disse ble brukt til å forbedre produktet, presentasjonen og CI/CD-oppsettet.
--->
-
----
-
-# Copilot CLI i praksis 📸
-
-<div class="flex justify-center mt-2">
-<img src="./assets/copilot-cli-research.png" alt="Copilot CLI research analysis" class="rounded-xl shadow-2xl border border-white/5 max-h-[420px]" />
-</div>
-
-<div class="text-xs opacity-40 mt-3 text-center">
-Copilot CLI gjør konkurranseanalyse, søker GitHub-repos og analyserer markedet — direkte i terminalen
-</div>
-
-<!--
-Presenter notes:
-Her ser vi Copilot CLI i aksjon — den søker GitHub-repos, analyserer konkurrenter og genererer rapporter.
-Alt skjer direkte i terminalen, ingen context-switching.
+Tabellen viser bredden av AI-bruk. Høyre kolonne: klikk gjennom 5 research-rapporter.
+Copilot CLI er en utviklingspartner — analyserer, planlegger, skriver kode, setter opp CI/CD, alt fra terminalen.
 -->
 
 ---
@@ -539,11 +482,11 @@ layoutClass: gap-8
 <div class="text-sm opacity-70 mb-3">Gjøre appen til <b>den</b> mobilitetsappen for Stavanger</div>
 
 <div class="space-y-2">
-  <div class="glass-sm">🚏 <b>Kolumbus sanntid</b></div>
-  <div class="glass-sm">🛴 <b>El-sparkesykler</b></div>
-  <div class="glass-sm">🗺️ <b>Ruteplanlegger</b></div>
-  <div class="glass-sm">⚡ <b>Elbil-lading</b></div>
-  <div class="glass-sm">♿ <b>WCAG 2.1 AA</b></div>
+  <div v-click class="glass-sm">🚏 <b>Kolumbus sanntid</b></div>
+  <div v-click class="glass-sm">🛴 <b>El-sparkesykler</b></div>
+  <div v-click class="glass-sm">🗺️ <b>Ruteplanlegger</b></div>
+  <div v-click class="glass-sm">⚡ <b>Elbil-lading</b></div>
+  <div v-click class="glass-sm">♿ <b>WCAG 2.1 AA</b></div>
 </div>
 
 ::right::
@@ -556,22 +499,22 @@ layoutClass: gap-8
 
 <div class="gradient-card">
 🏙️ <b>Multi-city</b> — Bergen, Trondheim, Oslo
-<span class="badge badge-amber ml-1">Phase 4</span>
+[Phase 4]{.badge .badge-amber .ml-1}
 </div>
 
 <div class="gradient-card">
 📈 <b>Prediksjon</b> — forutsi tilgjengelighet
-<span class="badge badge-amber ml-1">Phase 3</span>
+[Phase 3]{.badge .badge-amber .ml-1}
 </div>
 
 <div class="gradient-card">
 🚌 <b>Entur API</b> — buss/ferge-data
-<span class="badge badge-green ml-1">Phase 2</span>
+[Phase 2]{.badge .badge-green .ml-1}
 </div>
 
 <div class="gradient-card">
 🔍 <b>CI/CD</b> — Super-linter + Lefthook
-<span class="badge badge-blue ml-1">Infra</span>
+[Infra]{.badge .badge-blue .ml-1}
 </div>
 
 </div>
