@@ -1,22 +1,64 @@
 {
-  "model": "claude-opus-4-6",
-  "inputPricePerMTok": 15.00,
-  "outputPricePerMTok": 75.00,
   "usdToNok": 10.5,
-  "sessions": [
-    {
-      "date": "2026-03-10",
-      "description": "Initial app: Leaflet map, parking API, sidebar, search, CORS proxy, EDS design, security fixes",
-      "inputTokens": 420000,
-      "outputTokens": 85000,
-      "costUSD": 12.68
+  "developers": {
+    "knut": {
+      "tool": "Claude API (direct)",
+      "model": "claude-opus-4-6",
+      "inputPricePerMTok": 15.0,
+      "outputPricePerMTok": 75.0,
+      "sessions": [
+        {
+          "date": "2026-03-10",
+          "description": "Initial app: Leaflet map, parking API, sidebar, search, CORS proxy, EDS design, security fixes",
+          "inputTokens": 420000,
+          "outputTokens": 85000,
+          "costUSD": 12.68
+        },
+        {
+          "date": "2026-03-11",
+          "description": "Prediction chart (#16), multi-city support (#21, Bergen/Trondheim/Oslo), i18n NO/EN/ES, distance fix, FTP deploys",
+          "inputTokens": 980000,
+          "outputTokens": 210000,
+          "costUSD": 30.45
+        }
+      ]
     },
-    {
-      "date": "2026-03-11",
-      "description": "Prediction chart (#16), multi-city support (#21, Bergen/Trondheim/Oslo), i18n NO/EN/ES, distance fix, FTP deploys, README AI workflow rules",
-      "inputTokens": 980000,
-      "outputTokens": 210000,
-      "costUSD": 30.45
+    "einar": {
+      "tool": "GitHub Copilot CLI",
+      "model": "claude-opus-4-6 / claude-sonnet-4.5",
+      "pricingNote": "Included in Copilot Business subscription ($19/seat/month)",
+      "sessions": [
+        {
+          "date": "2026-03-11",
+          "description": "Super-linter CI setup, markdownlint/prettier fixes, docs-as-code restructure",
+          "premiumRequests": 45,
+          "costUSD": 0
+        },
+        {
+          "date": "2026-03-11",
+          "description": "Lefthook pre-commit hooks, dev cost research, Slidev refresh, commit conventions",
+          "premiumRequests": 60,
+          "costUSD": 0
+        }
+      ]
     }
-  ]
+  },
+  "infrastructure": {
+    "githubActions": {
+      "totalRuns": 29,
+      "totalMinutes": 46,
+      "costPerMinute": 0.008,
+      "successRate": 0.31,
+      "costUSD": 0.37
+    },
+    "copilotSeats": {
+      "seats": 2,
+      "pricePerSeatMonth": 19,
+      "costUSD": 38
+    },
+    "hosting": {
+      "provider": "none (dev only)",
+      "costUSD": 0
+    }
+  }
 }

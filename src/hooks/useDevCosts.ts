@@ -3,14 +3,24 @@ import { useState, useEffect } from 'react'
 interface Session {
   date: string
   description: string
-  inputTokens: number
-  outputTokens: number
+  inputTokens?: number
+  outputTokens?: number
+  premiumRequests?: number
   costUSD: number
 }
 
-interface DevCosts {
+interface Developer {
+  tool: string
+  model: string
   sessions: Session[]
+}
+
+interface DevCosts {
+  developers: Record<string, Developer>
+  totalAIcostUSD: number
+  totalInfraCostUSD: number
   totalNOK: number
+  sessionCount: number
 }
 
 export function useDevCosts(): DevCosts | null {
@@ -21,10 +31,41 @@ export function useDevCosts(): DevCosts | null {
       .then((r) => r.json())
       .then((json) => {
         const usdToNok: number = json.usdToNok ?? 10.5
-        const totalUSD = (json.sessions as Session[]).reduce((sum, s) => sum + s.costUSD, 0)
-        setData({ sessions: json.sessions, totalNOK: totalUSD * usdToNok })
+        const devs = json.developers ?? {}
+
+        const totalAIcostUSD = Object.values(devs).reduce(
+          (sum: number, dev) =>
+            sum +
+            ((dev as Developer).sessions ?? []).reduce(
+              (s: number, sess: Session) => s + sess.costUSD,
+              0
+            ),
+          0
+        )
+
+        const infra = json.infrastructure ?? {}
+        const totalInfraCostUSD =
+          (infra.githubActions?.costUSD ?? 0) +
+          (infra.copilotSeats?.costUSD ?? 0) +
+          (infra.hosting?.costUSD ?? 0)
+
+        const sessionCount = Object.values(devs).reduce(
+          (sum: number, dev) => sum + ((dev as Developer).sessions ?? []).length,
+          0
+        )
+
+        const totalUSD = totalAIcostUSD + totalInfraCostUSD
+        setData({
+          developers: devs,
+          totalAIcostUSD,
+          totalInfraCostUSD,
+          totalNOK: totalUSD * usdToNok,
+          sessionCount,
+        })
       })
-      .catch(() => {/* silently ignore */})
+      .catch(() => {
+        /* silently ignore */
+      })
   }, [])
 
   return data

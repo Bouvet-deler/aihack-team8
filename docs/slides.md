@@ -275,6 +275,64 @@ Copilot CLI gjør konkurranseanalyse, søker GitHub-repos og analyserer markedet
 
 ---
 
+# Utviklingskostnad 💰
+
+Mennesker jobber gratis — hva koster AI og infrastruktur?
+
+<div class="grid grid-cols-2 gap-8 mt-4">
+
+<div>
+
+## AI-kostnader
+
+| Utvikler | Verktøy          | Kostnad   |
+| -------- | ---------------- | --------: |
+| Knut     | Claude API       |   $43.13  |
+| Einar    | Copilot CLI      |    $0\*   |
+| **Sum**  |                  | **$43.13** |
+
+<div class="mt-2 text-xs opacity-60">
+
+\* Copilot Business inkludert i abonnement ($19/sete/mnd)
+
+</div>
+
+## Infrastruktur
+
+| Post                   | Kostnad  |
+| ---------------------- | -------: |
+| GitHub Actions (46 min)|    $0.37 |
+| Copilot × 2 seter      |  $38/mnd |
+| Hosting                |       $0 |
+
+</div>
+
+<div>
+
+## AI-bidrag i tall
+
+| Metrikk               | Verdi        |
+| ---------------------- | -----------: |
+| Totale commits         |           61 |
+| AI co-authored         |    47 (77%)  |
+| — Copilot              |           34 |
+| — Claude               |           18 |
+| Kodelinjer (src/)      |        3 146 |
+| CI-kjøringer           |           29 |
+
+<div class="mt-3 p-2 bg-green-500/10 rounded text-sm">
+<b>Total: ~$81 + $38/mnd</b> for 3 146 LOC, 61 commits, full CI/CD
+</div>
+
+<div class="mt-2 p-2 bg-blue-500/10 rounded text-xs">
+Live data i appen: <code>/dev-costs.json</code>
+</div>
+
+</div>
+</div>
+
+---
+
 # GitHub Project Status 📋
 
 <div class="grid grid-cols-2 gap-8 mt-6">
