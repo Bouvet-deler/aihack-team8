@@ -50,6 +50,10 @@
   "geo": {
     "recenter": "Mi ubicación"
   },
+  "theme": {
+    "toggleDark": "Cambiar a modo oscuro",
+    "toggleLight": "Cambiar a modo claro"
+  },
   "sort": {
     "nearest": "Más cercano",
     "default": "Orden predeterminado"
