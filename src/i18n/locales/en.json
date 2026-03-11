@@ -16,13 +16,26 @@
     "toggle": "Show/hide city bikes",
     "label": "City Bike"
   },
+  "transit": {
+    "label": "Transit",
+    "toggle": "Show/hide transit stops",
+    "mode": {
+      "bus": "Bus",
+      "rail": "Train",
+      "water": "Ferry",
+      "metro": "Metro",
+      "tram": "Tram"
+    }
+  },
   "tab": {
     "parking": "Parking",
-    "bikes": "City Bike"
+    "bikes": "City Bike",
+    "transit": "Transit"
   },
   "search": {
     "parking": "Search parking…",
     "bikes": "Search bike station…",
+    "transit": "Search transit stops…",
     "label": "Search",
     "clear": "Clear search"
   },
@@ -35,7 +48,9 @@
     "parkingSearch": "No results for \"{{query}}\"",
     "parking": "No parking data available",
     "bikesSearch": "No results for \"{{query}}\"",
-    "bikes": "No bike data available"
+    "bikes": "No bike data available",
+    "transitSearch": "No results for \"{{query}}\"",
+    "transit": "No transit data available"
   },
   "bike": {
     "available": "Available bikes",

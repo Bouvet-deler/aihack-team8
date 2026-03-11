@@ -4,12 +4,14 @@ import { Map } from './components/Map'
 import { Sidebar } from './components/Sidebar'
 import { useParking } from './hooks/useParking'
 import { useBikes } from './hooks/useBikes'
+import { useTransit } from './hooks/useTransit'
 import { useGeolocation } from './hooks/useGeolocation'
 import { useSidebarResize } from './hooks/useSidebarResize'
 import { useDarkMode } from './hooks/useDarkMode'
 import { useFavorites } from './hooks/useFavorites'
 import type { ParkingSpot } from './types/parking'
 import type { BikeStation } from './types/bike'
+import type { TransitStop } from './types/transit'
 import './App.css'
 
 const DEFAULT_INTERVAL = 60_000
@@ -19,20 +21,23 @@ export default function App() {
   const [refreshInterval, setRefreshInterval] = useState(DEFAULT_INTERVAL)
   const [selectedSpot, setSelectedSpot] = useState<ParkingSpot | null>(null)
   const [selectedStation, setSelectedStation] = useState<BikeStation | null>(null)
+  const [selectedTransitStop, setSelectedTransitStop] = useState<TransitStop | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
-  const [activeTab, setActiveTab] = useState<'parking' | 'bikes'>('parking')
+  const [activeTab, setActiveTab] = useState<'parking' | 'bikes' | 'transit'>('parking')
   const [showParking, setShowParking] = useState(true)
   const [showBikes, setShowBikes] = useState(true)
+  const [showTransit, setShowTransit] = useState(true)
   const [reCenterKey, setReCenterKey] = useState(0)
 
   const parking = useParking(refreshInterval)
   const bikes = useBikes(refreshInterval)
+  const transit = useTransit(refreshInterval)
   const geo = useGeolocation()
   const { width: sidebarWidth, isDragging, handleMouseDown: handleResizeMouseDown } = useSidebarResize()
   const { isDark, toggle: toggleDark } = useDarkMode()
   const { favorites, isFavorite, toggle: toggleFavorite } = useFavorites()
 
-  const anyError = parking.error || bikes.error
+  const anyError = parking.error || bikes.error || transit.error
 
   function handleReCenter() {
     geo.request()
@@ -72,6 +77,12 @@ export default function App() {
         bikeLastUpdated={bikes.lastUpdated}
         bikeLoading={bikes.loading}
         onRefreshBikes={bikes.refresh}
+        transitStops={transit.data}
+        selectedTransitStop={selectedTransitStop}
+        onSelectTransitStop={setSelectedTransitStop}
+        transitLoading={transit.loading}
+        transitLastUpdated={transit.lastUpdated}
+        onRefreshTransit={transit.refresh}
         refreshInterval={refreshInterval}
         onIntervalChange={setRefreshInterval}
         searchQuery={searchQuery}
@@ -82,6 +93,8 @@ export default function App() {
         onToggleParking={() => setShowParking((v) => !v)}
         showBikes={showBikes}
         onToggleBikes={() => setShowBikes((v) => !v)}
+        showTransit={showTransit}
+        onToggleTransit={() => setShowTransit((v) => !v)}
         width={sidebarWidth}
         onResizeHandleMouseDown={handleResizeMouseDown}
         userPosition={geo.position}
@@ -103,10 +116,14 @@ export default function App() {
           bikeStations={bikes.data}
           selectedStation={selectedStation}
           onSelectStation={setSelectedStation}
+          transitStops={transit.data}
+          selectedTransitStop={selectedTransitStop}
+          onSelectTransitStop={setSelectedTransitStop}
           searchQuery={searchQuery}
           activeTab={activeTab}
           showParking={showParking}
           showBikes={showBikes}
+          showTransit={showTransit}
           userPosition={geo.position}
           reCenterKey={reCenterKey}
           isFavorite={isFavorite}

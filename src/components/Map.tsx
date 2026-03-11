@@ -1,11 +1,14 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useLayoutEffect, useRef } from 'react'
 import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet'
 import { divIcon } from 'leaflet'
+import type { Map as LeafletMap } from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import type { ParkingSpot } from '../types/parking'
 import type { BikeStation } from '../types/bike'
 import { ParkingMarker } from './ParkingMarker'
 import { BikeMarker } from './BikeMarker'
+import { TransitMarker } from './TransitMarker'
+import type { TransitStop } from '../types/transit'
 
 const STAVANGER_CENTER: [number, number] = [58.97, 5.73]
 const DEFAULT_ZOOM = 13
@@ -91,6 +94,15 @@ function UserLocationLayer({
   )
 }
 
+
+/** Captures the Leaflet map instance into a ref so the Map component can
+ *  call map methods (flyTo) from a useEffect outside the MapContainer tree. */
+function MapRefCapture({ mapRef }: { mapRef: React.MutableRefObject<LeafletMap | null> }) {
+  const map = useMap()
+  useLayoutEffect(() => { mapRef.current = map }, [map])
+  return null
+}
+
 interface MapProps {
   spots: ParkingSpot[]
   selectedSpot: ParkingSpot | null
@@ -98,10 +110,14 @@ interface MapProps {
   bikeStations: BikeStation[]
   selectedStation: BikeStation | null
   onSelectStation: (station: BikeStation) => void
+  transitStops: TransitStop[]
+  selectedTransitStop: TransitStop | null
+  onSelectTransitStop: (stop: TransitStop) => void
   searchQuery: string
-  activeTab: 'parking' | 'bikes'
+  activeTab: 'parking' | 'bikes' | 'transit'
   showParking: boolean
   showBikes: boolean
+  showTransit: boolean
   userPosition: GeolocationCoordinates | null
   reCenterKey: number
   isFavorite: (type: 'parking' | 'bikes', id: string) => boolean
@@ -115,15 +131,30 @@ export function Map({
   bikeStations,
   selectedStation,
   onSelectStation,
+  transitStops,
+  selectedTransitStop,
+  onSelectTransitStop,
   searchQuery,
   activeTab,
   showParking,
   showBikes,
+  showTransit,
   userPosition,
   reCenterKey,
   isFavorite,
   onToggleFavorite,
 }: MapProps) {
+  const mapRef = useRef<LeafletMap | null>(null)
+
+  useEffect(() => {
+    if (!selectedTransitStop || !mapRef.current) return
+    mapRef.current.flyTo(
+      [selectedTransitStop.latitude, selectedTransitStop.longitude],
+      15,
+      { duration: 0.8 },
+    )
+  }, [selectedTransitStop])
+
   return (
     <MapContainer
       center={STAVANGER_CENTER}
@@ -171,6 +202,23 @@ export function Map({
         )
       })}
 
+      {showTransit && transitStops.map((stop) => {
+        const matches =
+          activeTab !== 'transit' ||
+          !searchQuery ||
+          stop.name.toLowerCase().includes(searchQuery.toLowerCase())
+        return (
+          <TransitMarker
+            key={stop.id}
+            stop={stop}
+            isSelected={selectedTransitStop?.id === stop.id}
+            dimmed={!matches}
+            onClick={() => onSelectTransitStop(stop)}
+          />
+        )
+      })}
+
+      <MapRefCapture mapRef={mapRef} />
       <FlyToSpot spot={selectedSpot} />
       <FlyToStation station={selectedStation} />
       <UserLocationLayer position={userPosition} reCenterKey={reCenterKey} />

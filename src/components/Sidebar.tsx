@@ -3,8 +3,10 @@ import { useTranslation } from 'react-i18next'
 import i18n from '../i18n'
 import type { ParkingSpot } from '../types/parking'
 import type { BikeStation } from '../types/bike'
+import type { TransitStop } from '../types/transit'
 import { getColor } from './ParkingMarker'
 import { getBikeColor } from './BikeMarker'
+import { getTransitColor } from './TransitMarker'
 import { haversineMetres, formatDistance, formatWalkingTime } from '../utils/distance'
 
 interface SidebarProps {
@@ -22,17 +24,26 @@ interface SidebarProps {
   bikeLastUpdated: Date | null
   bikeLoading: boolean
   onRefreshBikes: () => void
+  // transit
+  transitStops: TransitStop[]
+  selectedTransitStop: TransitStop | null
+  onSelectTransitStop: (stop: TransitStop) => void
+  transitLoading: boolean
+  transitLastUpdated: Date | null
+  onRefreshTransit: () => void
   // shared
   refreshInterval: number
   onIntervalChange: (ms: number) => void
   searchQuery: string
   onSearchChange: (query: string) => void
-  activeTab: 'parking' | 'bikes'
-  onTabChange: (tab: 'parking' | 'bikes') => void
+  activeTab: 'parking' | 'bikes' | 'transit'
+  onTabChange: (tab: 'parking' | 'bikes' | 'transit') => void
   showParking: boolean
   onToggleParking: () => void
   showBikes: boolean
   onToggleBikes: () => void
+  showTransit: boolean
+  onToggleTransit: () => void
   width: number | undefined
   onResizeHandleMouseDown: (e: React.MouseEvent) => void
   userPosition: GeolocationCoordinates | null
@@ -59,11 +70,13 @@ function formatTime(date: Date): string {
 export function Sidebar({
   spots, selectedSpot, onSelectSpot, parkingLastUpdated, parkingLoading, onRefreshParking,
   bikeStations, selectedStation, onSelectStation, bikeLastUpdated, bikeLoading, onRefreshBikes,
+  transitStops, selectedTransitStop, onSelectTransitStop, transitLoading, transitLastUpdated, onRefreshTransit,
   refreshInterval, onIntervalChange,
   searchQuery, onSearchChange,
   activeTab, onTabChange,
   showParking, onToggleParking,
   showBikes, onToggleBikes,
+  showTransit, onToggleTransit,
   width, onResizeHandleMouseDown,
   userPosition,
   isDark, onToggleDark,
@@ -73,9 +86,11 @@ export function Sidebar({
   const [sortByNearest, setSortByNearest] = useState(false)
 
   const isParking = activeTab === 'parking'
-  const loading = isParking ? parkingLoading : bikeLoading
-  const lastUpdated = isParking ? parkingLastUpdated : bikeLastUpdated
-  const onRefresh = isParking ? onRefreshParking : onRefreshBikes
+  const isBikes = activeTab === 'bikes'
+  const isTransit = activeTab === 'transit'
+  const loading = isParking ? parkingLoading : isBikes ? bikeLoading : transitLoading
+  const lastUpdated = isParking ? parkingLastUpdated : isBikes ? bikeLastUpdated : transitLastUpdated
+  const onRefresh = isParking ? onRefreshParking : isBikes ? onRefreshBikes : onRefreshTransit
 
   const canSortNearest = sortByNearest && userPosition !== null
 
@@ -111,6 +126,17 @@ export function Sidebar({
         return distA - distB
       }
       return b.num_vehicles_available - a.num_vehicles_available
+    })
+
+  const filteredTransit = transitStops
+    .filter((s) => s.name.toLowerCase().includes(searchQuery.toLowerCase()))
+    .sort((a, b) => {
+      if (canSortNearest && userPosition) {
+        const distA = haversineMetres(userPosition.latitude, userPosition.longitude, a.latitude, a.longitude)
+        const distB = haversineMetres(userPosition.latitude, userPosition.longitude, b.latitude, b.longitude)
+        return distA - distB
+      }
+      return 0
     })
 
   return (
@@ -182,6 +208,17 @@ export function Sidebar({
             </svg>
             {t('bikes.label')}
           </button>
+          <button
+            className={`layer-toggle ${showTransit ? 'active' : ''}`}
+            onClick={onToggleTransit}
+            title={t('transit.toggle')}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="3" y="3" width="18" height="13" rx="2"/>
+              <path d="M8 19h8M12 16v3"/>
+            </svg>
+            {t('transit.label')}
+          </button>
         </div>
 
         {/* Tabs */}
@@ -197,7 +234,7 @@ export function Sidebar({
             )}
           </button>
           <button
-            className={`tab ${!isParking ? 'active' : ''}`}
+            className={`tab ${isBikes ? 'active' : ''}`}
             onClick={() => { onTabChange('bikes'); onSearchChange('') }}
           >
             {t('tab.bikes')}
@@ -205,6 +242,13 @@ export function Sidebar({
             {favorites.bikes.length > 0 && (
               <span className="tab-fav-badge">★{favorites.bikes.length}</span>
             )}
+          </button>
+          <button
+            className={`tab ${isTransit ? 'active' : ''}`}
+            onClick={() => { onTabChange('transit'); onSearchChange('') }}
+          >
+            {t('tab.transit')}
+            <span className="tab-badge">{transitStops.length}</span>
           </button>
         </div>
 
@@ -217,7 +261,7 @@ export function Sidebar({
           <input
             type="search"
             className="search-input"
-            placeholder={isParking ? t('search.parking') : t('search.bikes')}
+            placeholder={isParking ? t('search.parking') : isTransit ? t('search.transit') : t('search.bikes')}
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
             aria-label={t('search.label')}
@@ -278,7 +322,43 @@ export function Sidebar({
 
       {/* List */}
       <div className="spot-list">
-        {isParking ? (
+        {isTransit ? (
+          <>
+            {filteredTransit.length === 0 && !loading && (
+              <div className="empty-state">
+                {searchQuery
+                  ? t('empty.transitSearch', { query: searchQuery })
+                  : t('empty.transit')}
+              </div>
+            )}
+            {filteredTransit.map((stop) => {
+              const isSelected = selectedTransitStop?.id === stop.id
+              const color = getTransitColor(stop.transportMode)
+              const dist = userPosition
+                ? haversineMetres(userPosition.latitude, userPosition.longitude, stop.latitude, stop.longitude)
+                : null
+              const modeLabel = stop.transportMode.map((m) => t(`transit.mode.${m}`, m)).join(', ')
+              return (
+                <div key={stop.id} className={`spot-item ${isSelected ? 'selected' : ''}`}>
+                  <button className="spot-item-main transit-item-main" onClick={() => onSelectTransitStop(stop)}>
+                    <span
+                      className="transit-mode-badge"
+                      style={{ background: color }}
+                    >{modeLabel}</span>
+                    <span className="spot-name">
+                      {stop.name}
+                      {dist !== null && (
+                        <span className="spot-walk-row">
+                          {formatDistance(dist)} · {formatWalkingTime(dist)}
+                        </span>
+                      )}
+                    </span>
+                  </button>
+                </div>
+              )
+            })}
+          </>
+        ) : isParking ? (
           <>
             {/* Favorited parking spots pinned at top */}
             {favorites.parking.length > 0 && !searchQuery && (

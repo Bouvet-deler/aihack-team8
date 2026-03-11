@@ -16,13 +16,26 @@
     "toggle": "Mostrar/ocultar bicis",
     "label": "Bicicleta"
   },
+  "transit": {
+    "label": "Transporte",
+    "toggle": "Mostrar/ocultar paradas",
+    "mode": {
+      "bus": "Autobús",
+      "rail": "Tren",
+      "water": "Ferry",
+      "metro": "Metro",
+      "tram": "Tranvía"
+    }
+  },
   "tab": {
     "parking": "Aparcamiento",
-    "bikes": "Bicicleta"
+    "bikes": "Bicicleta",
+    "transit": "Transporte"
   },
   "search": {
     "parking": "Buscar aparcamiento…",
     "bikes": "Buscar estación…",
+    "transit": "Buscar paradas…",
     "label": "Buscar",
     "clear": "Limpiar búsqueda"
   },
@@ -35,7 +48,9 @@
     "parkingSearch": "Sin resultados para \"{{query}}\"",
     "parking": "Sin datos de aparcamiento",
     "bikesSearch": "Sin resultados para \"{{query}}\"",
-    "bikes": "Sin datos de bicicletas"
+    "bikes": "Sin datos de bicicletas",
+    "transitSearch": "Sin resultados para \"{{query}}\"",
+    "transit": "Sin datos de transporte"
   },
   "bike": {
     "available": "Bicis disponibles",

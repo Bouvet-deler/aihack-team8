@@ -50,6 +50,11 @@ export default defineConfig({
         rewrite: () =>
           '/dataset/3e1b1ea2-1155-4058-8f92-8cbc9f547e72/resource/d0023623-128b-4a4a-be9b-cd8419cd3120/download/citybikesstvg_entur_processed.json',
       },
+      '/api/transit': {
+        target: 'https://api.entur.io',
+        changeOrigin: true,
+        rewrite: () => '/journey-planner/v3/graphql',
+      },
     },
   },
 })
