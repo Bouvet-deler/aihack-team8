@@ -25,5 +25,8 @@ export function formatDistance(metres: number): string {
 export function formatWalkingTime(metres: number): string {
   const minutes = Math.round(metres / 83.3)
   if (minutes < 1) return '🚶 < 1 min'
-  return `🚶 ${minutes} min`
+  if (minutes < 60) return `🚶 ${minutes} min`
+  const hours = Math.floor(minutes / 60)
+  const mins = minutes % 60
+  return mins === 0 ? `🚶 ${hours} t` : `🚶 ${hours} t ${mins} min`
 }
