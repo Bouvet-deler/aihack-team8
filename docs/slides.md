@@ -36,6 +36,12 @@ mdc: true
   </a>
 </div>
 
+<!--
+Presenter notes:
+Velkommen! Stavanger Mobilitet samler all mobilitetsinformasjon på ett kart.
+Start med en kort hook: "Hvor mange apper bruker du for å sjekke parkering, sykler og buss?"
+-->
+
 ---
 layout: two-cols
 layoutClass: gap-8
@@ -48,10 +54,10 @@ layoutClass: gap-8
 Stavangers innbyggere trenger **én plass** for å finne:
 
 <div class="mt-4 space-y-2">
-  <div class="glass-sm flex items-center gap-3">🅿️ <span>Ledig parkering i sanntid</span></div>
-  <div class="glass-sm flex items-center gap-3">🚲 <span>Tilgjengelige bysykler</span></div>
-  <div class="glass-sm flex items-center gap-3">🚌 <span>Buss- og fergeavganger</span></div>
-  <div class="glass-sm flex items-center gap-3">📍 <span>Hva som er <b>nærmest meg</b></span></div>
+  <div v-click class="glass-sm flex items-center gap-3">🅿️ <span>Ledig parkering i sanntid</span></div>
+  <div v-click class="glass-sm flex items-center gap-3">🚲 <span>Tilgjengelige bysykler</span></div>
+  <div v-click class="glass-sm flex items-center gap-3">🚌 <span>Buss- og fergeavganger</span></div>
+  <div v-click class="glass-sm flex items-center gap-3">📍 <span>Hva som er <b>nærmest meg</b></span></div>
 </div>
 
 <div class="divider mt-4"></div>
@@ -79,28 +85,33 @@ Informasjonen er spredt over ulike apper og nettsider. Ingen viser <b>alt</b> p�
 
 </div>
 
+<!--
+Presenter notes:
+Klikk gjennom hvert punkt for å bygge opp problemet.
+Tabellen viser at ingen eksisterende løsning dekker Stavanger med parkering + sykkel + buss.
+-->
+
+---
+layout: two-cols
+layoutClass: gap-8
 ---
 
 # Hva vi har bygget ✨
 
-<div class="grid grid-cols-2 gap-8 mt-2">
-
-<div class="glass">
-
 ## Kjernefunksjoner
 
 <div class="mt-3 space-y-2 text-sm">
-  <div>🗺️ Interaktivt kart — <b>parkering + sykkel + buss</b></div>
-  <div>🎨 Fargekodede markører <span class="text-green-400">grønn</span> → <span class="text-red-400">rød</span></div>
-  <div>🔍 Søk og filtrering</div>
-  <div>📱 PWA — installerbar på mobil</div>
-  <div>🌍 Flerspråklig (NO / EN / ES)</div>
-  <div>🔄 Auto-oppdatering av data</div>
+  <div v-click>🗺️ Interaktivt kart — <b>parkering + sykkel + buss</b></div>
+  <div v-click>🎨 Fargekodede markører <span class="text-green-400">grønn</span> → <span class="text-red-400">rød</span></div>
+  <div v-click>🔍 Søk og filtrering</div>
+  <div v-click>📱 PWA — installerbar på mobil</div>
+  <div v-click>🌍 Flerspråklig (NO / EN / ES)</div>
+  <div v-click>🔄 Auto-oppdatering av data</div>
 </div>
 
-</div>
+::right::
 
-<div class="glass">
+<div class="mt-12">
 
 ## Nye i denne hacken
 
@@ -117,7 +128,11 @@ Informasjonen er spredt over ulike apper og nettsider. Ingen viser <b>alt</b> p�
 <div class="text-xs text-green-400">✅ Phase 1 komplett + deler av Phase 2–4</div>
 
 </div>
-</div>
+
+<!--
+Presenter notes:
+Klikk gjennom kjernefunksjonene én og én. Høyre kolonne viser hva som er nytt i denne hacken.
+-->
 
 ---
 layout: center
@@ -172,14 +187,20 @@ class: text-center
   </div>
 </div>
 
+<!--
+Presenter notes:
+React 19 + Vite 6 gir lynrask utvikling. Leaflet for kartvisning. EDS for Equinor-standard.
+PWA gjør appen installerbar. i18next for 3 språk. Open Data fra opencom.no og Entur.
+-->
+
+---
+layout: two-cols
+layoutClass: gap-6
 ---
 
 # AI-drevet utvikling 🤖
 
 <div class="text-sm opacity-70 mb-4">Copilot CLI var med i <b>hele arbeidsflyten</b> — ikke bare koding</div>
-
-<div class="grid grid-cols-2 gap-6">
-<div class="glass">
 
 ## Hva AI gjorde for oss
 
@@ -194,8 +215,9 @@ class: text-center
 | Testing           | UAT-template + Playwright       |
 | Deep research     | 4 rapporter, 62 000+ ord        |
 
-</div>
-<div class="glass">
+::right::
+
+<div class="mt-12">
 
 ## AI som utviklingspartner
 
@@ -220,17 +242,23 @@ bytting mellom verktøy.
 </div>
 
 </div>
-</div>
 
+<!--
+Presenter notes:
+Tabellen viser bredden av AI-bruk — ikke bare koding, men hele arbeidsflyten.
+Copilot CLI er en utviklingspartner, ikke bare en kodegenerator.
+-->
+
+---
+layout: two-cols
+layoutClass: gap-5
 ---
 
 # AI-drevet research 🔬
 
 <div class="text-sm opacity-70 mb-3">Copilot CLI utførte <b>4 dype research-analyser</b> — fra markedsanalyse til presentasjonsdesign</div>
 
-<div class="grid grid-cols-2 gap-5">
-
-<div class="glass">
+<div class="glass mb-4">
 
 ## Konkurranseanalyse
 
@@ -254,7 +282,11 @@ bytting mellom verktøy.
 
 </div>
 
-<div class="glass">
+::right::
+
+<div class="mt-12">
+
+<div class="glass mb-4">
 
 ## Presentasjonsteknikk
 
@@ -280,6 +312,12 @@ bytting mellom verktøy.
 
 </div>
 
+<!--
+Presenter notes:
+Fire dype research-analyser utført av Copilot CLI, totalt 62 000+ ord.
+Disse ble brukt til å forbedre produktet, presentasjonen og CI/CD-oppsettet.
+-->
+
 ---
 
 # Copilot CLI i praksis 📸
@@ -292,13 +330,18 @@ bytting mellom verktøy.
 Copilot CLI gjør konkurranseanalyse, søker GitHub-repos og analyserer markedet — direkte i terminalen
 </div>
 
+<!--
+Presenter notes:
+Her ser vi Copilot CLI i aksjon — den søker GitHub-repos, analyserer konkurrenter og genererer rapporter.
+Alt skjer direkte i terminalen, ingen context-switching.
+-->
+
+---
+layout: two-cols
+layoutClass: gap-8
 ---
 
 # Kvalitetssikring ✅
-
-<div class="grid grid-cols-2 gap-8 mt-2">
-
-<div class="glass">
 
 ## Automatisert UAT (Playwright)
 
@@ -323,9 +366,9 @@ Copilot CLI gjør konkurranseanalyse, søker GitHub-repos og analyserer markedet
 * CSP-header + Leaflet DivIcon i headless — fungerer i ekte nettleser
 </div>
 
-</div>
+::right::
 
-<div class="glass">
+<div class="mt-12">
 
 ## CI/CD Pipeline
 
@@ -349,17 +392,21 @@ Copilot CLI gjør konkurranseanalyse, søker GitHub-repos og analyserer markedet
 </div>
 
 </div>
-</div>
 
+<!--
+Presenter notes:
+57 av 72 UAT-tester bestått. 12 feil er CSP/DivIcon-relatert (fungerer i ekte nettleser).
+CI/CD: Lefthook for pre-commit, Super-linter for GitHub Actions, docs-as-code.
+-->
+
+---
+layout: two-cols
+layoutClass: gap-6
 ---
 
 # Utviklingskostnad 💰
 
 <div class="text-sm opacity-70 mb-2">Mennesker jobber gratis — hva koster AI og infrastruktur?</div>
-
-<div class="grid grid-cols-2 gap-6">
-
-<div class="glass">
 
 ## Kostnader
 
@@ -373,35 +420,39 @@ Copilot CLI gjør konkurranseanalyse, søker GitHub-repos og analyserer markedet
 
 <div class="text-xs opacity-50 mt-1">* Copilot Business inkludert i abonnement</div>
 
-</div>
+::right::
 
-<div class="glass">
+<div class="mt-12">
 
 ## AI-bidrag i tall
 
 | Metrikk          |      Verdi |
 | ---------------- | ---------: |
-| Totale commits   |         61 |
-| AI co-authored   |   47 (77%) |
-| — Copilot        |         34 |
+| Totale commits   |         74 |
+| AI co-authored   |   57 (77%) |
+| — Copilot        |         39 |
 | — Claude         |         18 |
-| Kodelinjer (src) |      3 146 |
+| Kodelinjer (src) |      3 500 |
 
 <div class="gradient-card mt-2 text-center">
 <b class="text-lg">~$81 + $38/mnd</b><br>
-<span class="text-xs opacity-60">→ 3 146 LOC, full CI/CD, 4 byer</span>
+<span class="text-xs opacity-60">→ 3 500 LOC, full CI/CD, 4 byer</span>
 </div>
 
 </div>
-</div>
 
+<!--
+Presenter notes:
+Total kostnad er ~$81 + $38/mnd for Copilot-abonnement.
+77% av commits er AI co-authored. Copilot CLI var gratis (inkludert i Business).
+-->
+
+---
+layout: two-cols
+layoutClass: gap-6
 ---
 
 # GitHub Project Status 📋
-
-<div class="grid grid-cols-2 gap-6 mt-2">
-
-<div class="glass">
 
 ## Issues (26 + 2 test)
 
@@ -417,9 +468,9 @@ Copilot CLI gjør konkurranseanalyse, søker GitHub-repos og analyserer markedet
 ✅ geolokasjon · dark mode · favoritter · gangavstand · prediksjon · multi-city
 </div>
 
-</div>
+::right::
 
-<div class="glass">
+<div class="mt-12">
 
 ## Teamets bidrag
 
@@ -434,7 +485,12 @@ Copilot CLI gjør konkurranseanalyse, søker GitHub-repos og analyserer markedet
 </div>
 
 </div>
-</div>
+
+<!--
+Presenter notes:
+6 issues lukket, 17 åpne med prioritet P1–P4. 2 test-issues for UAT.
+Knut Erik: alle funksjoner. Einar: prosjektledelse via AI, kvalitetssikring, dokumentasjon.
+-->
 
 ---
 
@@ -464,6 +520,12 @@ timeline
 ```
 
 </div>
+
+<!--
+Presenter notes:
+4 faser: UX (ferdig), Multi-modal (pågår), Smart (prediksjon ferdig), Plattform (multi-by ferdig).
+Vi har levert funksjonalitet fra alle 4 faser allerede.
+-->
 
 ---
 layout: two-cols
@@ -520,6 +582,12 @@ Inspirasjon: Digitransit 🇫🇮 + Entur 🇳🇴
 
 </div>
 
+<!--
+Presenter notes:
+Phase 2 er neste: Kolumbus sanntid, el-sparkesykler, ruteplanlegger.
+Vi har allerede levert funksjonalitet fra Phase 2, 3 og 4 i tillegg til Phase 1.
+-->
+
 ---
 layout: center
 class: text-center
@@ -550,3 +618,9 @@ Bouvet AI Hack · 11. mars 2026
     <carbon-logo-github /> GitHub Repo
   </a>
 </div>
+
+<!--
+Presenter notes:
+Takk for oppmerksomheten! Åpne for spørsmål.
+Pek til GitHub-repo for mer detaljer.
+-->
