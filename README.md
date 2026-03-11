@@ -205,6 +205,17 @@ See [GitHub Issues](https://github.com/Bouvet-deler/aihack-team8/issues) — org
 
 ---
 
+## AI Agent Workflow
+
+All AI-assisted development (Claude Code, GitHub Copilot, or any other AI tool) must follow these rules:
+
+1. **Always branch from main** — never commit directly to `main`
+2. **Pull latest** — run `git pull origin main` before starting work
+3. **Wait for explicit approval** before committing, pushing, creating PRs, or merging
+4. **Track development cost** — after each session, add an entry to `public/dev-costs.json` with the session date, description, estimated token usage, and cost in USD (Opus 4.6 pricing: $15/MTok input, $75/MTok output). This applies to all developers and all AI tools. The app displays the running total in NOK in the sidebar footer.
+
+---
+
 ## Security
 
 - **XSS protection**: `Antall_ledige_plasser` coerced with
