@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteRule ^api/parking$ api/parking.php [L]
+RewriteRule ^api/bikes$ api/bikes.php [L]

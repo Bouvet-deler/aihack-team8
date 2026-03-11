@@ -1,0 +1,97 @@
+import { divIcon } from 'leaflet'
+import { Marker, Popup } from 'react-leaflet'
+import type { ParkingSpot } from '../types/parking'
+
+export function getColor(freeSpots: number): string {
+  if (freeSpots > 100) return '#22c55e'
+  if (freeSpots > 50) return '#eab308'
+  if (freeSpots > 20) return '#f97316'
+  return '#ef4444'
+}
+
+function getTextColor(freeSpots: number): string {
+  return freeSpots > 50 ? '#1a1a1a' : '#ffffff'
+}
+
+interface ParkingMarkerProps {
+  spot: ParkingSpot
+  isSelected: boolean
+  dimmed: boolean
+  onClick: () => void
+}
+
+export function ParkingMarker({ spot, isSelected, dimmed, onClick }: ParkingMarkerProps) {
+  const lat = parseFloat(spot.Latitude)
+  const lng = parseFloat(spot.Longitude)
+
+  if (isNaN(lat) || isNaN(lng)) return null
+
+  const color = getColor(spot.Antall_ledige_plasser)
+  const textColor = getTextColor(spot.Antall_ledige_plasser)
+  const size = isSelected ? 48 : dimmed ? 32 : 40
+  const border = isSelected ? '3px solid #007079' : '2px solid rgba(0,0,0,0.3)'
+  const opacity = dimmed ? 0.25 : 1
+
+  // Sanitize: coerce to number so a malicious API value can never inject HTML
+  const safeCount = Number(spot.Antall_ledige_plasser)
+  const displayCount = Number.isFinite(safeCount) ? safeCount : '?'
+
+  const icon = divIcon({
+    className: '',
+    html: `
+      <div style="
+        width: ${size}px;
+        height: ${size}px;
+        background: ${color};
+        border-radius: 50%;
+        border: ${border};
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: Equinor, sans-serif;
+        font-size: ${isSelected ? '13px' : '12px'};
+        font-weight: 700;
+        color: ${textColor};
+        box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+        opacity: ${opacity};
+        transition: all 0.15s ease;
+      ">
+        ${displayCount}
+      </div>
+    `,
+    iconSize: [size, size],
+    iconAnchor: [size / 2, size / 2],
+    popupAnchor: [0, -size / 2],
+  })
+
+  return (
+    <Marker position={[lat, lng]} icon={icon} eventHandlers={{ click: onClick }}>
+      <Popup>
+        <div style={{ fontFamily: 'Equinor, sans-serif', minWidth: '160px' }}>
+          <div style={{ fontWeight: 700, fontSize: '14px', marginBottom: '6px', color: '#3d3d3d' }}>
+            {spot.Sted}
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+            <span
+              style={{
+                display: 'inline-block',
+                width: '12px',
+                height: '12px',
+                borderRadius: '50%',
+                background: color,
+                flexShrink: 0,
+              }}
+            />
+            <span style={{ fontSize: '16px', fontWeight: 700, color }}>
+              {spot.Antall_ledige_plasser}
+            </span>
+            <span style={{ fontSize: '13px', color: '#565656' }}>ledige plasser</span>
+          </div>
+          <div style={{ fontSize: '12px', color: '#6f6f6f', marginTop: '6px' }}>
+            {spot.Dato} kl. {spot.Klokkeslett}
+          </div>
+        </div>
+      </Popup>
+    </Marker>
+  )
+}
