@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
-import { MapContainer, TileLayer, useMap } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet'
+import { divIcon } from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import type { ParkingSpot } from '../types/parking'
 import type { BikeStation } from '../types/bike'
@@ -40,6 +41,56 @@ function FlyToStation({ station }: { station: BikeStation | null }) {
   return null
 }
 
+const userLocationIcon = divIcon({
+  className: '',
+  html: `
+    <div style="
+      width: 20px;
+      height: 20px;
+      background: #2563eb;
+      border-radius: 50%;
+      border: 3px solid white;
+      box-shadow: 0 0 0 2px #2563eb, 0 2px 8px rgba(0,0,0,0.4);
+      animation: geo-pulse 2s ease-in-out infinite;
+    "></div>
+  `,
+  iconSize: [20, 20],
+  iconAnchor: [10, 10],
+})
+
+function UserLocationLayer({
+  position,
+  reCenterKey,
+}: {
+  position: GeolocationCoordinates | null
+  reCenterKey: number
+}) {
+  const map = useMap()
+  const hasFlownRef = useRef(false)
+
+  // Fly to user on first fix
+  useEffect(() => {
+    if (!position || hasFlownRef.current) return
+    hasFlownRef.current = true
+    map.flyTo([position.latitude, position.longitude], 15, { duration: 1.2 })
+  }, [position, map])
+
+  // Fly on explicit re-center request
+  useEffect(() => {
+    if (reCenterKey === 0 || !position) return
+    map.flyTo([position.latitude, position.longitude], 15, { duration: 0.8 })
+  }, [reCenterKey, position, map])
+
+  if (!position) return null
+
+  return (
+    <Marker
+      position={[position.latitude, position.longitude]}
+      icon={userLocationIcon}
+    />
+  )
+}
+
 interface MapProps {
   spots: ParkingSpot[]
   selectedSpot: ParkingSpot | null
@@ -51,6 +102,8 @@ interface MapProps {
   activeTab: 'parking' | 'bikes'
   showParking: boolean
   showBikes: boolean
+  userPosition: GeolocationCoordinates | null
+  reCenterKey: number
 }
 
 export function Map({
@@ -64,6 +117,8 @@ export function Map({
   activeTab,
   showParking,
   showBikes,
+  userPosition,
+  reCenterKey,
 }: MapProps) {
   return (
     <MapContainer
@@ -110,6 +165,7 @@ export function Map({
 
       <FlyToSpot spot={selectedSpot} />
       <FlyToStation station={selectedStation} />
+      <UserLocationLayer position={userPosition} reCenterKey={reCenterKey} />
     </MapContainer>
   )
 }

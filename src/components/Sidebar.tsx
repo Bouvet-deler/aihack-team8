@@ -31,6 +31,8 @@ interface SidebarProps {
   onToggleParking: () => void
   showBikes: boolean
   onToggleBikes: () => void
+  width: number | undefined
+  onResizeHandleMouseDown: (e: React.MouseEvent) => void
 }
 
 const INTERVAL_OPTIONS = [
@@ -54,6 +56,7 @@ export function Sidebar({
   activeTab, onTabChange,
   showParking, onToggleParking,
   showBikes, onToggleBikes,
+  width, onResizeHandleMouseDown,
 }: SidebarProps) {
   const { t, i18n: i18nInstance } = useTranslation()
   const isParking = activeTab === 'parking'
@@ -70,7 +73,7 @@ export function Sidebar({
     .sort((a, b) => b.num_vehicles_available - a.num_vehicles_available)
 
   return (
-    <aside className="sidebar">
+    <aside className="sidebar" style={width !== undefined ? { width } : undefined}>
       <div className="sidebar-header">
         <div className="sidebar-title">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#007079" strokeWidth="2.5">
@@ -255,6 +258,14 @@ export function Sidebar({
         <span>{t('data.label')} </span>
         <a href="https://opencom.no" target="_blank" rel="noopener noreferrer">opencom.no</a>
       </div>
+
+      <div
+        className="sidebar-resize-handle"
+        onMouseDown={onResizeHandleMouseDown}
+        role="separator"
+        aria-orientation="vertical"
+        aria-label="Resize sidebar"
+      />
     </aside>
   )
 }
