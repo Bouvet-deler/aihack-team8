@@ -192,6 +192,7 @@ class: text-center
 | Kodekvalitet      | CSS + alle lint-feil fikset     |
 | Dokumentasjon     | README, CONTRIBUTING, Slidev    |
 | Testing           | UAT-template + Playwright       |
+| Deep research     | 4 rapporter, 62 000+ ord        |
 
 </div>
 <div class="glass">
@@ -219,6 +220,64 @@ bytting mellom verktøy.
 </div>
 
 </div>
+</div>
+
+---
+
+# AI-drevet research 🔬
+
+<div class="text-sm opacity-70 mb-3">Copilot CLI utførte <b>4 dype research-analyser</b> — fra markedsanalyse til presentasjonsdesign</div>
+
+<div class="grid grid-cols-2 gap-5">
+
+<div class="glass">
+
+## Konkurranseanalyse
+
+<div class="text-sm mt-2">7 plattformer analysert: Citymapper, Moovit, Digitransit, SpotHero, Parkopedia, CityBikes, Entur</div>
+
+<div class="divider"></div>
+
+<div class="text-xs opacity-60">→ Konklusjon: Ingen dekker Stavanger med P + 🚲 + 🚌 samlet</div>
+
+</div>
+
+<div class="glass">
+
+## Utviklingskostnader
+
+<div class="text-sm mt-2">CI-kostnad, verktøy-overlap, DRY-analyse og pre-commit vs. CI-strategi</div>
+
+<div class="divider"></div>
+
+<div class="text-xs opacity-60">→ Resultat: Lefthook + Super-linter, ~$0.37 i CI-kostnader</div>
+
+</div>
+
+<div class="glass">
+
+## Presentasjonsteknikk
+
+<div class="text-sm mt-2">Narrativ struktur, visuell design, Slidev-teknikker, timing og leveranse</div>
+
+<div class="divider"></div>
+
+<div class="text-xs opacity-60">→ Rammeverk: Problem → Løsning → Bevis → Visjon</div>
+
+</div>
+
+<div class="glass">
+
+## Ren Markdown i Slidev
+
+<div class="text-sm mt-2">Comark/MDC-syntax, UnoCSS attributify, scoped styles — eliminere HTML</div>
+
+<div class="divider"></div>
+
+<div class="text-xs opacity-60">→ Funn: ~70% av HTML kan erstattes med ren Markdown</div>
+
+</div>
+
 </div>
 
 ---
