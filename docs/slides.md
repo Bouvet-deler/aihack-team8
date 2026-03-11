@@ -151,7 +151,7 @@ class: text-center
   <span class="feature-pill">📱 Mobil PWA</span>
 </div>
 
-<div class="text-sm opacity-40 mt-8">Bytt til nettleseren og vis localhost:5173</div>
+<div class="text-sm opacity-40 mt-8">Bytt til nettleseren og vis appen</div>
 
 <!--
 Presenter notes:
