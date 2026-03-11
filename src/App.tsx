@@ -72,7 +72,9 @@ export default function App() {
         </div>
       )}
 
-      {(parking.loading && parking.data.length === 0 && bikes.loading && bikes.data.length === 0) && (
+      {((city.parking ? parking.loading && parking.data.length === 0 : false) ||
+        (city.bikes ? bikes.loading && bikes.data.length === 0 : false) ||
+        (transit.loading && transit.data.length === 0)) && (
         <div className="loading-overlay">
           <div className="spinner" />
           <span>{t('loading')}</span>

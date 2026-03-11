@@ -4,13 +4,17 @@ import type { CityConfig } from '../config/cities'
 
 export function useCity() {
   const [city, setCity] = useState<CityConfig>(() => {
-    const saved = localStorage.getItem('city')
-    return CITIES.find((c) => c.id === saved) ?? DEFAULT_CITY
+    try {
+      const saved = localStorage.getItem('city')
+      return CITIES.find((c) => c.id === saved) ?? DEFAULT_CITY
+    } catch {
+      return DEFAULT_CITY
+    }
   })
 
   function selectCity(c: CityConfig) {
     setCity(c)
-    localStorage.setItem('city', c.id)
+    try { localStorage.setItem('city', c.id) } catch { /* ignore */ }
   }
 
   return { city, selectCity, cities: CITIES }

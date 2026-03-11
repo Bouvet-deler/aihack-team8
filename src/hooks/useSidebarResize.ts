@@ -35,6 +35,7 @@ export function useSidebarResize(): UseSidebarResizeResult {
   )
   const [isDragging, setIsDragging] = useState(false)
   const isDraggingRef = useRef(false)
+  const listenersRef = useRef<{ move: (e: MouseEvent) => void; up: (e: MouseEvent) => void } | null>(null)
 
   // Update width on window resize (mobile ↔ desktop switch)
   useEffect(() => {
@@ -47,6 +48,16 @@ export function useSidebarResize(): UseSidebarResizeResult {
     }
     window.addEventListener('resize', onWindowResize)
     return () => window.removeEventListener('resize', onWindowResize)
+  }, [])
+
+  // Cleanup drag listeners on unmount
+  useEffect(() => {
+    return () => {
+      if (listenersRef.current) {
+        document.removeEventListener('mousemove', listenersRef.current.move)
+        document.removeEventListener('mouseup', listenersRef.current.up)
+      }
+    }
   }, [])
 
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
@@ -69,6 +80,7 @@ export function useSidebarResize(): UseSidebarResizeResult {
       document.body.style.cursor = ''
       document.removeEventListener('mousemove', onMouseMove)
       document.removeEventListener('mouseup', onMouseUp)
+      listenersRef.current = null
       const finalWidth = Math.max(MIN, Math.min(MAX, ev.clientX))
       try {
         localStorage.setItem(STORAGE_KEY, String(finalWidth))
@@ -77,6 +89,7 @@ export function useSidebarResize(): UseSidebarResizeResult {
       }
     }
 
+    listenersRef.current = { move: onMouseMove, up: onMouseUp }
     document.addEventListener('mousemove', onMouseMove)
     document.addEventListener('mouseup', onMouseUp)
   }, [])

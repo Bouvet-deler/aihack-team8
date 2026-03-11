@@ -5,7 +5,8 @@ import no from './locales/no.json'
 import en from './locales/en.json'
 import es from './locales/es.json'
 
-const savedLang = localStorage.getItem('lang') ?? 'no'
+let savedLang = 'no'
+try { savedLang = localStorage.getItem('lang') ?? 'no' } catch { /* ignore */ }
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -19,7 +20,7 @@ i18n.use(initReactI18next).init({
 })
 
 i18n.on('languageChanged', (lng) => {
-  localStorage.setItem('lang', lng)
+  try { localStorage.setItem('lang', lng) } catch { /* ignore */ }
 })
 
 export default i18n
