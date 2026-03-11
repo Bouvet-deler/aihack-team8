@@ -4,6 +4,7 @@ import i18n from '../i18n'
 import type { ParkingSpot } from '../types/parking'
 import type { BikeStation } from '../types/bike'
 import type { TransitStop } from '../types/transit'
+import type { CityConfig } from '../config/cities'
 import { getColor } from './ParkingMarker'
 import { getBikeColor } from './BikeMarker'
 import { getTransitColor } from './TransitMarker'
@@ -52,6 +53,9 @@ interface SidebarProps {
   favorites: { parking: string[], bikes: string[] }
   isFavorite: (type: 'parking' | 'bikes', id: string) => boolean
   onToggleFavorite: (type: 'parking' | 'bikes', id: string) => void
+  city: CityConfig
+  cities: CityConfig[]
+  onSelectCity: (city: CityConfig) => void
 }
 
 const INTERVAL_OPTIONS = [
@@ -81,6 +85,7 @@ export function Sidebar({
   userPosition,
   isDark, onToggleDark,
   favorites, isFavorite, onToggleFavorite,
+  city, cities, onSelectCity,
 }: SidebarProps) {
   const { t, i18n: i18nInstance } = useTranslation()
   const [sortByNearest, setSortByNearest] = useState(false)
@@ -180,6 +185,22 @@ export function Sidebar({
               </button>
             ))}
           </div>
+
+          {/* City selector */}
+          <select
+            className="city-select"
+            value={city.id}
+            onChange={(e) => {
+              const selected = cities.find((c) => c.id === e.target.value)
+              if (selected) onSelectCity(selected)
+            }}
+            aria-label={t('city.select')}
+            title={t('city.select')}
+          >
+            {cities.map((c) => (
+              <option key={c.id} value={c.id}>{c.name}</option>
+            ))}
+          </select>
         </div>
 
         {/* Layer toggles */}

@@ -79,6 +79,9 @@
     "nearest": "Nærmest meg",
     "default": "Standard rekkefølge"
   },
+  "city": {
+    "select": "Velg by"
+  },
   "prediction": {
     "title": "Forventet tilgjengelighet (neste 8t)",
     "now": "Nå",

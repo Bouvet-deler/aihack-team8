@@ -1,20 +1,17 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import type { TransitStop } from '../types/transit'
+import type { CityConfig } from '../config/cities'
 
 const ENTUR_URL = '/api/transit'
 const CLIENT_NAME = 'team8-stavanger-mobility'
-
-// Stavanger city centre
-const CENTER_LAT = 58.97
-const CENTER_LON = 5.73
-const RADIUS_M = 8000
 const MAX_RESULTS = 200
 
-const QUERY = `{
+function buildQuery(lat: number, lon: number, radius: number) {
+  return `{
   nearest(
-    latitude: ${CENTER_LAT}
-    longitude: ${CENTER_LON}
-    maximumDistance: ${RADIUS_M}
+    latitude: ${lat}
+    longitude: ${lon}
+    maximumDistance: ${radius}
     maximumResults: ${MAX_RESULTS}
     filterByPlaceTypes: [stopPlace]
   ) {
@@ -34,6 +31,7 @@ const QUERY = `{
     }
   }
 }`
+}
 
 function isValidStop(value: unknown): boolean {
   if (typeof value !== 'object' || value === null) return false
@@ -55,7 +53,7 @@ interface UseTransitResult {
   refresh: () => void
 }
 
-export function useTransit(intervalMs: number): UseTransitResult {
+export function useTransit(intervalMs: number, city: CityConfig): UseTransitResult {
   const [data, setData] = useState<TransitStop[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -67,6 +65,8 @@ export function useTransit(intervalMs: number): UseTransitResult {
     const controller = new AbortController()
     abortRef.current = controller
 
+    const { lat, lon, radius } = city.transit
+
     try {
       setError(null)
       const response = await fetch(ENTUR_URL, {
@@ -75,7 +75,7 @@ export function useTransit(intervalMs: number): UseTransitResult {
           'Content-Type': 'application/json',
           'ET-Client-Name': CLIENT_NAME,
         },
-        body: JSON.stringify({ query: QUERY }),
+        body: JSON.stringify({ query: buildQuery(lat, lon, radius) }),
         signal: controller.signal,
       })
 
@@ -116,7 +116,7 @@ export function useTransit(intervalMs: number): UseTransitResult {
     } finally {
       setLoading(false)
     }
-  }, [])
+  }, [city])
 
   useEffect(() => {
     setLoading(true)
@@ -126,7 +126,7 @@ export function useTransit(intervalMs: number): UseTransitResult {
       clearInterval(timer)
       abortRef.current?.abort()
     }
-  }, [fetchData, intervalMs])
+  }, [fetchData, intervalMs, city])
 
   return { data, loading, error, lastUpdated, refresh: fetchData }
 }

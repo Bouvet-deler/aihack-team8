@@ -79,6 +79,9 @@
     "nearest": "Más cercano",
     "default": "Orden predeterminado"
   },
+  "city": {
+    "select": "Seleccionar ciudad"
+  },
   "prediction": {
     "title": "Disponibilidad prevista (próximas 8h)",
     "now": "Ahora",

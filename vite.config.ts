@@ -22,6 +22,7 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+        globIgnores: ['**/*.{jpg,jpeg}', 'Skjermbilde*'],
         runtimeCaching: [
           {
             urlPattern: /^\/api\//,
@@ -54,6 +55,11 @@ export default defineConfig({
         target: 'https://api.entur.io',
         changeOrigin: true,
         rewrite: () => '/journey-planner/v3/graphql',
+      },
+      '/api/gbfs': {
+        target: 'https://gbfs.urbansharing.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace('/api/gbfs', ''),
       },
     },
   },

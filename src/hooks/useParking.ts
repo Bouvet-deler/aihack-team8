@@ -1,8 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import type { ParkingSpot } from '../types/parking'
+import type { CityConfig } from '../config/cities'
 import i18n from '../i18n'
-
-const API_URL = '/api/parking'
 
 function isValidSpot(value: unknown): value is Record<string, unknown> {
   if (typeof value !== 'object' || value === null) return false
@@ -26,21 +25,22 @@ interface UseParkingResult {
   refresh: () => void
 }
 
-export function useParking(intervalMs: number): UseParkingResult {
+export function useParking(intervalMs: number, city: CityConfig): UseParkingResult {
   const [data, setData] = useState<ParkingSpot[]>([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(!!city.parking)
   const [error, setError] = useState<string | null>(null)
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null)
   const abortRef = useRef<AbortController | null>(null)
 
   const fetchData = useCallback(async () => {
+    if (!city.parking) return
     abortRef.current?.abort()
     const controller = new AbortController()
     abortRef.current = controller
 
     try {
       setError(null)
-      const response = await fetch(API_URL, { signal: controller.signal })
+      const response = await fetch(city.parking.url, { signal: controller.signal })
       if (!response.ok) throw new Error(`HTTP ${response.status}`)
       const raw: unknown = await response.json()
       if (!Array.isArray(raw)) throw new Error('Unexpected API response format')
@@ -61,18 +61,23 @@ export function useParking(intervalMs: number): UseParkingResult {
     } finally {
       setLoading(false)
     }
-  }, [])
+  }, [city])
 
   useEffect(() => {
+    if (!city.parking) {
+      setData([])
+      setLoading(false)
+      setError(null)
+      return
+    }
     setLoading(true)
     fetchData()
-
     const timer = setInterval(fetchData, intervalMs)
     return () => {
       clearInterval(timer)
       abortRef.current?.abort()
     }
-  }, [fetchData, intervalMs])
+  }, [fetchData, intervalMs, city])
 
   return { data, loading, error, lastUpdated, refresh: fetchData }
 }
