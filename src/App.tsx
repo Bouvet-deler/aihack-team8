@@ -104,7 +104,6 @@ export default function App() {
           showBikes={showBikes}
           userPosition={geo.position}
           reCenterKey={reCenterKey}
-          isDark={isDark}
         />
 
         {geo.position && (

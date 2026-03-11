@@ -28,6 +28,11 @@
   --eds-danger-bg: #4a1a1a;
 }
 
+/* Invert OSM tiles in dark mode — only affects the tile pane, not markers/popups */
+[data-theme="dark"] .leaflet-tile-pane {
+  filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}
+
 /* Leaflet controls in dark mode */
 [data-theme="dark"] .leaflet-control-zoom a,
 [data-theme="dark"] .leaflet-bar a {
