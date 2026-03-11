@@ -46,19 +46,32 @@ Instructions for Claude, Copilot, and other AI agents.
 
 ## Commit conventions
 
-We use [Conventional Commits](https://www.conventionalcommits.org/):
+We follow the
+[Angular Commit Message Format](https://github.com/angular/angular/blob/main/CONTRIBUTING.md#-commit-message-format):
 
-- `feat:` — user-facing features (included in release notes)
-- `fix:` — user-facing bug fixes (included in release notes)
-- `docs:` — documentation changes
-- `style:` — code formatting (no logic change)
-- `ci:` — CI/CD pipeline changes
-- `chore:` — maintenance, dependencies
-- `test:` — test additions or fixes
+```text
+<type>(<scope>): <short summary>
+```
 
-> **Important**: `feat` and `fix` are reserved for changes
-> visible to end users. Use `ci:`, `build:`, `chore:` etc.
-> for DevOps-only changes.
+### Types
+
+`feat` · `fix` · `docs` · `style` · `refactor` · `perf` · `test` · `build` · `ci`
+
+> `feat` and `fix` appear in release notes.
+> Use other types for internal/DevOps changes.
+
+### Scopes
+
+| Scope    | Covers                                      |
+| -------- | ------------------------------------------- |
+| `map`    | Map, markers, Leaflet                       |
+| `data`   | Hooks, APIs, parking/bikes/transit          |
+| `ui`     | Sidebar, i18n, dark mode, a11y              |
+| `pwa`    | Service worker, manifest, icons             |
+| `lint`   | Lefthook, prettier, markdownlint, stylelint |
+| `slides` | Slidev presentation                         |
+
+Scope is optional. Omit when a change spans multiple areas.
 
 ## i18n patterns
 
