@@ -91,6 +91,16 @@ function UserLocationLayer({
   )
 }
 
+const TILE_LIGHT = {
+  url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+}
+
+const TILE_DARK = {
+  url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+}
+
 interface MapProps {
   spots: ParkingSpot[]
   selectedSpot: ParkingSpot | null
@@ -104,6 +114,7 @@ interface MapProps {
   showBikes: boolean
   userPosition: GeolocationCoordinates | null
   reCenterKey: number
+  isDark: boolean
 }
 
 export function Map({
@@ -119,17 +130,17 @@ export function Map({
   showBikes,
   userPosition,
   reCenterKey,
+  isDark,
 }: MapProps) {
+  const tile = isDark ? TILE_DARK : TILE_LIGHT
+
   return (
     <MapContainer
       center={STAVANGER_CENTER}
       zoom={DEFAULT_ZOOM}
       style={{ height: '100%', width: '100%' }}
     >
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
+      <TileLayer key={isDark ? 'dark' : 'light'} attribution={tile.attribution} url={tile.url} />
 
       {showParking && spots.map((spot) => {
         const matches =

@@ -50,6 +50,10 @@
   "geo": {
     "recenter": "Min posisjon"
   },
+  "theme": {
+    "toggleDark": "Bytt til mørk modus",
+    "toggleLight": "Bytt til lys modus"
+  },
   "sort": {
     "nearest": "Nærmest meg",
     "default": "Standard rekkefølge"

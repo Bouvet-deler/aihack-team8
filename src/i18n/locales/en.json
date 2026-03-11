@@ -50,6 +50,10 @@
   "geo": {
     "recenter": "My location"
   },
+  "theme": {
+    "toggleDark": "Switch to dark mode",
+    "toggleLight": "Switch to light mode"
+  },
   "sort": {
     "nearest": "Nearest to me",
     "default": "Default order"
