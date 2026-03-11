@@ -17,10 +17,14 @@ mdc: true
 
 # Stavanger Mobilitet 🚗🚲
 
-Real-time parking & bike availability for Stavanger
+Sanntids parkering, bysykler og kollektivtransport — på ett kart
 
-<div class="pt-8 text-sm opacity-70">
+<div class="pt-6 text-sm opacity-70">
 Bouvet AI Hack · Team 8 · 11. mars 2026
+</div>
+
+<div class="pt-2 text-xs opacity-50">
+4 byer · 10+ funksjoner · 100% AI-drevet utvikling
 </div>
 
 <div class="abs-br m-6 flex gap-2">
@@ -40,13 +44,14 @@ Stavangers innbyggere trenger **én plass** for å finne:
 
 - 🅿️ Ledig parkering i sanntid
 - 🚲 Tilgjengelige bysykler
+- 🚌 Buss- og fergeavganger
 - 📍 Hva som er **nærmest meg**
 
 <br>
 
 ## I dag
 
-Informasjonen er spredt over ulike apper og nettsider. Ingen viser **begge deler** på ett kart.
+Informasjonen er spredt over ulike apper og nettsider. Ingen viser **alt** på ett kart.
 
 ::right::
 
@@ -54,14 +59,14 @@ Informasjonen er spredt over ulike apper og nettsider. Ingen viser **begge deler
 
 ## Ingen dekker Stavanger
 
-| Løsning     | Parkering | Sykkel | Stavanger |
-| ----------- | :-------: | :----: | :-------: |
-| Citymapper  |    ❌     |   ✅   |    ❌     |
-| Moovit      |    ❌     |   ❌   |    ⚠️     |
-| SpotHero    |    ✅     |   ❌   |    ❌     |
-| Parkopedia  |    ✅     |   ❌   |    ⚠️     |
-| CityBikes   |    ❌     |   ✅   |    ❌     |
-| **Vår app** |  **✅**   | **✅** |  **✅**   |
+| Løsning     | Parkering | Sykkel | Kollektiv | Stavanger |
+| ----------- | :-------: | :----: | :-------: | :-------: |
+| Citymapper  |    ❌     |   ✅   |    ✅     |    ❌     |
+| Moovit      |    ❌     |   ❌   |    ✅     |    ⚠️     |
+| SpotHero    |    ✅     |   ❌   |    ❌     |    ❌     |
+| Parkopedia  |    ✅     |   ❌   |    ❌     |    ⚠️     |
+| Entur       |    ❌     |   ❌   |    ✅     |    ✅     |
+| **Vår app** |  **✅**   | **✅** |  **✅**   |  **✅**   |
 
 </div>
 
@@ -75,7 +80,7 @@ Informasjonen er spredt over ulike apper og nettsider. Ingen viser **begge deler
 
 ## Kjernefunksjoner
 
-- 🗺️ Interaktivt kart med **parkering + sykkel**
+- 🗺️ Interaktivt kart med **parkering + sykkel + buss**
 - 🎨 Fargekodede markører (grønn → rød)
 - 🔍 Søk og filtrering
 - 📱 PWA — installerbar på mobil
@@ -86,15 +91,17 @@ Informasjonen er spredt over ulike apper og nettsider. Ingen viser **begge deler
 
 <div>
 
-## Nye funksjoner (Phase 1 ✅)
+## Nye i denne hacken
 
 - 🌙 **Mørk modus** — respekterer system-tema
 - ⭐ **Favoritter** — lagre favorittplasser
 - 📏 **Gangavstand** — tid og distanse
 - 📍 **Geolokasjon** — vis min posisjon
+- 📈 **Prediksjon** — forutsi ledige plasser
+- 🏙️ **4 byer** — Stavanger, Bergen, Trondheim, Oslo
 
-<div class="mt-4 p-3 bg-green-500/10 rounded text-sm">
-✅ Alle 4 Phase 1-issues lukket
+<div class="mt-3 p-3 bg-green-500/10 rounded text-sm">
+✅ Phase 1 komplett + deler av Phase 2–4 levert
 </div>
 
 </div>
@@ -115,7 +122,7 @@ class: text-center
 </div>
 <div>
   <div class="text-4xl mb-2">⚡</div>
-  <div class="font-bold">Vite</div>
+  <div class="font-bold">Vite 6</div>
   <div class="text-xs opacity-60">Build & Dev</div>
 </div>
 <div>
@@ -130,7 +137,7 @@ class: text-center
 </div>
 </div>
 
-<div class="grid grid-cols-3 gap-8 mt-8 text-center">
+<div class="grid grid-cols-4 gap-8 mt-8 text-center">
 <div>
   <div class="text-4xl mb-2">📦</div>
   <div class="font-bold">PWA</div>
@@ -139,12 +146,17 @@ class: text-center
 <div>
   <div class="text-4xl mb-2">🌍</div>
   <div class="font-bold">i18next</div>
-  <div class="text-xs opacity-60">Internasjonalisering</div>
+  <div class="text-xs opacity-60">3 språk</div>
 </div>
 <div>
   <div class="text-4xl mb-2">📊</div>
   <div class="font-bold">Open Data</div>
-  <div class="text-xs opacity-60">opencom.no API</div>
+  <div class="text-xs opacity-60">opencom.no + Entur</div>
+</div>
+<div>
+  <div class="text-4xl mb-2">🔒</div>
+  <div class="font-bold">TypeScript</div>
+  <div class="text-xs opacity-60">Strict mode</div>
 </div>
 </div>
 
@@ -159,33 +171,37 @@ Copilot CLI var med i **hele arbeidsflyten** — ikke bare koding
 
 ## Hva AI gjorde for oss
 
-| Oppgave             | Verktøy                                  |
+| Oppgave             | Resultat                                 |
 | ------------------- | ---------------------------------------- |
 | Kodeanalyse         | Utforsket hele kodebasen på minutter     |
 | Konkurrentanalyse   | 7 globale plattformer analysert          |
-| Prosjektplanlegging | 24 GitHub Issues med akseptansekriterier |
-| Kvalitetssikring    | UAT-template + automatisert testing      |
+| Prosjektplanlegging | 26 GitHub Issues med akseptansekriterier |
+| CI/CD               | Super-linter + Lefthook pre-commit       |
+| Kodekvalitet        | CSS modernisert, alle lint-feil fikset   |
+| Dokumentasjon       | README, CONTRIBUTING, Slidev (DRY)       |
+| Testing             | UAT-template + Playwright-automatisering |
 | Presentasjon        | Denne Slidev-presentasjonen              |
 
 </div>
 <div>
 
-## Eksempel: Konkurrentanalyse
+## AI som utviklingspartner
 
 ```text
-> /review liknende løsninger i verden
-  og foreslå neste steg
+Copilot CLI ≠ kodegenerator
 
-→ Analyserte Citymapper, Moovit,
-  Digitransit, SpotHero, Parkopedia,
-  CityBikes, Entur
+Copilot CLI = utviklingspartner som:
 
-→ Identifiserte at ingen konkurrent
-  dekker Stavanger med BÅDE parkering
-  OG sykkel
+✓ Analyserer kodebasen
+✓ Planlegger arkitektur
+✓ Skriver og fikser kode
+✓ Setter opp CI/CD
+✓ Kjører tester
+✓ Dokumenterer
+✓ Lager presentasjoner
 
-→ Anbefalte Digitransit-modellen
-  (nordisk, open source, React)
+Alt fra terminalen — ingen kontekst-
+bytting mellom verktøy.
 ```
 
 </div>
@@ -205,35 +221,56 @@ Copilot CLI gjør konkurranseanalyse, søker GitHub-repos og analyserer markedet
 
 # Kvalitetssikring ✅
 
-Automatisert UAT-test med **Playwright** mot 14 kategorier
+<div class="grid grid-cols-2 gap-8 mt-4">
 
-<div class="grid grid-cols-3 gap-4 mt-6">
+<div>
 
-<div class="p-4 bg-green-500/15 rounded-lg text-center">
-  <div class="text-4xl font-bold text-green-400">57</div>
-  <div class="text-sm mt-1">Bestått</div>
+## Automatisert UAT (Playwright)
+
+<div class="grid grid-cols-3 gap-3 mt-4">
+<div class="p-3 bg-green-500/15 rounded-lg text-center">
+  <div class="text-3xl font-bold text-green-400">57</div>
+  <div class="text-xs mt-1">Bestått</div>
+</div>
+<div class="p-3 bg-red-500/15 rounded-lg text-center">
+  <div class="text-3xl font-bold text-red-400">12</div>
+  <div class="text-xs mt-1">Feil*</div>
+</div>
+<div class="p-3 bg-yellow-500/15 rounded-lg text-center">
+  <div class="text-3xl font-bold text-yellow-400">3</div>
+  <div class="text-xs mt-1">Skipped</div>
+</div>
 </div>
 
-<div class="p-4 bg-red-500/15 rounded-lg text-center">
-  <div class="text-4xl font-bold text-red-400">12</div>
-  <div class="text-sm mt-1">Feil*</div>
-</div>
+<div class="mt-3 text-xs">
 
-<div class="p-4 bg-yellow-500/15 rounded-lg text-center">
-  <div class="text-4xl font-bold text-yellow-400">3</div>
-  <div class="text-sm mt-1">Hoppet over</div>
+\* CSP-header + Leaflet DivIcon i headless browser — fungerer i ekte nettleser
+
 </div>
 
 </div>
 
-<div class="mt-6 text-sm">
+<div>
 
-\* **Reelle feil:** CSP-header bør flyttes fra meta-tag til HTTP-header. PWA-manifest kun i prod.
+## CI/CD Pipeline
 
-**Resten:** Leaflet DivIcon + headless browser-begrensninger — fungerer i ekte nettleser.
+<div class="mt-4 space-y-3 text-sm">
 
-**Verdict:** ⚠️ Betinget bestått — klar for produksjonsbygg-testing
+🥊 **Lefthook** pre-commit hooks (parallell)
 
+- prettier, markdownlint, stylelint, tsc
+
+🔍 **Super-linter** v8.3.1 i GitHub Actions
+
+- CSS, HTML, JSON, Markdown, YAML, Actions
+
+📝 **Docs-as-code** — alt versjonskontrollert
+
+- README, CONTRIBUTING, Slidev, UAT-templates
+
+</div>
+
+</div>
 </div>
 
 ---
@@ -244,16 +281,20 @@ Automatisert UAT-test med **Playwright** mot 14 kategorier
 
 <div>
 
-## Issues
+## Issues (26 totalt + 2 test-issues)
 
-| Status            | Antall |
-| ----------------- | :----: |
-| ✅ Lukket         |   4    |
-| 📋 Åpen (Phase 1) |   4    |
-| 📋 Åpen (Phase 2) |   6    |
-| 📋 Åpen (Phase 3) |   6    |
-| 📋 Åpen (Phase 4) |   6    |
-| **Totalt**        | **26** |
+| Status             | Antall |
+| ------------------ | :----: |
+| ✅ Lukket           |   6    |
+| 📋 Åpen (Phase 1)  |   2    |
+| 📋 Åpen (Phase 2)  |   6    |
+| 📋 Åpen (Phase 3)  |   4    |
+| 📋 Åpen (Phase 4)  |   5    |
+| 🧪 Test-issues     |   2    |
+
+<div class="mt-3 p-2 bg-green-500/10 rounded text-xs">
+✅ Lukket: geolokasjon, dark mode, favoritter, gangavstand, prediksjon, multi-city
+</div>
 
 </div>
 
@@ -261,21 +302,19 @@ Automatisert UAT-test med **Playwright** mot 14 kategorier
 
 ## Teamets bidrag
 
-**Knut Erik** (knu73r1k)
+**Knut Erik** (knu73r1k) — Funksjoner
 
-- i18n (NO/EN/ES)
-- Dark mode
-- Favoritter
-- Gangavstand
-- Geolokasjon
-- Walking time format fix
+- i18n (NO/EN/ES), dark mode, favoritter
+- Gangavstand, geolokasjon
+- Prediksjonschart, multi-city
+- Entur transit-integrasjon
 
-**Einar** (einaren)
+**Einar** (einaren) — AI & Kvalitet
 
-- Prosjektledelse med AI
-- Konkurranseanalyse
-- 24 feature issues
-- UAT testing & template
+- Prosjektledelse med Copilot CLI
+- Konkurranseanalyse, 26 feature issues
+- CI/CD (super-linter, lefthook)
+- Kodekvalitet, docs, UAT testing
 
 </div>
 </div>
@@ -288,20 +327,20 @@ Automatisert UAT-test med **Playwright** mot 14 kategorier
 
 ```mermaid
 timeline
-    title Utviklingsplan
-    Phase 1 - UX ✅ : Geolokasjon
-                    : Mørk modus
-                    : Favoritter
-                    : Gangavstand
-    Phase 2 - Multi-modal : Entur buss/ferge
+    title Utviklingsplan — Stavanger Mobilitet
+    Phase 1 - UX ✅ : Geolokasjon ✅
+                    : Mørk modus ✅
+                    : Favoritter ✅
+                    : Gangavstand ✅
+    Phase 2 - Multi-modal : Entur buss/ferge ✅
                            : Kolumbus sanntid
                            : El-sparkesykler
                            : Ruteplanlegger
-    Phase 3 - Smart : Push-varsler
-                    : ML-prediksjon
+    Phase 3 - Smart : ML-prediksjon ✅
+                    : Push-varsler
                     : Reiseplanlegger
                     : Delbare lenker
-    Phase 4 - Plattform : Multi-by (Bergen, Trondheim)
+    Phase 4 - Plattform : Multi-by ✅
                         : OpenTripPlanner
                         : Brukerkontoer
                         : Åpent API
@@ -322,17 +361,17 @@ Gjøre appen til **den** mobilitetsappen for Stavanger
 
 <div class="mt-4 space-y-2 text-sm">
 
-🚌 **Entur API** — buss og ferge-avganger
-
 🚏 **Kolumbus sanntid** — holdeplassdata
 
 🛴 **El-sparkesykler** — Ryde/Tier/Voi
 
 🗺️ **Ruteplanlegger** — A til B navigasjon
 
-⚡ **Elbil-lading** — ladepunkter på kartet
+⚡ **Elbil-lading** — NOBIL API
 
 📋 **Avgangstavler** — i markør-popups
+
+♿ **Tilgjengelighet** — WCAG 2.1 AA
 
 </div>
 
@@ -340,22 +379,31 @@ Gjøre appen til **den** mobilitetsappen for Stavanger
 
 <div class="mt-12">
 
-## Arkitektur-inspirasjon
+## Allerede levert utover Phase 1
 
-**Digitransit** (Helsinki) 🇫🇮
+<div class="space-y-3 text-sm">
 
-- Open source, React, Leaflet
-- Nordisk kontekst
-- Multi-modal
-- Bevist i produksjon
+<div class="p-2 bg-blue-500/10 rounded">
+🏙️ <b>Multi-city</b> — Bergen, Trondheim, Oslo (Phase 4)
+</div>
 
-<br>
+<div class="p-2 bg-purple-500/10 rounded">
+📈 <b>Prediksjon</b> — forutsi tilgjengelighet (Phase 3)
+</div>
 
-**Entur** (Norge) 🇳🇴
+<div class="p-2 bg-green-500/10 rounded">
+🚌 <b>Entur API</b> — buss/ferge-data (Phase 2)
+</div>
 
-- Gratis API-er
-- Nasjonal transportdata
-- Reiseplanlegger-motor
+<div class="p-2 bg-orange-500/10 rounded">
+🔍 <b>CI/CD</b> — Super-linter + Lefthook + Prettier
+</div>
+
+</div>
+
+<div class="mt-4 text-xs opacity-60">
+Arkitektur-inspirasjon: Digitransit 🇫🇮 + Entur 🇳🇴
+</div>
 
 </div>
 
@@ -366,9 +414,15 @@ class: text-center
 
 # Takk! 🙌
 
-<div class="mt-8 text-lg">
+<div class="mt-6 text-lg">
 
-**Stavanger Mobilitet** — parkering og bysykler, ett kart
+**Stavanger Mobilitet** — parkering, bysykler og kollektiv, ett kart
+
+</div>
+
+<div class="mt-2 text-sm opacity-70">
+
+4 byer · 3 språk · 26 issues · 100% AI-drevet
 
 </div>
 
@@ -380,7 +434,7 @@ Bouvet AI Hack · 11. mars 2026
 
 </div>
 
-<div class="mt-8 flex gap-4 justify-center">
+<div class="mt-6 flex gap-4 justify-center">
   <a href="https://github.com/Bouvet-deler/aihack-team8" target="_blank" class="px-4 py-2 rounded bg-gray-700 text-white text-sm hover:bg-gray-600">
     <carbon-logo-github class="inline mr-1" /> GitHub Repo
   </a>
