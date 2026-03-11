@@ -78,5 +78,10 @@
   "sort": {
     "nearest": "Nearest to me",
     "default": "Default order"
+  },
+  "prediction": {
+    "title": "Expected availability (next 8h)",
+    "now": "Now",
+    "best": "Best time: {{time}} — ~{{count}} free"
   }
 }
