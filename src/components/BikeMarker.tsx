@@ -81,6 +81,7 @@ export function BikeMarker({ station, isSelected, dimmed, isFavorite, onClick, o
         opacity: ${opacity};
         transition: all 0.15s ease;
         position: relative;
+        pointer-events: none;
       ">
         <div style="display:flex; color:${textColor}; line-height:1">${BIKE_ICON}</div>
         <div style="font-size: 10px; line-height:1">${count}</div>

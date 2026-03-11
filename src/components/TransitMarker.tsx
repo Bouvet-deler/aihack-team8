@@ -50,6 +50,7 @@ export function TransitMarker({ stop, isSelected, dimmed, onClick }: TransitMark
         box-shadow: 0 2px 8px rgba(0,0,0,0.25);
         opacity: ${opacity};
         transition: all 0.15s ease;
+        pointer-events: none;
       ">${emoji}</div>
     `,
     iconSize: [size, size],

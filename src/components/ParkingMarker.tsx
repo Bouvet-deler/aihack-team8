@@ -64,6 +64,7 @@ export function ParkingMarker({ spot, isSelected, dimmed, isFavorite, onClick, o
         opacity: ${opacity};
         transition: all 0.15s ease;
         position: relative;
+        pointer-events: none;
       ">
         ${displayCount}
         ${isFavorite ? `<span style="position:absolute;top:-4px;right:-4px;font-size:10px;line-height:1">★</span>` : ''}
