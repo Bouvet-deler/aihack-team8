@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Map } from './components/Map'
 import { Sidebar } from './components/Sidebar'
 import { useParking } from './hooks/useParking'
@@ -10,6 +11,7 @@ import './App.css'
 const DEFAULT_INTERVAL = 60_000
 
 export default function App() {
+  const { t } = useTranslation()
   const [refreshInterval, setRefreshInterval] = useState(DEFAULT_INTERVAL)
   const [selectedSpot, setSelectedSpot] = useState<ParkingSpot | null>(null)
   const [selectedStation, setSelectedStation] = useState<BikeStation | null>(null)
@@ -32,14 +34,14 @@ export default function App() {
             <line x1="12" y1="8" x2="12" y2="12" />
             <line x1="12" y1="16" x2="12.01" y2="16" />
           </svg>
-          Kunne ikke laste data. Prøv igjen senere.
+          {t('error.load')}
         </div>
       )}
 
       {(parking.loading && parking.data.length === 0 && bikes.loading && bikes.data.length === 0) && (
         <div className="loading-overlay">
           <div className="spinner" />
-          <span>Laster data…</span>
+          <span>{t('loading')}</span>
         </div>
       )}
 

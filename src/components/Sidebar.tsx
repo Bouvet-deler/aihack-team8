@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+import i18n from '../i18n'
 import type { ParkingSpot } from '../types/parking'
 import type { BikeStation } from '../types/bike'
 import { getColor } from './ParkingMarker'
@@ -38,6 +40,8 @@ const INTERVAL_OPTIONS = [
   { label: '5 min', value: 300_000 },
 ]
 
+const LANGUAGES = ['no', 'en', 'es'] as const
+
 function formatTime(date: Date): string {
   return date.toLocaleTimeString('no-NO', { hour: '2-digit', minute: '2-digit', second: '2-digit' })
 }
@@ -51,6 +55,7 @@ export function Sidebar({
   showParking, onToggleParking,
   showBikes, onToggleBikes,
 }: SidebarProps) {
+  const { t, i18n: i18nInstance } = useTranslation()
   const isParking = activeTab === 'parking'
   const loading = isParking ? parkingLoading : bikeLoading
   const lastUpdated = isParking ? parkingLastUpdated : bikeLastUpdated
@@ -72,7 +77,20 @@ export function Sidebar({
             <circle cx="12" cy="12" r="10" />
             <path d="M8 12h8M12 8v8" />
           </svg>
-          <span>Stavanger mobilitet</span>
+          <span>{t('header.title')}</span>
+
+          {/* Language switcher */}
+          <div className="lang-switcher">
+            {LANGUAGES.map((lng) => (
+              <button
+                key={lng}
+                className={`lang-btn ${i18nInstance.language === lng ? 'active' : ''}`}
+                onClick={() => i18n.changeLanguage(lng)}
+              >
+                {lng.toUpperCase()}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Layer toggles */}
@@ -80,18 +98,18 @@ export function Sidebar({
           <button
             className={`layer-toggle ${showParking ? 'active' : ''}`}
             onClick={onToggleParking}
-            title="Vis/skjul parkering"
+            title={t('parking.toggle')}
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <rect x="3" y="3" width="18" height="18" rx="2"/>
               <path d="M9 17V7h4a3 3 0 0 1 0 6H9"/>
             </svg>
-            Parkering
+            {t('parking.label')}
           </button>
           <button
             className={`layer-toggle ${showBikes ? 'active' : ''}`}
             onClick={onToggleBikes}
-            title="Vis/skjul bysykler"
+            title={t('bikes.toggle')}
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="5.5" cy="17.5" r="3.5"/>
@@ -99,7 +117,7 @@ export function Sidebar({
               <path d="M15 6a1 1 0 0 0-1 1v5.5H9L5.5 17.5"/>
               <path d="m8 6 1.5 5.5M15 6H8"/>
             </svg>
-            Bysykkel
+            {t('bikes.label')}
           </button>
         </div>
 
@@ -109,14 +127,14 @@ export function Sidebar({
             className={`tab ${isParking ? 'active' : ''}`}
             onClick={() => { onTabChange('parking'); onSearchChange('') }}
           >
-            Parkering
+            {t('tab.parking')}
             <span className="tab-badge">{spots.length}</span>
           </button>
           <button
             className={`tab ${!isParking ? 'active' : ''}`}
             onClick={() => { onTabChange('bikes'); onSearchChange('') }}
           >
-            Bysykkel
+            {t('tab.bikes')}
             <span className="tab-badge">{bikeStations.length}</span>
           </button>
         </div>
@@ -130,20 +148,20 @@ export function Sidebar({
           <input
             type="search"
             className="search-input"
-            placeholder={isParking ? 'Søk etter parkeringsplass…' : 'Søk etter sykkelpunkt…'}
+            placeholder={isParking ? t('search.parking') : t('search.bikes')}
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
-            aria-label="Søk"
+            aria-label={t('search.label')}
           />
           {searchQuery && (
-            <button className="search-clear" onClick={() => onSearchChange('')} aria-label="Tøm søk">×</button>
+            <button className="search-clear" onClick={() => onSearchChange('')} aria-label={t('search.clear')}>×</button>
           )}
         </div>
 
         {/* Controls */}
         <div className="sidebar-controls">
           <div className="control-group">
-            <label htmlFor="interval-select" className="control-label">Oppdater</label>
+            <label htmlFor="interval-select" className="control-label">{t('refresh.label')}</label>
             <select
               id="interval-select"
               className="interval-select"
@@ -159,7 +177,7 @@ export function Sidebar({
             className={`refresh-btn ${loading ? 'loading' : ''}`}
             onClick={onRefresh}
             disabled={loading}
-            title="Oppdater nå"
+            title={t('refresh.now')}
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className={loading ? 'spin' : ''}>
               <path d="M23 4v6h-6" />
@@ -170,7 +188,7 @@ export function Sidebar({
         </div>
 
         {lastUpdated && (
-          <div className="last-updated">Sist oppdatert: {formatTime(lastUpdated)}</div>
+          <div className="last-updated">{t('lastUpdated')} {formatTime(lastUpdated)}</div>
         )}
       </div>
 
@@ -180,7 +198,9 @@ export function Sidebar({
           <>
             {filteredSpots.length === 0 && !loading && (
               <div className="empty-state">
-                {searchQuery ? `Ingen treff på "${searchQuery}"` : 'Ingen parkeringsdata tilgjengelig'}
+                {searchQuery
+                  ? t('empty.parkingSearch', { query: searchQuery })
+                  : t('empty.parking')}
               </div>
             )}
             {filteredSpots.map((spot) => {
@@ -203,7 +223,9 @@ export function Sidebar({
           <>
             {filteredStations.length === 0 && !loading && (
               <div className="empty-state">
-                {searchQuery ? `Ingen treff på "${searchQuery}"` : 'Ingen sykkeldata tilgjengelig'}
+                {searchQuery
+                  ? t('empty.bikesSearch', { query: searchQuery })
+                  : t('empty.bikes')}
               </div>
             )}
             {filteredStations.map((station) => {
@@ -218,7 +240,7 @@ export function Sidebar({
                   <span className="spot-indicator bike-indicator" style={{ background: color }} aria-hidden="true" />
                   <span className="spot-name">{station.name}</span>
                   <div className="bike-counts">
-                    <span className="spot-count" style={{ color }} title="Ledige sykler">
+                    <span className="spot-count" style={{ color }} title={t('bike.available')}>
                       {station.num_vehicles_available}
                     </span>
                   </div>
@@ -230,7 +252,7 @@ export function Sidebar({
       </div>
 
       <div className="sidebar-footer">
-        <span>Data: </span>
+        <span>{t('data.label')} </span>
         <a href="https://opencom.no" target="_blank" rel="noopener noreferrer">opencom.no</a>
       </div>
     </aside>

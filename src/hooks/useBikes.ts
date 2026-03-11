@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import type { BikeStation } from '../types/bike'
+import i18n from '../i18n'
 
 const API_URL = '/api/bikes'
 
@@ -50,7 +51,7 @@ export function useBikes(intervalMs: number): UseBikesResult {
       setLastUpdated(new Date())
     } catch (err) {
       if ((err as Error).name !== 'AbortError') {
-        setError((err as Error).message || 'Ukjent feil')
+        setError((err as Error).message || i18n.t('error.unknown'))
       }
     } finally {
       setLoading(false)

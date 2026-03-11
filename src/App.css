@@ -83,6 +83,37 @@ body {
   letter-spacing: -0.01em;
 }
 
+/* ── Language switcher ── */
+.lang-switcher {
+  display: flex;
+  gap: 2px;
+  margin-left: auto;
+}
+
+.lang-btn {
+  padding: 2px 6px;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: Equinor, sans-serif;
+  border: 1.5px solid #c0c0c0;
+  border-radius: 4px;
+  background: transparent;
+  color: #565656;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s, color 0.12s;
+}
+
+.lang-btn:hover:not(.active) {
+  border-color: var(--eds-primary);
+  color: var(--eds-primary);
+}
+
+.lang-btn.active {
+  background: var(--eds-primary);
+  border-color: var(--eds-primary);
+  color: #ffffff;
+}
+
 /* ── Layer toggles ── */
 .layer-toggles {
   display: flex;
