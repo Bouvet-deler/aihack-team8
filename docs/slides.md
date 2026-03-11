@@ -11,6 +11,10 @@ transition: slide-left
 mdc: true
 ---
 
+<!-- markdownlint-disable MD025 MD003 -->
+<!-- MD025: Slidev uses # per slide (multiple h1 by design) -->
+<!-- MD003: Slidev --- separators are misread as setext headings -->
+
 # Stavanger Mobilitet 🚗🚲
 
 Real-time parking & bike availability for Stavanger
@@ -40,7 +44,7 @@ Stavangers innbyggere trenger **én plass** for å finne:
 
 <br>
 
-### I dag
+## I dag
 
 Informasjonen er spredt over ulike apper og nettsider. Ingen viser **begge deler** på ett kart.
 
@@ -48,7 +52,7 @@ Informasjonen er spredt over ulike apper og nettsider. Ingen viser **begge deler
 
 <div class="mt-12">
 
-### Ingen dekker Stavanger
+## Ingen dekker Stavanger
 
 | Løsning | Parkering | Sykkel | Stavanger |
 |---------|:---------:|:------:|:---------:|
@@ -69,7 +73,7 @@ Informasjonen er spredt over ulike apper og nettsider. Ingen viser **begge deler
 
 <div>
 
-### Kjernefunksjoner
+## Kjernefunksjoner
 - 🗺️ Interaktivt kart med **parkering + sykkel**
 - 🎨 Fargekodede markører (grønn → rød)
 - 🔍 Søk og filtrering
@@ -81,7 +85,7 @@ Informasjonen er spredt over ulike apper og nettsider. Ingen viser **begge deler
 
 <div>
 
-### Nye funksjoner (Phase 1 ✅)
+## Nye funksjoner (Phase 1 ✅)
 - 🌙 **Mørk modus** — respekterer system-tema
 - ⭐ **Favoritter** — lagre favorittplasser
 - 📏 **Gangavstand** — tid og distanse
@@ -151,7 +155,7 @@ Copilot CLI var med i **hele arbeidsflyten** — ikke bare koding
 <div class="grid grid-cols-2 gap-6 mt-6">
 <div>
 
-### Hva AI gjorde for oss
+## Hva AI gjorde for oss
 
 | Oppgave | Verktøy |
 |---------|---------|
@@ -164,9 +168,9 @@ Copilot CLI var med i **hele arbeidsflyten** — ikke bare koding
 </div>
 <div>
 
-### Eksempel: Konkurrentanalyse
+## Eksempel: Konkurrentanalyse
 
-```
+```text
 > /review liknende løsninger i verden
   og foreslå neste steg
 
@@ -238,7 +242,7 @@ Automatisert UAT-test med **Playwright** mot 14 kategorier
 
 <div>
 
-### Issues
+## Issues
 
 | Status | Antall |
 |--------|:------:|
@@ -253,7 +257,7 @@ Automatisert UAT-test med **Playwright** mot 14 kategorier
 
 <div>
 
-### Teamets bidrag
+## Teamets bidrag
 
 **Knut Erik** (knu73r1k)
 - i18n (NO/EN/ES)
@@ -308,7 +312,7 @@ layoutClass: gap-8
 
 # Neste steg 🚀
 
-### Phase 2: Multi-modal hub
+## Phase 2: Multi-modal hub
 
 Gjøre appen til **den** mobilitetsappen for Stavanger
 
@@ -332,7 +336,7 @@ Gjøre appen til **den** mobilitetsappen for Stavanger
 
 <div class="mt-12">
 
-### Arkitektur-inspirasjon
+## Arkitektur-inspirasjon
 
 **Digitransit** (Helsinki) 🇫🇮
 - Open source, React, Leaflet
