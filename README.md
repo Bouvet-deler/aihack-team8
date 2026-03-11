@@ -6,6 +6,34 @@ Built during **Bouvet AI Hack** by Team 8: [Einar Fredriksen](https://github.com
 
 ---
 
+## AI Agent Workflow
+
+Instructions for Claude, Copilot, and other AI agents working on this repository.
+
+### Before starting any feature
+
+1. Always pull the latest `main` before creating a branch:
+   ```bash
+   git checkout main
+   git pull
+   ```
+2. Create a dedicated feature branch — never commit directly to `main`:
+   ```bash
+   git checkout -b feature/<short-issue-slug>
+   ```
+
+### During development
+
+- Keep commits scoped to the feature branch.
+- **Wait for explicit user approval** before committing, pushing, creating a PR, or merging.
+- Run `npm run build` to verify there are no TypeScript errors before asking for approval.
+
+### After merging
+
+- Close the related GitHub issue after the PR is merged.
+
+---
+
 ## Quick start
 
 ```bash
