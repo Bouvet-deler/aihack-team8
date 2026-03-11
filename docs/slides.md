@@ -15,20 +15,23 @@ mdc: true
 <!-- MD025: Slidev uses # per slide (multiple h1 by design) -->
 <!-- MD003: Slidev --- separators are misread as setext headings -->
 
-# Stavanger Mobilitet 🚗🚲
+<div class="flex flex-col items-center justify-center h-full">
+  <div class="cover-title mb-4">Stavanger Mobilitet</div>
+  <div class="cover-subtitle mb-8">Sanntids parkering, bysykler og kollektivtransport — på ett kart</div>
 
-Sanntids parkering, bysykler og kollektivtransport — på ett kart
+  <div class="flex gap-3 mb-8">
+    <span class="feature-pill">🏙️ 4 byer</span>
+    <span class="feature-pill">✨ 10+ funksjoner</span>
+    <span class="feature-pill">🤖 100% AI-drevet</span>
+  </div>
 
-<div class="pt-6 text-sm opacity-70">
-Bouvet AI Hack · Team 8 · 11. mars 2026
+  <div class="text-sm opacity-40">
+    Bouvet AI Hack · Team 8 · 11. mars 2026
+  </div>
 </div>
 
-<div class="pt-2 text-xs opacity-50">
-4 byer · 10+ funksjoner · 100% AI-drevet utvikling
-</div>
-
-<div class="abs-br m-6 flex gap-2">
-  <a href="https://github.com/Bouvet-deler/aihack-team8" target="_blank" class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
+<div class="abs-br m-6">
+  <a href="https://github.com/Bouvet-deler/aihack-team8" target="_blank" class="text-xl slidev-icon-btn opacity-40 !border-none !hover:text-white">
     <carbon-logo-github />
   </a>
 </div>
@@ -40,33 +43,39 @@ layoutClass: gap-8
 
 # Problemet 🎯
 
+<div class="mt-2">
+
 Stavangers innbyggere trenger **én plass** for å finne:
 
-- 🅿️ Ledig parkering i sanntid
-- 🚲 Tilgjengelige bysykler
-- 🚌 Buss- og fergeavganger
-- 📍 Hva som er **nærmest meg**
+<div class="mt-4 space-y-2">
+  <div class="glass-sm flex items-center gap-3">🅿️ <span>Ledig parkering i sanntid</span></div>
+  <div class="glass-sm flex items-center gap-3">🚲 <span>Tilgjengelige bysykler</span></div>
+  <div class="glass-sm flex items-center gap-3">🚌 <span>Buss- og fergeavganger</span></div>
+  <div class="glass-sm flex items-center gap-3">📍 <span>Hva som er <b>nærmest meg</b></span></div>
+</div>
 
-<br>
+<div class="divider mt-4"></div>
 
-## I dag
+<div class="text-sm opacity-60 mt-2">
+Informasjonen er spredt over ulike apper og nettsider. Ingen viser <b>alt</b> på ett kart.
+</div>
 
-Informasjonen er spredt over ulike apper og nettsider. Ingen viser **alt** på ett kart.
+</div>
 
 ::right::
 
-<div class="mt-12">
+<div class="mt-10">
 
 ## Ingen dekker Stavanger
 
-| Løsning     | Parkering | Sykkel | Kollektiv | Stavanger |
-| ----------- | :-------: | :----: | :-------: | :-------: |
-| Citymapper  |    ❌     |   ✅   |    ✅     |    ❌     |
-| Moovit      |    ❌     |   ❌   |    ✅     |    ⚠️     |
-| SpotHero    |    ✅     |   ❌   |    ❌     |    ❌     |
-| Parkopedia  |    ✅     |   ❌   |    ❌     |    ⚠️     |
-| Entur       |    ❌     |   ❌   |    ✅     |    ✅     |
-| **Vår app** |  **✅**   | **✅** |  **✅**   |  **✅**   |
+| Løsning     | 🅿️ | 🚲 | 🚌 | Stavanger |
+| ----------- | :-: | :-: | :-: | :-------: |
+| Citymapper  | ❌  | ✅  | ✅  |    ❌     |
+| Moovit      | ❌  | ❌  | ✅  |    ⚠️     |
+| SpotHero    | ✅  | ❌  | ❌  |    ❌     |
+| Parkopedia  | ✅  | ❌  | ❌  |    ⚠️     |
+| Entur       | ❌  | ❌  | ✅  |    ✅     |
+| **Vår app** | ✅  | ✅  | ✅  |  **✅**   |
 
 </div>
 
@@ -74,35 +83,38 @@ Informasjonen er spredt over ulike apper og nettsider. Ingen viser **alt** på e
 
 # Hva vi har bygget ✨
 
-<div class="grid grid-cols-2 gap-6 mt-4">
+<div class="grid grid-cols-2 gap-8 mt-2">
 
-<div>
+<div class="glass">
 
 ## Kjernefunksjoner
 
-- 🗺️ Interaktivt kart med **parkering + sykkel + buss**
-- 🎨 Fargekodede markører (grønn → rød)
-- 🔍 Søk og filtrering
-- 📱 PWA — installerbar på mobil
-- 🌍 Flerspråklig (NO / EN / ES)
-- 🔄 Auto-oppdatering av data
+<div class="mt-3 space-y-2 text-sm">
+  <div>🗺️ Interaktivt kart — <b>parkering + sykkel + buss</b></div>
+  <div>🎨 Fargekodede markører <span class="text-green-400">grønn</span> → <span class="text-red-400">rød</span></div>
+  <div>🔍 Søk og filtrering</div>
+  <div>📱 PWA — installerbar på mobil</div>
+  <div>🌍 Flerspråklig (NO / EN / ES)</div>
+  <div>🔄 Auto-oppdatering av data</div>
+</div>
 
 </div>
 
-<div>
+<div class="glass">
 
 ## Nye i denne hacken
 
-- 🌙 **Mørk modus** — respekterer system-tema
-- ⭐ **Favoritter** — lagre favorittplasser
-- 📏 **Gangavstand** — tid og distanse
-- 📍 **Geolokasjon** — vis min posisjon
-- 📈 **Prediksjon** — forutsi ledige plasser
-- 🏙️ **4 byer** — Stavanger, Bergen, Trondheim, Oslo
-
-<div class="mt-3 p-3 bg-green-500/10 rounded text-sm">
-✅ Phase 1 komplett + deler av Phase 2–4 levert
+<div class="mt-3 space-y-2 text-sm">
+  <div>🌙 <b>Mørk modus</b> — respekterer system-tema</div>
+  <div>⭐ <b>Favoritter</b> — lagre favorittplasser</div>
+  <div>📏 <b>Gangavstand</b> — tid og distanse</div>
+  <div>📍 <b>Geolokasjon</b> — vis min posisjon</div>
+  <div>📈 <b>Prediksjon</b> — forutsi ledige plasser</div>
+  <div>🏙️ <b>4 byer</b> — Stavanger, Bergen, Trondheim, Oslo</div>
 </div>
+
+<div class="divider"></div>
+<div class="text-xs text-green-400">✅ Phase 1 komplett + deler av Phase 2–4</div>
 
 </div>
 </div>
@@ -114,77 +126,79 @@ class: text-center
 
 # Tech Stack 🛠️
 
-<div class="grid grid-cols-4 gap-8 mt-8 text-center">
-<div>
-  <div class="text-4xl mb-2">⚛️</div>
-  <div class="font-bold">React 19</div>
-  <div class="text-xs opacity-60">UI Framework</div>
-</div>
-<div>
-  <div class="text-4xl mb-2">⚡</div>
-  <div class="font-bold">Vite 6</div>
-  <div class="text-xs opacity-60">Build & Dev</div>
-</div>
-<div>
-  <div class="text-4xl mb-2">🗺️</div>
-  <div class="font-bold">Leaflet</div>
-  <div class="text-xs opacity-60">Kart</div>
-</div>
-<div>
-  <div class="text-4xl mb-2">🎨</div>
-  <div class="font-bold">EDS</div>
-  <div class="text-xs opacity-60">Equinor Design System</div>
-</div>
+<div class="grid grid-cols-4 gap-6 mt-6">
+  <div class="tech-tile">
+    <div class="tech-icon">⚛️</div>
+    <div class="tech-name">React 19</div>
+    <div class="tech-desc">UI Framework</div>
+  </div>
+  <div class="tech-tile">
+    <div class="tech-icon">⚡</div>
+    <div class="tech-name">Vite 6</div>
+    <div class="tech-desc">Build & Dev</div>
+  </div>
+  <div class="tech-tile">
+    <div class="tech-icon">🗺️</div>
+    <div class="tech-name">Leaflet</div>
+    <div class="tech-desc">Kart</div>
+  </div>
+  <div class="tech-tile">
+    <div class="tech-icon">🎨</div>
+    <div class="tech-name">EDS</div>
+    <div class="tech-desc">Equinor Design</div>
+  </div>
 </div>
 
-<div class="grid grid-cols-4 gap-8 mt-8 text-center">
-<div>
-  <div class="text-4xl mb-2">📦</div>
-  <div class="font-bold">PWA</div>
-  <div class="text-xs opacity-60">Workbox + Offline</div>
-</div>
-<div>
-  <div class="text-4xl mb-2">🌍</div>
-  <div class="font-bold">i18next</div>
-  <div class="text-xs opacity-60">3 språk</div>
-</div>
-<div>
-  <div class="text-4xl mb-2">📊</div>
-  <div class="font-bold">Open Data</div>
-  <div class="text-xs opacity-60">opencom.no + Entur</div>
-</div>
-<div>
-  <div class="text-4xl mb-2">🔒</div>
-  <div class="font-bold">TypeScript</div>
-  <div class="text-xs opacity-60">Strict mode</div>
-</div>
+<div class="grid grid-cols-4 gap-6 mt-4">
+  <div class="tech-tile">
+    <div class="tech-icon">📦</div>
+    <div class="tech-name">PWA</div>
+    <div class="tech-desc">Workbox + Offline</div>
+  </div>
+  <div class="tech-tile">
+    <div class="tech-icon">🌍</div>
+    <div class="tech-name">i18next</div>
+    <div class="tech-desc">3 språk</div>
+  </div>
+  <div class="tech-tile">
+    <div class="tech-icon">📊</div>
+    <div class="tech-name">Open Data</div>
+    <div class="tech-desc">opencom.no + Entur</div>
+  </div>
+  <div class="tech-tile">
+    <div class="tech-icon">🔒</div>
+    <div class="tech-name">TypeScript</div>
+    <div class="tech-desc">Strict mode</div>
+  </div>
 </div>
 
 ---
 
 # AI-drevet utvikling 🤖
 
-Copilot CLI var med i **hele arbeidsflyten** — ikke bare koding
+<div class="text-sm opacity-70 mb-4">Copilot CLI var med i <b>hele arbeidsflyten</b> — ikke bare koding</div>
 
-<div class="grid grid-cols-2 gap-6 mt-4">
-<div>
+<div class="grid grid-cols-2 gap-6">
+<div class="glass">
 
 ## Hva AI gjorde for oss
 
-| Oppgave             | Resultat                             |
-| ------------------- | ------------------------------------ |
-| Kodeanalyse         | Utforsket kodebasen på minutter      |
-| Konkurrentanalyse   | 7 plattformer analysert              |
-| Prosjektplanlegging | 26 Issues med akseptansekriterier    |
-| CI/CD               | Super-linter + Lefthook              |
-| Kodekvalitet        | CSS + alle lint-feil fikset          |
-| Dokumentasjon       | README, CONTRIBUTING, Slidev         |
-| Testing             | UAT-template + Playwright            |
+| Oppgave           | Resultat                        |
+| ----------------- | ------------------------------- |
+| Kodeanalyse       | Utforsket kodebasen på minutter |
+| Konkurrentanalyse | 7 plattformer analysert         |
+| Prosjektplan      | 26 Issues m/ akseptansekriterier |
+| CI/CD             | Super-linter + Lefthook         |
+| Kodekvalitet      | CSS + alle lint-feil fikset     |
+| Dokumentasjon     | README, CONTRIBUTING, Slidev    |
+| Testing           | UAT-template + Playwright       |
 
 </div>
-<div>
+<div class="glass">
 
 ## AI som utviklingspartner
+
+<div class="gradient-card mt-2">
 
 ```text
 Copilot CLI ≠ kodegenerator
@@ -203,15 +217,19 @@ bytting mellom verktøy.
 ```
 
 </div>
+
+</div>
 </div>
 
 ---
 
 # Copilot CLI i praksis 📸
 
-<img src="./assets/copilot-cli-research.png" alt="Copilot CLI research analysis" class="rounded shadow-xl" />
+<div class="flex justify-center mt-2">
+<img src="./assets/copilot-cli-research.png" alt="Copilot CLI research analysis" class="rounded-xl shadow-2xl border border-white/5 max-h-[420px]" />
+</div>
 
-<div class="text-xs opacity-50 mt-2 text-center">
+<div class="text-xs opacity-40 mt-3 text-center">
 Copilot CLI gjør konkurranseanalyse, søker GitHub-repos og analyserer markedet — direkte i terminalen
 </div>
 
@@ -219,52 +237,55 @@ Copilot CLI gjør konkurranseanalyse, søker GitHub-repos og analyserer markedet
 
 # Kvalitetssikring ✅
 
-<div class="grid grid-cols-2 gap-8 mt-4">
+<div class="grid grid-cols-2 gap-8 mt-2">
 
-<div>
+<div class="glass">
 
 ## Automatisert UAT (Playwright)
 
 <div class="grid grid-cols-3 gap-3 mt-4">
-<div class="p-3 bg-green-500/15 rounded-lg text-center">
-  <div class="text-3xl font-bold text-green-400">57</div>
-  <div class="text-xs mt-1">Bestått</div>
+<div class="stat-card">
+  <div class="stat-value text-green-400">57</div>
+  <div class="stat-label">Bestått</div>
 </div>
-<div class="p-3 bg-red-500/15 rounded-lg text-center">
-  <div class="text-3xl font-bold text-red-400">12</div>
-  <div class="text-xs mt-1">Feil*</div>
+<div class="stat-card">
+  <div class="stat-value text-red-400">12</div>
+  <div class="stat-label">Feil*</div>
 </div>
-<div class="p-3 bg-yellow-500/15 rounded-lg text-center">
-  <div class="text-3xl font-bold text-yellow-400">3</div>
-  <div class="text-xs mt-1">Skipped</div>
+<div class="stat-card">
+  <div class="stat-value text-yellow-400">3</div>
+  <div class="stat-label">Skipped</div>
 </div>
-</div>
-
-<div class="mt-3 text-xs">
-
-\* CSP-header + Leaflet DivIcon i headless browser — fungerer i ekte nettleser
-
 </div>
 
+<div class="divider"></div>
+
+<div class="text-xs opacity-50">
+* CSP-header + Leaflet DivIcon i headless — fungerer i ekte nettleser
 </div>
 
-<div>
+</div>
+
+<div class="glass">
 
 ## CI/CD Pipeline
 
-<div class="mt-4 space-y-3 text-sm">
+<div class="mt-3 space-y-3 text-sm">
 
-🥊 **Lefthook** pre-commit hooks (parallell)
+<div class="glass-sm">
+🥊 <b>Lefthook</b> — pre-commit hooks (parallell)<br>
+<span class="text-xs opacity-60">prettier · markdownlint · stylelint · tsc</span>
+</div>
 
-- prettier, markdownlint, stylelint, tsc
+<div class="glass-sm">
+🔍 <b>Super-linter</b> v8.3.1 — GitHub Actions<br>
+<span class="text-xs opacity-60">CSS · HTML · JSON · Markdown · YAML · Actions</span>
+</div>
 
-🔍 **Super-linter** v8.3.1 i GitHub Actions
-
-- CSS, HTML, JSON, Markdown, YAML, Actions
-
-📝 **Docs-as-code** — alt versjonskontrollert
-
-- README, CONTRIBUTING, Slidev, UAT-templates
+<div class="glass-sm">
+📝 <b>Docs-as-code</b> — alt versjonskontrollert<br>
+<span class="text-xs opacity-60">README · CONTRIBUTING · Slidev · UAT</span>
+</div>
 
 </div>
 
@@ -275,31 +296,27 @@ Copilot CLI gjør konkurranseanalyse, søker GitHub-repos og analyserer markedet
 
 # Utviklingskostnad 💰
 
-Mennesker jobber gratis — hva koster AI og infrastruktur?
+<div class="text-sm opacity-70 mb-2">Mennesker jobber gratis — hva koster AI og infrastruktur?</div>
 
-<div class="grid grid-cols-2 gap-6 mt-2">
+<div class="grid grid-cols-2 gap-6">
 
-<div>
+<div class="glass">
 
 ## Kostnader
 
-| Post                    | Kostnad    |
-| ----------------------- | ---------: |
-| Knut — Claude API       |    $43.13  |
-| Einar — Copilot CLI     |      $0\*  |
-| GitHub Actions (46 min) |     $0.37  |
-| Copilot × 2 seter       |   $38/mnd  |
-| Hosting                 |        $0  |
+| Post                    |   Kostnad |
+| ----------------------- | --------: |
+| Knut — Claude API       |   $43.13  |
+| Einar — Copilot CLI     |     $0\*  |
+| GitHub Actions (46 min) |    $0.37  |
+| Copilot × 2 seter       |  $38/mnd  |
+| Hosting                 |       $0  |
 
-<div class="mt-2 text-xs opacity-60">
-
-\* Copilot Business inkludert i abonnement
+<div class="text-xs opacity-50 mt-1">* Copilot Business inkludert i abonnement</div>
 
 </div>
 
-</div>
-
-<div>
+<div class="glass">
 
 ## AI-bidrag i tall
 
@@ -311,8 +328,9 @@ Mennesker jobber gratis — hva koster AI og infrastruktur?
 | — Claude         |         18 |
 | Kodelinjer (src) |      3 146 |
 
-<div class="mt-2 p-2 bg-green-500/10 rounded text-sm">
-<b>~$81 + $38/mnd</b> → 3 146 LOC, full CI/CD
+<div class="gradient-card mt-2 text-center">
+<b class="text-lg">~$81 + $38/mnd</b><br>
+<span class="text-xs opacity-60">→ 3 146 LOC, full CI/CD, 4 byer</span>
 </div>
 
 </div>
@@ -324,29 +342,37 @@ Mennesker jobber gratis — hva koster AI og infrastruktur?
 
 <div class="grid grid-cols-2 gap-6 mt-2">
 
-<div>
+<div class="glass">
 
 ## Issues (26 + 2 test)
 
-| Status | Antall |
-| --- | :---: |
-| ✅ Lukket | 6 |
-| 📋 Åpen (P1–P4) | 17 |
-| 🧪 Test-issues | 2 |
+| Status           | Antall |
+| ---------------- | :----: |
+| ✅ Lukket         |     6  |
+| 📋 Åpen (P1–P4)  |    17  |
+| 🧪 Test-issues   |     2  |
 
-<div class="mt-2 p-2 bg-green-500/10 rounded text-xs">
+<div class="divider"></div>
+
+<div class="text-xs opacity-60">
 ✅ geolokasjon · dark mode · favoritter · gangavstand · prediksjon · multi-city
 </div>
 
 </div>
 
-<div>
+<div class="glass">
 
 ## Teamets bidrag
 
-**Knut Erik** — i18n, dark mode, favoritter, gangavstand, geolokasjon, prediksjon, multi-city, Entur transit
+<div class="glass-sm mt-3">
+<div class="font-bold text-sky-400 mb-1">Knut Erik — Funksjoner</div>
+<div class="text-sm opacity-80">i18n · dark mode · favoritter · gangavstand · geolokasjon · prediksjon · multi-city · Entur transit</div>
+</div>
 
-**Einar** — Copilot CLI prosjektledelse, konkurranseanalyse, 26 issues, CI/CD, docs, UAT
+<div class="glass-sm mt-2">
+<div class="font-bold text-emerald-400 mb-1">Einar — AI & Kvalitet</div>
+<div class="text-sm opacity-80">Copilot CLI prosjektledelse · konkurranseanalyse · 26 issues · CI/CD · docs · UAT</div>
+</div>
 
 </div>
 </div>
@@ -355,9 +381,9 @@ Mennesker jobber gratis — hva koster AI og infrastruktur?
 
 # Veikart 🗺️
 
-<div class="mt-4">
+<div class="mt-2">
 
-```mermaid
+```mermaid {theme: 'dark'}
 timeline
     title Utviklingsplan — Stavanger Mobilitet
     Phase 1 - UX ✅ : Geolokasjon ✅
@@ -389,43 +415,47 @@ layoutClass: gap-8
 
 ## Phase 2: Multi-modal hub
 
-Gjøre appen til **den** mobilitetsappen for Stavanger
+<div class="text-sm opacity-70 mb-3">Gjøre appen til <b>den</b> mobilitetsappen for Stavanger</div>
 
-<div class="mt-2 space-y-1 text-sm">
-
-🚏 **Kolumbus sanntid** · 🛴 **El-sparkesykler** · 🗺️ **Ruteplanlegger**
-
-⚡ **Elbil-lading** · 📋 **Avgangstavler** · ♿ **WCAG 2.1 AA**
-
+<div class="space-y-2">
+  <div class="glass-sm">🚏 <b>Kolumbus sanntid</b></div>
+  <div class="glass-sm">🛴 <b>El-sparkesykler</b></div>
+  <div class="glass-sm">🗺️ <b>Ruteplanlegger</b></div>
+  <div class="glass-sm">⚡ <b>Elbil-lading</b></div>
+  <div class="glass-sm">♿ <b>WCAG 2.1 AA</b></div>
 </div>
 
 ::right::
 
-<div class="mt-12">
+<div class="mt-10">
 
 ## Allerede levert utover Phase 1
 
-<div class="space-y-2 text-sm">
+<div class="space-y-2 mt-3">
 
-<div class="p-2 bg-blue-500/10 rounded">
-🏙️ <b>Multi-city</b> — Bergen, Trondheim, Oslo (Phase 4)
+<div class="gradient-card">
+🏙️ <b>Multi-city</b> — Bergen, Trondheim, Oslo
+<span class="badge badge-amber ml-1">Phase 4</span>
 </div>
 
-<div class="p-2 bg-purple-500/10 rounded">
-📈 <b>Prediksjon</b> — forutsi tilgjengelighet (Phase 3)
+<div class="gradient-card">
+📈 <b>Prediksjon</b> — forutsi tilgjengelighet
+<span class="badge badge-amber ml-1">Phase 3</span>
 </div>
 
-<div class="p-2 bg-green-500/10 rounded">
-🚌 <b>Entur API</b> — buss/ferge-data (Phase 2)
+<div class="gradient-card">
+🚌 <b>Entur API</b> — buss/ferge-data
+<span class="badge badge-green ml-1">Phase 2</span>
 </div>
 
-<div class="p-2 bg-orange-500/10 rounded">
-🔍 <b>CI/CD</b> — Super-linter + Lefthook + Prettier
+<div class="gradient-card">
+🔍 <b>CI/CD</b> — Super-linter + Lefthook
+<span class="badge badge-blue ml-1">Infra</span>
 </div>
 
 </div>
 
-<div class="mt-3 text-xs opacity-60">
+<div class="text-xs opacity-40 mt-3">
 Inspirasjon: Digitransit 🇫🇮 + Entur 🇳🇴
 </div>
 
@@ -438,28 +468,26 @@ class: text-center
 
 # Takk! 🙌
 
-<div class="mt-6 text-lg">
-
-**Stavanger Mobilitet** — parkering, bysykler og kollektiv, ett kart
-
+<div class="mt-4">
+  <div class="cover-subtitle">
+    <b>Stavanger Mobilitet</b> — parkering, bysykler og kollektiv, ett kart
+  </div>
 </div>
 
-<div class="mt-2 text-sm opacity-70">
-
-4 byer · 3 språk · 26 issues · 100% AI-drevet
-
+<div class="flex gap-3 justify-center mt-6">
+  <span class="feature-pill">🏙️ 4 byer</span>
+  <span class="feature-pill">🌍 3 språk</span>
+  <span class="feature-pill">📋 26 issues</span>
+  <span class="feature-pill">🤖 100% AI-drevet</span>
 </div>
 
-<div class="mt-4 text-sm opacity-70">
-
-Team 8: **Einar Fredriksen** & **Knut Erik Hollund**
-
+<div class="mt-6 text-sm opacity-50">
+Team 8: <b>Einar Fredriksen</b> & <b>Knut Erik Hollund</b><br>
 Bouvet AI Hack · 11. mars 2026
-
 </div>
 
-<div class="mt-6 flex gap-4 justify-center">
-  <a href="https://github.com/Bouvet-deler/aihack-team8" target="_blank" class="px-4 py-2 rounded bg-gray-700 text-white text-sm hover:bg-gray-600">
-    <carbon-logo-github class="inline mr-1" /> GitHub Repo
+<div class="mt-6">
+  <a href="https://github.com/Bouvet-deler/aihack-team8" target="_blank" class="px-5 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white text-sm hover:bg-white/10 transition-all inline-flex items-center gap-2">
+    <carbon-logo-github /> GitHub Repo
   </a>
 </div>

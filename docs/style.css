@@ -1,0 +1,276 @@
+/* Stavanger Mobilitet — Slidev Custom Theme */
+
+:root {
+  --slidev-theme-primary: #0ea5e9;
+  --slidev-theme-accent: #10b981;
+}
+
+/* Global slide polish */
+.slidev-layout {
+  font-family:
+    Inter,
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    sans-serif;
+}
+
+.slidev-layout h1 {
+  background: linear-gradient(135deg, #0ea5e9 0%, #10b981 100%);
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.slidev-layout h2 {
+  color: #94a3b8;
+  font-weight: 600;
+  font-size: 1.15em;
+  letter-spacing: -0.01em;
+}
+
+/* Glass-morphism card */
+.glass {
+  background: rgb(255 255 255 / 5%);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgb(255 255 255 / 8%);
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+.glass-sm {
+  background: rgb(255 255 255 / 4%);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgb(255 255 255 / 6%);
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+/* Stat card */
+.stat-card {
+  background: rgb(255 255 255 / 4%);
+  border: 1px solid rgb(255 255 255 / 6%);
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+}
+
+.stat-card .stat-value {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.stat-card .stat-label {
+  font-size: 0.75rem;
+  opacity: 0.6;
+  margin-top: 0.25rem;
+}
+
+/* Tech icon tile */
+.tech-tile {
+  background: rgb(255 255 255 / 3%);
+  border: 1px solid rgb(255 255 255 / 6%);
+  border-radius: 16px;
+  padding: 1.25rem 0.75rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.tech-tile:hover {
+  background: rgb(255 255 255 / 6%);
+  border-color: rgb(14 165 233 / 30%);
+  transform: translateY(-3px);
+}
+
+.tech-tile .tech-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.tech-tile .tech-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.tech-tile .tech-desc {
+  font-size: 0.7rem;
+  opacity: 0.5;
+  margin-top: 0.15rem;
+}
+
+/* Feature pill */
+.feature-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgb(255 255 255 / 4%);
+  border: 1px solid rgb(255 255 255 / 8%);
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.feature-pill:hover {
+  background: rgb(255 255 255 / 8%);
+}
+
+/* Accent gradient border card */
+.gradient-card {
+  position: relative;
+  border-radius: 12px;
+  padding: 1.25rem;
+  background: rgb(0 0 0 / 20%);
+}
+
+.gradient-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 1px;
+  background: linear-gradient(135deg, #0ea5e9, #10b981);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+/* Table polish */
+.slidev-layout table {
+  font-size: 0.85rem;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.slidev-layout th {
+  background: rgb(14 165 233 / 10%);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  padding: 0.5rem 0.75rem;
+}
+
+.slidev-layout th:first-child {
+  border-radius: 8px 0 0;
+}
+
+.slidev-layout th:last-child {
+  border-radius: 0 8px 0 0;
+}
+
+.slidev-layout td {
+  padding: 0.4rem 0.75rem;
+  border-bottom: 1px solid rgb(255 255 255 / 4%);
+}
+
+.slidev-layout tr:last-child td {
+  border-bottom: none;
+}
+
+.slidev-layout tr:hover td {
+  background: rgb(255 255 255 / 2%);
+}
+
+/* Badge / tag */
+.badge {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.badge-blue {
+  background: rgb(14 165 233 / 15%);
+  color: #38bdf8;
+}
+
+.badge-green {
+  background: rgb(16 185 129 / 15%);
+  color: #34d399;
+}
+
+.badge-amber {
+  background: rgb(245 158 11 / 15%);
+  color: #fbbf24;
+}
+
+/* Progress bar */
+.progress-bar {
+  height: 6px;
+  background: rgb(255 255 255 / 6%);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-bar .fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #0ea5e9, #10b981);
+}
+
+/* Code block improvements */
+.slidev-layout pre {
+  border-radius: 12px !important;
+  border: 1px solid rgb(255 255 255 / 6%) !important;
+}
+
+/* Subtle divider */
+.divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(255 255 255 / 10%),
+    transparent
+  );
+  margin: 0.75rem 0;
+}
+
+/* Slide number styling */
+.slidev-page-number {
+  opacity: 0.3;
+  font-size: 0.7rem;
+}
+
+/* Cover slide overrides */
+.cover-title {
+  font-size: 3.5rem !important;
+  font-weight: 900;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #fff 0%, #0ea5e9 50%, #10b981 100%);
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cover-subtitle {
+  font-size: 1.2rem;
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+/* Animate in */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  animation: fade-in-up 0.5s ease-out forwards;
+}
