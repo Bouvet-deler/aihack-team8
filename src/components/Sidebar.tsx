@@ -48,6 +48,7 @@ interface SidebarProps {
   width: number | undefined
   onResizeHandleMouseDown: (e: React.MouseEvent) => void
   userPosition: GeolocationCoordinates | null
+  onRequestLocation: () => void
   isDark: boolean
   onToggleDark: () => void
   favorites: { parking: string[], bikes: string[] }
@@ -83,6 +84,7 @@ export function Sidebar({
   showTransit, onToggleTransit,
   width, onResizeHandleMouseDown,
   userPosition,
+  onRequestLocation,
   isDark, onToggleDark,
   favorites, isFavorite, onToggleFavorite,
   city, cities, onSelectCity,
@@ -205,6 +207,7 @@ export function Sidebar({
 
         {/* Layer toggles */}
         <div className="layer-toggles">
+          {city.parking && (
           <button
             className={`layer-toggle ${showParking ? 'active' : ''}`}
             onClick={onToggleParking}
@@ -217,6 +220,7 @@ export function Sidebar({
             </svg>
             {t('parking.label')}
           </button>
+          )}
           <button
             className={`layer-toggle ${showBikes ? 'active' : ''}`}
             onClick={onToggleBikes}
@@ -247,6 +251,7 @@ export function Sidebar({
 
         {/* Tabs */}
         <div className="tabs">
+          {city.parking && (
           <button
             className={`tab ${isParking ? 'active' : ''}`}
             onClick={() => { onTabChange('parking'); onSearchChange('') }}
@@ -257,6 +262,7 @@ export function Sidebar({
               <span className="tab-fav-badge">★{favorites.parking.length}</span>
             )}
           </button>
+          )}
           <button
             className={`tab ${isBikes ? 'active' : ''}`}
             onClick={() => { onTabChange('bikes'); onSearchChange('') }}
@@ -325,8 +331,8 @@ export function Sidebar({
           </button>
         </div>
 
-        {/* Nearest sort toggle — only shown when location is available */}
-        {userPosition && (
+        {/* Location: sort button when available, enable-hint when not */}
+        {userPosition ? (
           <button
             className={`nearest-btn ${sortByNearest ? 'active' : ''}`}
             onClick={() => setSortByNearest((v) => !v)}
@@ -339,6 +345,15 @@ export function Sidebar({
               <circle cx="12" cy="12" r="9" />
             </svg>
             {sortByNearest ? t('sort.default') : t('sort.nearest')}
+          </button>
+        ) : (
+          <button className="enable-location-btn" onClick={onRequestLocation}>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="3" />
+              <path d="M12 2v3M12 19v3M2 12h3M19 12h3" />
+              <circle cx="12" cy="12" r="9" />
+            </svg>
+            {t('geo.enable')}
           </button>
         )}
 
