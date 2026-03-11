@@ -26,7 +26,8 @@ jobs:
           DEFAULT_BRANCH: main
 
           # Only enable relevant linters (include-mode)
-          VALIDATE_TYPESCRIPT_ES: true
+          # TypeScript is validated by tsc (npm run build), not ESLint here.
+          # Super-linter's built-in eslint-plugin-n targets Node.js, not browser apps.
           VALIDATE_CSS: true
           VALIDATE_HTML: true
           VALIDATE_JSON: true
