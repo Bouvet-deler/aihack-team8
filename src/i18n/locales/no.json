@@ -50,6 +50,12 @@
   "geo": {
     "recenter": "Min posisjon"
   },
+  "favorites": {
+    "label": "Favoritter",
+    "add": "Legg til favoritt",
+    "remove": "Fjern favoritt",
+    "empty": "Ingen favoritter ennå"
+  },
   "theme": {
     "toggleDark": "Bytt til mørk modus",
     "toggleLight": "Bytt til lys modus"

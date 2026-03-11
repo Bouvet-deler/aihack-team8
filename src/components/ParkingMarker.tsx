@@ -18,10 +18,12 @@ interface ParkingMarkerProps {
   spot: ParkingSpot
   isSelected: boolean
   dimmed: boolean
+  isFavorite: boolean
   onClick: () => void
+  onToggleFavorite: () => void
 }
 
-export function ParkingMarker({ spot, isSelected, dimmed, onClick }: ParkingMarkerProps) {
+export function ParkingMarker({ spot, isSelected, dimmed, isFavorite, onClick, onToggleFavorite }: ParkingMarkerProps) {
   const { t } = useTranslation()
   const lat = parseFloat(spot.Latitude)
   const lng = parseFloat(spot.Longitude)
@@ -31,7 +33,11 @@ export function ParkingMarker({ spot, isSelected, dimmed, onClick }: ParkingMark
   const color = getColor(spot.Antall_ledige_plasser)
   const textColor = getTextColor(spot.Antall_ledige_plasser)
   const size = isSelected ? 48 : dimmed ? 32 : 40
-  const border = isSelected ? '3px solid #007079' : '2px solid rgba(0,0,0,0.3)'
+  const border = isFavorite
+    ? '2.5px solid #f59e0b'
+    : isSelected
+    ? '3px solid #007079'
+    : '2px solid rgba(0,0,0,0.3)'
   const opacity = dimmed ? 0.25 : 1
 
   // Sanitize: coerce to number so a malicious API value can never inject HTML
@@ -57,8 +63,10 @@ export function ParkingMarker({ spot, isSelected, dimmed, onClick }: ParkingMark
         box-shadow: 0 2px 8px rgba(0,0,0,0.25);
         opacity: ${opacity};
         transition: all 0.15s ease;
+        position: relative;
       ">
         ${displayCount}
+        ${isFavorite ? `<span style="position:absolute;top:-4px;right:-4px;font-size:10px;line-height:1">★</span>` : ''}
       </div>
     `,
     iconSize: [size, size],
@@ -70,8 +78,25 @@ export function ParkingMarker({ spot, isSelected, dimmed, onClick }: ParkingMark
     <Marker position={[lat, lng]} icon={icon} eventHandlers={{ click: onClick }}>
       <Popup>
         <div style={{ fontFamily: 'Equinor, sans-serif', minWidth: '160px' }}>
-          <div style={{ fontWeight: 700, fontSize: '14px', marginBottom: '6px', color: '#3d3d3d' }}>
-            {spot.Sted}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
+            <div style={{ fontWeight: 700, fontSize: '14px', color: '#3d3d3d' }}>
+              {spot.Sted}
+            </div>
+            <button
+              onClick={onToggleFavorite}
+              title={isFavorite ? t('favorites.remove') : t('favorites.add')}
+              style={{
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                fontSize: '18px',
+                lineHeight: 1,
+                color: isFavorite ? '#f59e0b' : '#c0c0c0',
+                padding: '2px',
+              }}
+            >
+              {isFavorite ? '★' : '☆'}
+            </button>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
             <span

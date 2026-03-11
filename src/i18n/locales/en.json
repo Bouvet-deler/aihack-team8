@@ -50,6 +50,12 @@
   "geo": {
     "recenter": "My location"
   },
+  "favorites": {
+    "label": "Favorites",
+    "add": "Add to favorites",
+    "remove": "Remove from favorites",
+    "empty": "No favorites yet"
+  },
   "theme": {
     "toggleDark": "Switch to dark mode",
     "toggleLight": "Switch to light mode"

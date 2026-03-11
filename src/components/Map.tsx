@@ -104,6 +104,8 @@ interface MapProps {
   showBikes: boolean
   userPosition: GeolocationCoordinates | null
   reCenterKey: number
+  isFavorite: (type: 'parking' | 'bikes', id: string) => boolean
+  onToggleFavorite: (type: 'parking' | 'bikes', id: string) => void
 }
 
 export function Map({
@@ -119,6 +121,8 @@ export function Map({
   showBikes,
   userPosition,
   reCenterKey,
+  isFavorite,
+  onToggleFavorite,
 }: MapProps) {
   return (
     <MapContainer
@@ -142,7 +146,9 @@ export function Map({
             spot={spot}
             isSelected={selectedSpot?.Sted === spot.Sted}
             dimmed={!matches}
+            isFavorite={isFavorite('parking', spot.Sted)}
             onClick={() => onSelectSpot(spot)}
+            onToggleFavorite={() => onToggleFavorite('parking', spot.Sted)}
           />
         )
       })}
@@ -158,7 +164,9 @@ export function Map({
             station={station}
             isSelected={selectedStation?.station_id === station.station_id}
             dimmed={!matches}
+            isFavorite={isFavorite('bikes', station.station_id)}
             onClick={() => onSelectStation(station)}
+            onToggleFavorite={() => onToggleFavorite('bikes', station.station_id)}
           />
         )
       })}
