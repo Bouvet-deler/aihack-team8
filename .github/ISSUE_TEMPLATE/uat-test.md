@@ -47,12 +47,14 @@ labels: "testing, uat"
 ## 3. Markør-farger og størrelser
 
 ### Parkering – fargekoding
+
 - [ ] Grønn (#22c55e) vises for > 100 ledige plasser
 - [ ] Gul (#eab308) vises for 51–100 ledige plasser
 - [ ] Oransje (#f97316) vises for 21–50 ledige plasser
 - [ ] Rød (#ef4444) vises for ≤ 20 ledige plasser
 
 ### Bysykkel – fargekoding
+
 - [ ] Grønn (#22c55e) vises for > 5 tilgjengelige sykler
 - [ ] Gul (#eab308) vises for 3–5 tilgjengelige sykler
 - [ ] Oransje (#f97316) vises for 1–2 tilgjengelige sykler
@@ -60,6 +62,7 @@ labels: "testing, uat"
 - [ ] Grå (#9ca3af) vises for inaktive stasjoner (is_renting=false)
 
 ### Størrelser
+
 - [ ] Valgt markør er større enn uvalgte (48px parkering / 52px sykkel)
 - [ ] Dimmet markør er mindre (32px parkering / 34px sykkel)
 
@@ -71,18 +74,21 @@ labels: "testing, uat"
 ## 4. Markør-interaksjon og popup
 
 ### Parkering-popup
+
 - [ ] Klikk på parkeringsmarkør åpner popup
 - [ ] Popup viser: stedsnavn, fargeindikator, antall ledige plasser
 - [ ] Popup viser dato og klokkeslett
 - [ ] Kartet flyr til markøren med animasjon (~0.8s)
 
 ### Sykkel-popup
+
 - [ ] Klikk på sykkelmarkør åpner popup
 - [ ] Popup viser: stasjonsnavn, tilgjengelige sykler, ledige låser, kapasitet
 - [ ] Inaktiv stasjon viser "Stasjonen er ikke aktiv" (eller oversatt melding)
 - [ ] Popup viser "Sist rapportert"-tidspunkt
 
 ### Kryss-interaksjon
+
 - [ ] Klikk på markør markerer tilhørende element i sidepanelet
 - [ ] Klikk på element i sidepanelet flyr kartet til riktig markør
 - [ ] Markøren får blå ramme (#007079) når valgt
@@ -132,6 +138,7 @@ labels: "testing, uat"
 - [ ] Placeholder endres basert på fane ("Søk parkering…" / "Søk bysykkelstasjon…")
 
 ### Tomme resultater
+
 - [ ] Søk etter noe som ikke finnes → "Ingen resultater for «[søkeord]»"
 - [ ] Slett søketekst → alle elementer vises igjen
 
@@ -143,11 +150,13 @@ labels: "testing, uat"
 ## 8. Oppdatering og auto-refresh
 
 ### Manuell oppdatering
+
 - [ ] Klikk oppdater-knappen → ikonet spinner
 - [ ] Knappen er deaktivert (grå) under lasting
 - [ ] "Sist oppdatert"-tid oppdateres etter vellykket refresh
 
 ### Auto-oppdatering
+
 - [ ] Standard intervall er 1 min (verifiser i dropdown)
 - [ ] Bytt til 30 sek → data oppdateres automatisk innen 30 sek
 - [ ] "Sist oppdatert"-tidspunktet endres etter hvert intervall
@@ -161,10 +170,12 @@ labels: "testing, uat"
 ## 9. Språkbytte (i18n)
 
 ### Norsk (NO) – standard
+
 - [ ] NO-knapp er aktiv ved oppstart (turkis bakgrunn)
 - [ ] All tekst er på norsk
 
 ### Engelsk (EN)
+
 - [ ] Klikk EN → all tekst bytter til engelsk umiddelbart
 - [ ] Faner: "Parking" / "City Bike"
 - [ ] Søke-placeholder: "Search parking…" / "Search bike station…"
@@ -172,9 +183,11 @@ labels: "testing, uat"
 - [ ] Popup-tekst: "free spots", "Available bikes", "Available docks", "Capacity"
 
 ### Spansk (ES)
+
 - [ ] Klikk ES → all tekst bytter til spansk umiddelbart
 
 ### Persistens
+
 - [ ] Bytt til EN, last siden på nytt → EN er fortsatt valgt
 - [ ] Språkvalg lagres i localStorage
 
@@ -186,11 +199,13 @@ labels: "testing, uat"
 ## 10. Responsivt design
 
 ### Desktop (≥ 768px)
+
 - [ ] Sidepanel vises til venstre (300px bredde)
 - [ ] Kartet fyller resten av skjermen
 - [ ] "Oppdater"-label vises ved dropdown
 
 ### Mobil (< 768px)
+
 - [ ] Kartet vises øverst (~55% høyde)
 - [ ] Sidepanelet vises nederst (~45% høyde)
 - [ ] Sidepanelet er scrollbart
@@ -199,6 +214,7 @@ labels: "testing, uat"
 - [ ] "Oppdater"-label er skjult
 
 ### Overgang
+
 - [ ] Endre vindusbredde over/under 768px → layout bytter uten feil
 
 > **Notat:**
@@ -222,11 +238,13 @@ labels: "testing, uat"
 ## 12. PWA og offline
 
 ### Installasjon
+
 - [ ] Nettleseren tilbyr "Installer" / "Legg til på hjemskjerm"
 - [ ] Installert app åpnes i standalone-modus (ingen adressefelt)
 - [ ] App-ikon vises korrekt (192px og 512px)
 
 ### Offline-modus
+
 - [ ] Besøk appen med nettverk → data caches
 - [ ] Slå av nettverk → last siden på nytt
 - [ ] Cachet UI og data vises (inntil 5 min gammelt)
