@@ -189,7 +189,7 @@ Copilot CLI var med i **hele arbeidsflyten** — ikke bare koding
 
 # Copilot CLI i praksis 📸
 
-<img src="/Skjermbilde 2026-03-11 134650.png" class="rounded shadow-xl" />
+<img src="./assets/copilot-cli-research.png" class="rounded shadow-xl" />
 
 <div class="text-xs opacity-50 mt-2 text-center">
 Copilot CLI gjør konkurranseanalyse, søker GitHub-repos og analyserer markedet — direkte i terminalen
