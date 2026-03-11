@@ -322,23 +322,20 @@ Mennesker jobber gratis — hva koster AI og infrastruktur?
 
 # GitHub Project Status 📋
 
-<div class="grid grid-cols-2 gap-8 mt-4">
+<div class="grid grid-cols-2 gap-6 mt-2">
 
 <div>
 
-## Issues (26 totalt + 2 test-issues)
+## Issues (26 + 2 test)
 
-| Status             | Antall |
-| ------------------ | :----: |
-| ✅ Lukket           |   6    |
-| 📋 Åpen (Phase 1)  |   2    |
-| 📋 Åpen (Phase 2)  |   6    |
-| 📋 Åpen (Phase 3)  |   4    |
-| 📋 Åpen (Phase 4)  |   5    |
-| 🧪 Test-issues     |   2    |
+| Status | Antall |
+| --- | :---: |
+| ✅ Lukket | 6 |
+| 📋 Åpen (P1–P4) | 17 |
+| 🧪 Test-issues | 2 |
 
-<div class="mt-3 p-2 bg-green-500/10 rounded text-xs">
-✅ Lukket: geolokasjon, dark mode, favoritter, gangavstand, prediksjon, multi-city
+<div class="mt-2 p-2 bg-green-500/10 rounded text-xs">
+✅ geolokasjon · dark mode · favoritter · gangavstand · prediksjon · multi-city
 </div>
 
 </div>
@@ -347,19 +344,9 @@ Mennesker jobber gratis — hva koster AI og infrastruktur?
 
 ## Teamets bidrag
 
-**Knut Erik** (knu73r1k) — Funksjoner
+**Knut Erik** — i18n, dark mode, favoritter, gangavstand, geolokasjon, prediksjon, multi-city, Entur transit
 
-- i18n (NO/EN/ES), dark mode, favoritter
-- Gangavstand, geolokasjon
-- Prediksjonschart, multi-city
-- Entur transit-integrasjon
-
-**Einar** (einaren) — AI & Kvalitet
-
-- Prosjektledelse med Copilot CLI
-- Konkurranseanalyse, 26 feature issues
-- CI/CD (super-linter, lefthook)
-- Kodekvalitet, docs, UAT testing
+**Einar** — Copilot CLI prosjektledelse, konkurranseanalyse, 26 issues, CI/CD, docs, UAT
 
 </div>
 </div>
