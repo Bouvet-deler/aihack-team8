@@ -166,21 +166,20 @@ class: text-center
 
 Copilot CLI var med i **hele arbeidsflyten** — ikke bare koding
 
-<div class="grid grid-cols-2 gap-6 mt-6">
+<div class="grid grid-cols-2 gap-6 mt-4">
 <div>
 
 ## Hva AI gjorde for oss
 
-| Oppgave             | Resultat                                 |
-| ------------------- | ---------------------------------------- |
-| Kodeanalyse         | Utforsket hele kodebasen på minutter     |
-| Konkurrentanalyse   | 7 globale plattformer analysert          |
-| Prosjektplanlegging | 26 GitHub Issues med akseptansekriterier |
-| CI/CD               | Super-linter + Lefthook pre-commit       |
-| Kodekvalitet        | CSS modernisert, alle lint-feil fikset   |
-| Dokumentasjon       | README, CONTRIBUTING, Slidev (DRY)       |
-| Testing             | UAT-template + Playwright-automatisering |
-| Presentasjon        | Denne Slidev-presentasjonen              |
+| Oppgave             | Resultat                             |
+| ------------------- | ------------------------------------ |
+| Kodeanalyse         | Utforsket kodebasen på minutter      |
+| Konkurrentanalyse   | 7 plattformer analysert              |
+| Prosjektplanlegging | 26 Issues med akseptansekriterier    |
+| CI/CD               | Super-linter + Lefthook              |
+| Kodekvalitet        | CSS + alle lint-feil fikset          |
+| Dokumentasjon       | README, CONTRIBUTING, Slidev         |
+| Testing             | UAT-template + Playwright            |
 
 </div>
 <div>
@@ -198,7 +197,6 @@ Copilot CLI = utviklingspartner som:
 ✓ Setter opp CI/CD
 ✓ Kjører tester
 ✓ Dokumenterer
-✓ Lager presentasjoner
 
 Alt fra terminalen — ingen kontekst-
 bytting mellom verktøy.
@@ -279,31 +277,25 @@ Copilot CLI gjør konkurranseanalyse, søker GitHub-repos og analyserer markedet
 
 Mennesker jobber gratis — hva koster AI og infrastruktur?
 
-<div class="grid grid-cols-2 gap-8 mt-4">
+<div class="grid grid-cols-2 gap-6 mt-2">
 
 <div>
 
-## AI-kostnader
+## Kostnader
 
-| Utvikler | Verktøy          | Kostnad   |
-| -------- | ---------------- | --------: |
-| Knut     | Claude API       |   $43.13  |
-| Einar    | Copilot CLI      |    $0\*   |
-| **Sum**  |                  | **$43.13** |
+| Post                    | Kostnad    |
+| ----------------------- | ---------: |
+| Knut — Claude API       |    $43.13  |
+| Einar — Copilot CLI     |      $0\*  |
+| GitHub Actions (46 min) |     $0.37  |
+| Copilot × 2 seter       |   $38/mnd  |
+| Hosting                 |        $0  |
 
 <div class="mt-2 text-xs opacity-60">
 
-\* Copilot Business inkludert i abonnement ($19/sete/mnd)
+\* Copilot Business inkludert i abonnement
 
 </div>
-
-## Infrastruktur
-
-| Post                   | Kostnad  |
-| ---------------------- | -------: |
-| GitHub Actions (46 min)|    $0.37 |
-| Copilot × 2 seter      |  $38/mnd |
-| Hosting                |       $0 |
 
 </div>
 
@@ -311,21 +303,16 @@ Mennesker jobber gratis — hva koster AI og infrastruktur?
 
 ## AI-bidrag i tall
 
-| Metrikk               | Verdi        |
-| ---------------------- | -----------: |
-| Totale commits         |           61 |
-| AI co-authored         |    47 (77%)  |
-| — Copilot              |           34 |
-| — Claude               |           18 |
-| Kodelinjer (src/)      |        3 146 |
-| CI-kjøringer           |           29 |
+| Metrikk          |      Verdi |
+| ---------------- | ---------: |
+| Totale commits   |         61 |
+| AI co-authored   |   47 (77%) |
+| — Copilot        |         34 |
+| — Claude         |         18 |
+| Kodelinjer (src) |      3 146 |
 
-<div class="mt-3 p-2 bg-green-500/10 rounded text-sm">
-<b>Total: ~$81 + $38/mnd</b> for 3 146 LOC, 61 commits, full CI/CD
-</div>
-
-<div class="mt-2 p-2 bg-blue-500/10 rounded text-xs">
-Live data i appen: <code>/dev-costs.json</code>
+<div class="mt-2 p-2 bg-green-500/10 rounded text-sm">
+<b>~$81 + $38/mnd</b> → 3 146 LOC, full CI/CD
 </div>
 
 </div>
@@ -335,7 +322,7 @@ Live data i appen: <code>/dev-costs.json</code>
 
 # GitHub Project Status 📋
 
-<div class="grid grid-cols-2 gap-8 mt-6">
+<div class="grid grid-cols-2 gap-8 mt-4">
 
 <div>
 
@@ -417,19 +404,11 @@ layoutClass: gap-8
 
 Gjøre appen til **den** mobilitetsappen for Stavanger
 
-<div class="mt-4 space-y-2 text-sm">
+<div class="mt-2 space-y-1 text-sm">
 
-🚏 **Kolumbus sanntid** — holdeplassdata
+🚏 **Kolumbus sanntid** · 🛴 **El-sparkesykler** · 🗺️ **Ruteplanlegger**
 
-🛴 **El-sparkesykler** — Ryde/Tier/Voi
-
-🗺️ **Ruteplanlegger** — A til B navigasjon
-
-⚡ **Elbil-lading** — NOBIL API
-
-📋 **Avgangstavler** — i markør-popups
-
-♿ **Tilgjengelighet** — WCAG 2.1 AA
+⚡ **Elbil-lading** · 📋 **Avgangstavler** · ♿ **WCAG 2.1 AA**
 
 </div>
 
@@ -439,7 +418,7 @@ Gjøre appen til **den** mobilitetsappen for Stavanger
 
 ## Allerede levert utover Phase 1
 
-<div class="space-y-3 text-sm">
+<div class="space-y-2 text-sm">
 
 <div class="p-2 bg-blue-500/10 rounded">
 🏙️ <b>Multi-city</b> — Bergen, Trondheim, Oslo (Phase 4)
@@ -459,8 +438,8 @@ Gjøre appen til **den** mobilitetsappen for Stavanger
 
 </div>
 
-<div class="mt-4 text-xs opacity-60">
-Arkitektur-inspirasjon: Digitransit 🇫🇮 + Entur 🇳🇴
+<div class="mt-3 text-xs opacity-60">
+Inspirasjon: Digitransit 🇫🇮 + Entur 🇳🇴
 </div>
 
 </div>
