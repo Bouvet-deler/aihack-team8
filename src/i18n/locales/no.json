@@ -49,5 +49,9 @@
   },
   "geo": {
     "recenter": "Min posisjon"
+  },
+  "sort": {
+    "nearest": "Nærmest meg",
+    "default": "Standard rekkefølge"
   }
 }

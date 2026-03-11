@@ -492,6 +492,44 @@ body {
   animation: spin 0.8s linear infinite;
 }
 
+/* ── Nearest-to-me sort button ── */
+.nearest-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-family: Equinor, sans-serif;
+  font-weight: 600;
+  color: #565656;
+  background: transparent;
+  border: 1.5px solid var(--eds-bg-medium);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s, color 0.12s;
+  margin-bottom: 6px;
+}
+
+.nearest-btn:hover:not(.active) {
+  border-color: var(--eds-primary);
+  color: var(--eds-primary);
+}
+
+.nearest-btn.active {
+  background: var(--eds-primary);
+  border-color: var(--eds-primary);
+  color: #ffffff;
+}
+
+/* ── Distance label in list ── */
+.spot-distance {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--eds-primary);
+  white-space: nowrap;
+}
+
 /* ── Sidebar resize handle ── */
 .sidebar-resize-handle {
   position: absolute;
