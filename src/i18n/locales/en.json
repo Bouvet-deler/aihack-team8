@@ -1,0 +1,50 @@
+{
+  "error": {
+    "load": "Could not load data. Please try again later.",
+    "unknown": "Unknown error"
+  },
+  "loading": "Loading data…",
+  "header": {
+    "title": "Stavanger Mobility"
+  },
+  "parking": {
+    "toggle": "Show/hide parking",
+    "label": "Parking",
+    "spots": "free spots"
+  },
+  "bikes": {
+    "toggle": "Show/hide city bikes",
+    "label": "City Bike"
+  },
+  "tab": {
+    "parking": "Parking",
+    "bikes": "City Bike"
+  },
+  "search": {
+    "parking": "Search parking…",
+    "bikes": "Search bike station…",
+    "label": "Search",
+    "clear": "Clear search"
+  },
+  "refresh": {
+    "label": "Refresh",
+    "now": "Refresh now"
+  },
+  "lastUpdated": "Last updated:",
+  "empty": {
+    "parkingSearch": "No results for \"{{query}}\"",
+    "parking": "No parking data available",
+    "bikesSearch": "No results for \"{{query}}\"",
+    "bikes": "No bike data available"
+  },
+  "bike": {
+    "available": "Available bikes",
+    "docks": "Available docks",
+    "capacity": "Capacity",
+    "inactive": "Station is not active",
+    "updated": "Updated:"
+  },
+  "data": {
+    "label": "Data:"
+  }
+}

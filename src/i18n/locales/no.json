@@ -1,0 +1,50 @@
+{
+  "error": {
+    "load": "Kunne ikke laste data. Prøv igjen senere.",
+    "unknown": "Ukjent feil"
+  },
+  "loading": "Laster data…",
+  "header": {
+    "title": "Stavanger mobilitet"
+  },
+  "parking": {
+    "toggle": "Vis/skjul parkering",
+    "label": "Parkering",
+    "spots": "ledige plasser"
+  },
+  "bikes": {
+    "toggle": "Vis/skjul bysykler",
+    "label": "Bysykkel"
+  },
+  "tab": {
+    "parking": "Parkering",
+    "bikes": "Bysykkel"
+  },
+  "search": {
+    "parking": "Søk etter parkeringsplass…",
+    "bikes": "Søk etter sykkelpunkt…",
+    "label": "Søk",
+    "clear": "Tøm søk"
+  },
+  "refresh": {
+    "label": "Oppdater",
+    "now": "Oppdater nå"
+  },
+  "lastUpdated": "Sist oppdatert:",
+  "empty": {
+    "parkingSearch": "Ingen treff på \"{{query}}\"",
+    "parking": "Ingen parkeringsdata tilgjengelig",
+    "bikesSearch": "Ingen treff på \"{{query}}\"",
+    "bikes": "Ingen sykkeldata tilgjengelig"
+  },
+  "bike": {
+    "available": "Ledige sykler",
+    "docks": "Ledige låser",
+    "capacity": "Kapasitet",
+    "inactive": "Stasjonen er ikke aktiv",
+    "updated": "Oppdatert:"
+  },
+  "data": {
+    "label": "Data:"
+  }
+}

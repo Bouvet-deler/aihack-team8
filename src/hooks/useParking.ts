@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import type { ParkingSpot } from '../types/parking'
+import i18n from '../i18n'
 
 const API_URL = '/api/parking'
 
@@ -55,7 +56,7 @@ export function useParking(intervalMs: number): UseParkingResult {
       setLastUpdated(new Date())
     } catch (err) {
       if ((err as Error).name !== 'AbortError') {
-        setError((err as Error).message || 'Ukjent feil')
+        setError((err as Error).message || i18n.t('error.unknown'))
       }
     } finally {
       setLoading(false)

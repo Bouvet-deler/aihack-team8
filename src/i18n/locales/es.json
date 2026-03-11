@@ -1,0 +1,50 @@
+{
+  "error": {
+    "load": "No se pudo cargar los datos. Inténtalo de nuevo más tarde.",
+    "unknown": "Error desconocido"
+  },
+  "loading": "Cargando datos…",
+  "header": {
+    "title": "Movilidad Stavanger"
+  },
+  "parking": {
+    "toggle": "Mostrar/ocultar aparcamiento",
+    "label": "Aparcamiento",
+    "spots": "plazas libres"
+  },
+  "bikes": {
+    "toggle": "Mostrar/ocultar bicis",
+    "label": "Bicicleta"
+  },
+  "tab": {
+    "parking": "Aparcamiento",
+    "bikes": "Bicicleta"
+  },
+  "search": {
+    "parking": "Buscar aparcamiento…",
+    "bikes": "Buscar estación…",
+    "label": "Buscar",
+    "clear": "Limpiar búsqueda"
+  },
+  "refresh": {
+    "label": "Actualizar",
+    "now": "Actualizar ahora"
+  },
+  "lastUpdated": "Última actualización:",
+  "empty": {
+    "parkingSearch": "Sin resultados para \"{{query}}\"",
+    "parking": "Sin datos de aparcamiento",
+    "bikesSearch": "Sin resultados para \"{{query}}\"",
+    "bikes": "Sin datos de bicicletas"
+  },
+  "bike": {
+    "available": "Bicis disponibles",
+    "docks": "Candados disponibles",
+    "capacity": "Capacidad",
+    "inactive": "Estación inactiva",
+    "updated": "Actualizado:"
+  },
+  "data": {
+    "label": "Datos:"
+  }
+}

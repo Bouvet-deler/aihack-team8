@@ -1,5 +1,6 @@
 import { divIcon } from 'leaflet'
 import { Marker, Popup } from 'react-leaflet'
+import { useTranslation } from 'react-i18next'
 import type { ParkingSpot } from '../types/parking'
 
 export function getColor(freeSpots: number): string {
@@ -21,6 +22,7 @@ interface ParkingMarkerProps {
 }
 
 export function ParkingMarker({ spot, isSelected, dimmed, onClick }: ParkingMarkerProps) {
+  const { t } = useTranslation()
   const lat = parseFloat(spot.Latitude)
   const lng = parseFloat(spot.Longitude)
 
@@ -85,7 +87,7 @@ export function ParkingMarker({ spot, isSelected, dimmed, onClick }: ParkingMark
             <span style={{ fontSize: '16px', fontWeight: 700, color }}>
               {spot.Antall_ledige_plasser}
             </span>
-            <span style={{ fontSize: '13px', color: '#565656' }}>ledige plasser</span>
+            <span style={{ fontSize: '13px', color: '#565656' }}>{t('parking.spots')}</span>
           </div>
           <div style={{ fontSize: '12px', color: '#6f6f6f', marginTop: '6px' }}>
             {spot.Dato} kl. {spot.Klokkeslett}

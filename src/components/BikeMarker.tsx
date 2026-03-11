@@ -1,5 +1,6 @@
 import { divIcon } from 'leaflet'
 import { Marker, Popup } from 'react-leaflet'
+import { useTranslation } from 'react-i18next'
 import type { BikeStation } from '../types/bike'
 
 export function getBikeColor(station: BikeStation): string {
@@ -45,6 +46,7 @@ interface BikeMarkerProps {
 }
 
 export function BikeMarker({ station, isSelected, dimmed, onClick }: BikeMarkerProps) {
+  const { t } = useTranslation()
   const color = getBikeColor(station)
   const textColor = getTextColor(station)
   const size = isSelected ? 52 : dimmed ? 34 : 44
@@ -92,27 +94,27 @@ export function BikeMarker({ station, isSelected, dimmed, onClick }: BikeMarkerP
 
           <div style={{ display: 'flex', gap: '12px', marginBottom: '6px' }}>
             <div>
-              <div style={{ fontSize: '11px', color: '#6f6f6f' }}>Ledige sykler</div>
+              <div style={{ fontSize: '11px', color: '#6f6f6f' }}>{t('bike.available')}</div>
               <div style={{ fontSize: '18px', fontWeight: 700, color }}>{station.num_vehicles_available}</div>
             </div>
             <div>
-              <div style={{ fontSize: '11px', color: '#6f6f6f' }}>Ledige låser</div>
+              <div style={{ fontSize: '11px', color: '#6f6f6f' }}>{t('bike.docks')}</div>
               <div style={{ fontSize: '18px', fontWeight: 700, color: '#3d3d3d' }}>{station.num_docks_available}</div>
             </div>
             <div>
-              <div style={{ fontSize: '11px', color: '#6f6f6f' }}>Kapasitet</div>
+              <div style={{ fontSize: '11px', color: '#6f6f6f' }}>{t('bike.capacity')}</div>
               <div style={{ fontSize: '18px', fontWeight: 700, color: '#3d3d3d' }}>{station.capacity}</div>
             </div>
           </div>
 
           {!station.is_renting && (
             <div style={{ fontSize: '12px', color: '#9ca3af', fontStyle: 'italic', marginBottom: '4px' }}>
-              Stasjonen er ikke aktiv
+              {t('bike.inactive')}
             </div>
           )}
 
           <div style={{ fontSize: '11px', color: '#6f6f6f' }}>
-            Oppdatert: {formatLastReported(station.last_reported)}
+            {t('bike.updated')} {formatLastReported(station.last_reported)}
           </div>
         </div>
       </Popup>
