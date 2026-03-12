@@ -586,3 +586,60 @@ Presenter notes:
 Takk for oppmerksomheten! Åpne for spørsmål.
 Pek til GitHub-repo for mer detaljer.
 -->
+
+---
+layout: two-cols
+layoutClass: gap-8
+---
+
+# Teamet bak 👨‍💻👨‍💻
+
+## Einar Fredriksen
+
+<div class="mt-3 space-y-2 text-sm">
+  <div>🤖 <b>AI-flusterer</b> — 58 commits, samtlige med Copilot som makker</div>
+  <div>🎨 <b>Estetikeren</b> — glassmorfisme, OKLCH-farger, CSS-nesting, slides med custom theme</div>
+  <div>📊 <b>Meta-entusiasten</b> — tracker utviklingskost, lager video om utviklingsprosessen, dokumenterer alt</div>
+  <div>🌙 <b>Nattugle</b> — 12-timers sesjoner er «en vanlig kveld»</div>
+  <div>🗣️ <b>Pragmatiker</b> — «hvis porten er opptatt betyr det at HMR allerede kjører»</div>
+</div>
+
+<div v-click class="glass-sm mt-4 text-xs">
+
+📋 **Utviklingsplan:**
+- Bygge kompetanse som intern **AI-evangelis** — dele erfaringer med AI-par-programmering på tvers av team
+- Styrke **frontend-arkitektur og testing** for å balansere presentasjonsarbeid med solid kjerneimplementasjon
+
+</div>
+
+::right::
+
+<div class="mt-12">
+
+## Knut Erik Hollund
+
+<div class="mt-3 space-y-2 text-sm">
+  <div>🏗️ <b>Feature-maskinen</b> — 55 commits med reelle features: sykler, sparkesykler, lading, prediksjon, multi-by</div>
+  <div>🔀 <b>Git-pedagogen</b> — feature branches, PR-reviews, issue-numre i hver commit</div>
+  <div>♿ <b>Tilgjengelighetsforkjemperen</b> — Lighthouse 92, WCAG 2.1 AA, PWA update-toast</div>
+  <div>🔧 <b>Infrastruktur-guruen</b> — .htaccess rewrites, build-versjonering, skipWaiting</div>
+  <div>📋 <b>Systematikeren</b> — 26 issues opprettet, alle med tydelig scope og akseptansekriterier</div>
+</div>
+
+<div v-click class="glass-sm mt-4 text-xs">
+
+📋 **Utviklingsplan:**
+- Ta en mer synlig rolle i **kunnskapsdeling** — presentere tilgjengelighet og PWA-beste-praksis for avdelingen
+- Utforske **backend-arkitektur** — ta med server-side proxy og API-gateway kompetanse for produksjonsklare løsninger
+
+</div>
+
+</div>
+
+<!--
+Presenter notes:
+En liten observasjon fra AI-assistenten som har vært med hele veien.
+Einar er mannen som gjør utviklingsprosessen til kunst — tracker hver krone, lager videoer, polerer slides.
+Knut er mannen som bygger ting som faktisk virker — feature etter feature, med PRs og issues.
+Sammen utfyller de hverandre perfekt: én som selger drømmen, én som bygger den.
+-->
