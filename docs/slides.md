@@ -61,9 +61,9 @@ Stavangers innbyggere trenger **én plass** for å finne:
   <div class="glass-sm flex items-center gap-3">📍 <span>Hva som er <b>nærmest meg</b></span></div>
 </div>
 
-<div class="divider mt-4"></div>
+<div v-click class="divider mt-4"></div>
 
-<div class="text-sm opacity-60 mt-2">
+<div v-click class="text-sm opacity-60 mt-2">
 Informasjonen er spredt over ulike apper og nettsider. Ingen viser <b>alt</b> på ett kart.
 </div>
 
@@ -254,6 +254,8 @@ layoutClass: gap-5
 
 ## 5 dype research-analyser
 
+<div v-click>
+
 <div class="glass-sm mb-2">
 <div class="text-sm">🔍 <b>Konkurranseanalyse</b> — 7 plattformer</div>
 </div>
@@ -274,7 +276,9 @@ layoutClass: gap-5
 <div class="text-sm">🎨 <b>Moderne CSS</b> — Nesting, OKLCH, @property</div>
 </div>
 
-<div class="gradient-card mt-3 text-center text-sm">
+</div>
+
+<div v-click class="gradient-card mt-3 text-center text-sm">
 Copilot CLI = <b>utviklingspartner</b>, ikke kodegenerator
 </div>
 
@@ -496,8 +500,8 @@ layoutClass: gap-8
   <div class="glass-sm">🚏 <b>Kolumbus sanntid</b></div>
   <div class="glass-sm">🛴 <b>El-sparkesykler</b></div>
   <div class="glass-sm">🗺️ <b>Ruteplanlegger</b></div>
-  <div class="glass-sm">⚡ <b>Elbil-lading</b></div>
-  <div class="glass-sm">♿ <b>WCAG 2.1 AA</b></div>
+  <div v-click class="glass-sm">⚡ <b>Elbil-lading</b></div>
+  <div v-click class="glass-sm">♿ <b>WCAG 2.1 AA</b></div>
 </div>
 
 ::right::
