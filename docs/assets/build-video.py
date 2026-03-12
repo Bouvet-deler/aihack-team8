@@ -13,137 +13,123 @@ SLIDES_URL = "http://localhost:8081"
 BUILD_DIR = os.path.join(os.path.dirname(__file__), "video-build")
 OUTPUT = os.path.join(os.path.dirname(__file__), "presentation-video.mp4")
 VOICE = "nb-NO-FinnNeural"
+RATE = "+30%"  # 1.3x speed
 RESOLUTION = (1920, 1080)
 
 # Narration script — natural Norwegian for each slide
 NARRATIONS = [
     # Slide 1: Cover
     (
-        "Hvor mange apper trenger du egentlig for å finne parkering, bysykler og buss i Stavanger? "
+        "Hvor mange apper trenger du for å finne parkering, bysykler og buss i Stavanger? "
         "Svaret burde være én. "
         "Vi er Team 8 fra Bouvet AI Hack, og vi har bygget Stavanger Mobilitet — "
-        "en app som samler sanntids parkering, bysykler og kollektivtransport på ett kart. "
-        "Fire byer, over ti funksjoner, og hundre prosent AI-drevet utvikling."
+        "en app som samler alt på ett kart. "
+        "Fire byer, tre språk, og hundre prosent AI-drevet."
     ),
     # Slide 2: Problemet
     (
         "La oss starte med problemet. "
         "Stavanger mangler én felles løsning for mobilitetsinformasjon. "
-        "Du trenger ledig parkering i sanntid. Du vil vite hvor bysyklene er. "
-        "Du vil se bussavganger. Og du vil vite hva som er nærmest deg. "
-        "Tabellen til høyre viser at ingen eksisterende løsning dekker alt dette for Stavanger. "
-        "Citymapper har ikke parkering. SpotHero mangler sykkel og buss. "
-        "Vår app er den eneste som dekker alle tre — i Stavanger."
+        "Du trenger ledig parkering. Bysykler. Bussavganger. Og hva som er nærmest deg. "
+        "Ingen eksisterende løsning dekker alt dette for Stavanger."
     ),
     # Slide 3: Features
     (
         "Hva har vi bygget? "
-        "Et interaktivt kart med parkering, sykkel og buss. "
-        "Fargekodede markører som viser tilgjengelighet fra grønn til rød. "
-        "Søk og filtrering. Appen er en PWA som kan installeres på mobilen. "
-        "Den støtter tre språk: norsk, engelsk og spansk. Og dataene oppdateres automatisk. "
-        "I denne hacken har vi lagt til mørk modus, favoritter, gangavstand, "
-        "geolokasjon, prediksjon av ledige plasser, og støtte for fire byer."
+        "Et interaktivt kart med parkering, sykkel, sparkesykler, lading og buss. "
+        "Fargekodede markører fra grønn til rød. "
+        "Søk, filtrering, PWA på mobil, tre språk, og automatisk oppdatering. "
+        "Pluss mørk modus, favoritter, gangavstand, prediksjon, og fire byer."
     ),
     # Slide 4: Demo
     (
         "Nå er det tid for demo! "
-        "Her bytter vi over til nettleseren og viser appen i aksjon. "
-        "Vi ser på kartet med alle lagene, søker og filtrerer, "
-        "bytter by, slår på mørk modus, og viser hvordan appen installeres som PWA."
+        "Vi bytter over til nettleseren og viser appen i aksjon."
     ),
     # Slide 5: Tech Stack
     (
-        "Tech-stacken vår er moderne og rask. "
-        "React 19 med Vite 6 gir lynrask utvikling og bygging. "
-        "Leaflet brukes for kartvisningen, og Equinor Design System gir konsistent design. "
-        "Appen er en PWA med Workbox for offline-støtte. "
-        "Vi har i18next for flerspråklighet, Open Data fra opencom.no og Entur, "
-        "og alt er skrevet i TypeScript med strict mode."
+        "Tech-stacken er moderne og rask. "
+        "React 19 med Vite 6 for lynrask utvikling. "
+        "Leaflet for kart, Equinor Design System for design. "
+        "PWA med Workbox, i18next for språk, "
+        "Open Data fra opencom og Entur, alt i TypeScript strict mode."
     ),
     # Slide 6: AI
     (
-        "AI har vært sentralt i hele utviklingsprosessen. "
-        "Copilot CLI var med i alt — fra kodeanalyse og konkurrentanalyse "
-        "til prosjektplanlegging med 26 issues, CI/CD-oppsett, og dokumentasjon. "
-        "Vi har gjennomført fem dype research-analyser: "
-        "konkurranseanalyse av syv plattformer, utviklingskostnader, "
-        "presentasjonsteknikk, ren Markdown i Slidev, og moderne CSS. "
-        "Til sammen over åtti tusen ord generert av AI. "
-        "Copilot CLI er en utviklingspartner, ikke bare en kodegenerator."
+        "AI har vært sentralt i hele prosessen. "
+        "Copilot CLI var med i alt — kode, analyse, planlegging, CI/CD og dokumentasjon. "
+        "Vi har fem dype research-analyser: "
+        "konkurranseanalyse, utviklingskostnader, presentasjonsteknikk, "
+        "Markdown i Slidev, og moderne CSS. "
+        "Over åtti tusen ord. Copilot er en utviklingspartner, ikke bare en kodegenerator."
     ),
     # Slide 7: QA
     (
-        "Kvalitetssikring er bygget inn i arbeidsflyten. "
-        "Vi har 57 av 72 automatiserte UAT-tester som består. "
-        "De tolv feilene skyldes CSP-headere og Leaflet DivIcon i headless-modus — "
-        "alt fungerer i ekte nettleser. "
-        "CI/CD-pipelinen bruker Lefthook for pre-commit hooks som kjører parallelt, "
-        "Super-linter på GitHub Actions, og alt er docs-as-code — "
-        "README, CONTRIBUTING, Slidev-presentasjonen og UAT er versjonskontrollert."
+        "Kvalitetssikring er innebygd. "
+        "Automatiserte UAT-tester, Lefthook pre-commit hooks som kjører parallelt, "
+        "Super-linter på GitHub Actions. "
+        "Alt er docs-as-code — README, CONTRIBUTING, slides og tester er versjonskontrollert."
     ),
     # Slide 8: Cost
     (
-        "Hva koster det å bygge dette? Mennesker jobber gratis i en hack. "
-        "Knut brukte Claude API for 43 dollar. "
-        "Einar brukte Copilot CLI som er inkludert i Copilot Business-abonnementet. "
-        "GitHub Actions har kostet 37 cent for 46 minutter. "
-        "Totalt: omtrent 81 dollar pluss 38 dollar i måneden for Copilot. "
-        "77 prosent av alle commits er AI co-authored. "
-        "39 fra Copilot og 18 fra Claude. 3500 kodelinjer totalt."
+        "Hva koster dette? I en hack jobber vi gratis. "
+        "AI-kostnadene er lave: 43 dollar for Claude API, "
+        "Copilot Business-abonnement, og 37 cent for GitHub Actions. "
+        "Over 80 prosent av commits er AI co-authored. Omtrent 3000 kodelinjer totalt."
     ),
     # Slide 9: GitHub Status
     (
-        "På GitHub har vi 26 issues pluss 2 test-issues. "
-        "Seks er lukket, 17 er åpne med prioritet fra P1 til P4. "
-        "Knut Erik har stått for alle funksjonene: "
-        "i18n, dark mode, favoritter, gangavstand, geolokasjon, prediksjon, multi-city og Entur. "
-        "Einar har håndtert prosjektledelse via AI, konkurranseanalyse, "
-        "CI/CD, dokumentasjon og kvalitetssikring."
+        "På GitHub har vi 26 issues. "
+        "Knut Erik har bygget alle features: sykler, sparkesykler, lading, "
+        "prediksjon, multi-by og Entur. "
+        "Einar har håndtert AI-prosjektledelse, analyse, CI/CD og dokumentasjon."
     ),
     # Slide 10: Roadmap
     (
         "Veikartet har fire faser. "
-        "Phase 1 UX er ferdig med geolokasjon, mørk modus, favoritter og gangavstand. "
-        "Phase 2 Multi-modal er i gang med Entur buss og ferge allerede levert. "
-        "Phase 3 Smart har prediksjon ferdig. "
-        "Og Phase 4 Plattform har multi-by ferdig med Bergen, Trondheim og Oslo. "
-        "Vi har altså levert funksjonalitet fra alle fire faser."
+        "Vi har levert funksjonalitet fra alle fire — "
+        "fra geolokasjon og mørk modus i Phase 1, "
+        "til Entur i Phase 2, prediksjon i Phase 3, "
+        "og multi-by i Phase 4."
     ),
     # Slide 11: Next Steps
     (
-        "Neste steg er Phase 2 — å gjøre appen til den mobilitetsappen for Stavanger. "
-        "Kolumbus sanntid, el-sparkesykler, ruteplanlegger, elbil-lading, og WCAG tilgjengelighet. "
-        "Men vi har allerede levert utover Phase 1: "
-        "Multi-city fra Phase 4, prediksjon fra Phase 3, "
-        "Entur API fra Phase 2, og CI/CD-infrastruktur."
+        "Neste steg er å gjøre appen til den mobilitetsappen for Stavanger. "
+        "Kolumbus sanntid, sparkesykler, ruteplanlegger, elbil-lading, og WCAG tilgjengelighet."
     ),
     # Slide 12: Takk
     (
         "Takk for oppmerksomheten! "
-        "Stavanger Mobilitet — parkering, bysykler og kollektiv på ett kart. "
-        "Fire byer, tre språk, 26 issues, og hundre prosent AI-drevet. "
-        "Vi er Team 8: Einar Fredriksen og Knut Erik Hollund. "
-        "Sjekk ut GitHub-repoet for mer detaljer. "
-        "Vi tar gjerne imot spørsmål!"
+        "Stavanger Mobilitet — alt på ett kart. "
+        "Fire byer, tre språk, hundre prosent AI-drevet. "
+        "Sjekk GitHub-repoet for detaljer!"
+    ),
+    # Slide 13: Team
+    (
+        "Til slutt, en liten observasjon fra AI-assistenten som har vært med hele veien. "
+        "Einar er AI-flustreren og estetikeren — han gjør utviklingsprosessen til kunst. "
+        "58 commits, alle med Copilot som makker. Glassmorfisme, OKLCH-farger, og 12-timers sesjoner. "
+        "Knut er feature-maskinen og systematikeren — han bygger ting som virker. "
+        "55 commits med sykler, lading, prediksjon, og multi-by. Feature branches og PRs på alt. "
+        "Sammen utfyller de hverandre perfekt: én som selger drømmen, og én som bygger den."
     ),
 ]
 
-# How many times to press right-arrow to get to final v-click state per slide
-# (0 = no v-clicks, just screenshot immediately)
+# v-click counts per slide (press right-arrow this many times for final state)
 VCLICK_COUNTS = [
-    0,   # Slide 1: Cover (no v-click)
-    4,   # Slide 2: Problemet (4 v-click items)
-    6,   # Slide 3: Features (6 v-click items)
-    0,   # Slide 4: Demo (no v-click)
-    2,   # Slide 5: Tech Stack (2 v-click groups)
-    5,   # Slide 6: AI (5 research cards)
-    0,   # Slide 7: QA (no v-click)
-    0,   # Slide 8: Cost (no v-click)
-    0,   # Slide 9: GitHub Status (no v-click)
-    0,   # Slide 10: Roadmap (no v-click)
-    5,   # Slide 11: Next Steps (5 v-click items)
-    0,   # Slide 12: Takk (no v-click)
+    0,   # Slide 1: Cover
+    2,   # Slide 2: Problemet (divider + punchline)
+    0,   # Slide 3: Features
+    0,   # Slide 4: Demo
+    0,   # Slide 5: Tech Stack
+    2,   # Slide 6: AI (research cards + takeaway)
+    0,   # Slide 7: QA
+    0,   # Slide 8: Cost
+    0,   # Slide 9: GitHub Status
+    0,   # Slide 10: Roadmap
+    2,   # Slide 11: Next Steps (last 2 items)
+    0,   # Slide 12: Takk
+    2,   # Slide 13: Team (2 dev plan boxes)
 ]
 
 
@@ -158,7 +144,7 @@ async def generate_audio():
         if os.path.exists(outfile):
             print(f"  ⏭️  slide-{i+1:02d}.mp3 (exists)")
             continue
-        communicate = edge_tts.Communicate(text, VOICE)
+        communicate = edge_tts.Communicate(text, VOICE, rate=RATE)
         tasks.append((i, outfile, communicate))
 
     for i, outfile, communicate in tasks:
