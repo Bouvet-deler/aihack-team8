@@ -55,10 +55,10 @@ layoutClass: gap-8
 Stavangers innbyggere trenger **én plass** for å finne:
 
 <div class="mt-4 space-y-2">
-  <div v-click class="glass-sm flex items-center gap-3">🅿️ <span>Ledig parkering i sanntid</span></div>
-  <div v-click class="glass-sm flex items-center gap-3">🚲 <span>Tilgjengelige bysykler</span></div>
-  <div v-click class="glass-sm flex items-center gap-3">🚌 <span>Buss- og fergeavganger</span></div>
-  <div v-click class="glass-sm flex items-center gap-3">📍 <span>Hva som er <b>nærmest meg</b></span></div>
+  <div class="glass-sm flex items-center gap-3">🅿️ <span>Ledig parkering i sanntid</span></div>
+  <div class="glass-sm flex items-center gap-3">🚲 <span>Tilgjengelige bysykler</span></div>
+  <div class="glass-sm flex items-center gap-3">🚌 <span>Buss- og fergeavganger</span></div>
+  <div class="glass-sm flex items-center gap-3">📍 <span>Hva som er <b>nærmest meg</b></span></div>
 </div>
 
 <div class="divider mt-4"></div>
@@ -102,12 +102,12 @@ layoutClass: gap-8
 ## Kjernefunksjoner
 
 <div class="mt-3 space-y-2 text-sm">
-  <div v-click>🗺️ Interaktivt kart — <b>parkering + sykkel + buss</b></div>
-  <div v-click>🎨 Fargekodede markører <span class="text-green-400">grønn</span> → <span class="text-red-400">rød</span></div>
-  <div v-click>🔍 Søk og filtrering</div>
-  <div v-click>📱 PWA — installerbar på mobil</div>
-  <div v-click>🌍 Flerspråklig (NO / EN / ES)</div>
-  <div v-click>🔄 Auto-oppdatering av data</div>
+  <div>🗺️ Interaktivt kart — <b>parkering + sykkel + buss</b></div>
+  <div>🎨 Fargekodede markører <span class="text-green-400">grønn</span> → <span class="text-red-400">rød</span></div>
+  <div>🔍 Søk og filtrering</div>
+  <div>📱 PWA — installerbar på mobil</div>
+  <div>🌍 Flerspråklig (NO / EN / ES)</div>
+  <div>🔄 Auto-oppdatering av data</div>
 </div>
 
 ::right::
@@ -173,7 +173,7 @@ class: text-center
 
 # Tech Stack 🛠️
 
-<div v-click class="grid grid-cols-4 gap-6 mt-6">
+<div class="grid grid-cols-4 gap-6 mt-6">
   <div class="tech-tile">
     <div class="tech-icon">⚛️</div>
     <div class="tech-name">React 19</div>
@@ -196,7 +196,7 @@ class: text-center
   </div>
 </div>
 
-<div v-click class="grid grid-cols-4 gap-6 mt-4">
+<div class="grid grid-cols-4 gap-6 mt-4">
   <div class="tech-tile">
     <div class="tech-icon">📦</div>
     <div class="tech-name">PWA</div>
@@ -254,23 +254,23 @@ layoutClass: gap-5
 
 ## 5 dype research-analyser
 
-<div v-click class="glass-sm mb-2">
+<div class="glass-sm mb-2">
 <div class="text-sm">🔍 <b>Konkurranseanalyse</b> — 7 plattformer</div>
 </div>
 
-<div v-click class="glass-sm mb-2">
+<div class="glass-sm mb-2">
 <div class="text-sm">💰 <b>Utviklingskostnader</b> — DRY + CI-strategi</div>
 </div>
 
-<div v-click class="glass-sm mb-2">
+<div class="glass-sm mb-2">
 <div class="text-sm">🎤 <b>Presentasjonsteknikk</b> — Narrativ + design</div>
 </div>
 
-<div v-click class="glass-sm mb-2">
+<div class="glass-sm mb-2">
 <div class="text-sm">📝 <b>Ren Markdown</b> — Comark/MDC i Slidev</div>
 </div>
 
-<div v-click class="glass-sm">
+<div class="glass-sm">
 <div class="text-sm">🎨 <b>Moderne CSS</b> — Nesting, OKLCH, @property</div>
 </div>
 
@@ -493,11 +493,11 @@ layoutClass: gap-8
 <div class="text-sm opacity-70 mb-3">Gjøre appen til <b>den</b> mobilitetsappen for Stavanger</div>
 
 <div class="space-y-2">
-  <div v-click class="glass-sm">🚏 <b>Kolumbus sanntid</b></div>
-  <div v-click class="glass-sm">🛴 <b>El-sparkesykler</b></div>
-  <div v-click class="glass-sm">🗺️ <b>Ruteplanlegger</b></div>
-  <div v-click class="glass-sm">⚡ <b>Elbil-lading</b></div>
-  <div v-click class="glass-sm">♿ <b>WCAG 2.1 AA</b></div>
+  <div class="glass-sm">🚏 <b>Kolumbus sanntid</b></div>
+  <div class="glass-sm">🛴 <b>El-sparkesykler</b></div>
+  <div class="glass-sm">🗺️ <b>Ruteplanlegger</b></div>
+  <div class="glass-sm">⚡ <b>Elbil-lading</b></div>
+  <div class="glass-sm">♿ <b>WCAG 2.1 AA</b></div>
 </div>
 
 ::right::
