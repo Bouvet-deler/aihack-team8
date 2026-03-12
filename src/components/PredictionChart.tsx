@@ -34,12 +34,13 @@ export function PredictionChart({ currentFree, capacity }: PredictionChartProps)
         {t('prediction.title')}
       </div>
 
-      <svg width={CHART_W} height={CHART_H + 16} style={{ display: 'block', overflow: 'visible' }}>
+      <svg width={CHART_W} height={CHART_H + 28} style={{ display: 'block', overflow: 'visible' }}>
         {points.map((p, i) => {
           const x = i * (barW + BAR_GAP)
           const fillRatio = cap > 0 ? p.predictedFree / cap : 0
           const barH = Math.max(3, fillRatio * CHART_H)
-          const y = CHART_H - barH
+          const topOffset = 12
+          const y = topOffset + CHART_H - barH
           const color = getColor(p.predictedFree)
           const isBest = best !== null && p.hour === best.hour && p.label === best.label
           const alpha = p.confidence < 0.5 ? 0.5 : p.confidence < 0.7 ? 0.72 : 1
@@ -55,6 +56,16 @@ export function PredictionChart({ currentFree, capacity }: PredictionChartProps)
                 opacity={alpha}
                 rx={2}
               />
+              <text
+                x={x + barW / 2}
+                y={y - 3}
+                textAnchor="middle"
+                fontSize={8}
+                fill="#565656"
+                fontFamily="Equinor, sans-serif"
+              >
+                {p.predictedFree}
+              </text>
               {isBest && (
                 <polygon
                   points={`${x + barW / 2 - 4},${y - 6} ${x + barW / 2 + 4},${y - 6} ${x + barW / 2},${y - 1}`}
@@ -63,7 +74,7 @@ export function PredictionChart({ currentFree, capacity }: PredictionChartProps)
               )}
               <text
                 x={x + barW / 2}
-                y={CHART_H + 12}
+                y={topOffset + CHART_H + 12}
                 textAnchor="middle"
                 fontSize={9}
                 fill={isBest ? '#007079' : '#888'}
