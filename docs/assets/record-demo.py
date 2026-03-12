@@ -6,7 +6,7 @@ Outputs a video segment that replaces the static Demo slide in the presentation.
 import asyncio
 from playwright.async_api import async_playwright
 
-APP_URL = "http://localhost:5174"
+APP_URL = "http://localhost:8080"
 OUTPUT_DIR = "docs/assets/video-build"
 RESOLUTION = (1920, 1080)
 

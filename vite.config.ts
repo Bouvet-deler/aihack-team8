@@ -51,6 +51,7 @@ export default defineConfig({
     }),
   ],
   server: {
+    port: 8080,
     proxy: {
       '/api/parking': {
         target: 'https://opencom.no',

@@ -10,8 +10,8 @@ Built during **Bouvet AI Hack** by Team 8: [Einar Fredriksen](https://github.com
 
 ```bash
 npm install
-npm run dev          # App → http://localhost:5173
-npm run slides       # Presentation → http://localhost:3030
+npm run dev          # App → http://localhost:8080
+npm run slides       # Presentation → http://localhost:8081
 ```
 
 ---
@@ -51,7 +51,7 @@ All documentation lives in the repo and follows [docs-as-code](https://www.write
 The project includes a [Slidev](https://sli.dev) status report that runs directly from the repo:
 
 ```bash
-npm run slides          # Dev mode with hot reload → http://localhost:3030
+npm run slides          # Dev mode with hot reload → http://localhost:8081
 npm run slides:build    # Static export → dist-slides/
 ```
 
@@ -184,10 +184,10 @@ CORS proxy configured in `vite.config.ts` via `server.proxy`.
 
 | Script                 | Description                          |
 | ---------------------- | ------------------------------------ |
-| `npm run dev`          | App dev server (port 5173)           |
+| `npm run dev`          | App dev server (port 8080)           |
 | `npm run build`        | TypeScript check + production build  |
 | `npm run preview`      | Serve production build               |
-| `npm run slides`       | Slidev presentation (port 3030)      |
+| `npm run slides`       | Slidev presentation (port 8081)      |
 | `npm run slides:build` | Build static slides → `dist-slides/` |
 
 ---
