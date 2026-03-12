@@ -200,15 +200,64 @@ def get_audio_duration(filepath):
     return float(data["format"]["duration"])
 
 
+DEMO_SLIDE = 4  # Which slide is the demo (1-indexed)
+DEMO_RECORDING = os.path.join(BUILD_DIR, "demo-recording.webm")
+
+
+def build_demo_segment(slide_num):
+    """Build the demo segment: narration audio over live demo recording."""
+    audio = os.path.join(BUILD_DIR, f"slide-{slide_num:02d}.mp3")
+    segment = os.path.join(BUILD_DIR, f"segment-{slide_num:02d}.mp4")
+
+    if not os.path.exists(DEMO_RECORDING):
+        print(f"  ⚠️  No demo recording found — run record-demo.py first!")
+        print(f"     Falling back to static image for slide {slide_num}")
+        return None
+
+    narration_dur = get_audio_duration(audio)
+    demo_dur = get_audio_duration(DEMO_RECORDING)
+    # Use whichever is longer + 1s padding
+    total_duration = max(narration_dur, demo_dur) + 1.0
+
+    print(f"  🎬 segment-{slide_num:02d}.mp4 [DEMO] ({narration_dur:.1f}s narration, {demo_dur:.1f}s recording, {total_duration:.1f}s total)")
+
+    subprocess.run([
+        "ffmpeg", "-y",
+        "-i", DEMO_RECORDING,
+        "-i", audio,
+        "-filter_complex",
+        # Scale demo to 1920x1080, overlay narration with 0.5s delay
+        f"[0:v]scale={RESOLUTION[0]}:{RESOLUTION[1]}:force_original_aspect_ratio=decrease,"
+        f"pad={RESOLUTION[0]}:{RESOLUTION[1]}:(ow-iw)/2:(oh-ih)/2:black,fps=30[v];"
+        f"[1:a]adelay=500|500,apad=whole_dur={total_duration}[a]",
+        "-map", "[v]", "-map", "[a]",
+        "-c:v", "libx264", "-preset", "fast", "-pix_fmt", "yuv420p",
+        "-c:a", "aac", "-b:a", "192k",
+        "-t", str(total_duration),
+        segment
+    ], capture_output=True, text=True, check=True)
+
+    return segment
+
+
 def build_segments():
-    """Create video segment per slide: still image + audio."""
+    """Create video segment per slide: still image + audio, or demo recording."""
     concat_list = []
 
     for i in range(len(NARRATIONS)):
         slide_num = i + 1
+        segment = os.path.join(BUILD_DIR, f"segment-{slide_num:02d}.mp4")
+
+        # Slide 4 = live demo recording
+        if slide_num == DEMO_SLIDE:
+            result = build_demo_segment(slide_num)
+            if result:
+                concat_list.append(f"file '{segment}'")
+                continue
+            # Fall through to static if no recording
+
         img = os.path.join(BUILD_DIR, f"slide-{slide_num:02d}.png")
         audio = os.path.join(BUILD_DIR, f"slide-{slide_num:02d}.mp3")
-        segment = os.path.join(BUILD_DIR, f"segment-{slide_num:02d}.mp4")
 
         duration = get_audio_duration(audio)
         # Add 1.5s padding (0.5s before, 1s after) for breathing room
