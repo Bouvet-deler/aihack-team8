@@ -128,5 +128,50 @@
     "loadingData": "Cargando datos",
     "tabBadge": "{{count}} ubicaciones",
     "favBadge": "{{count}} favoritos"
+  },
+  "about": {
+    "label": "Acerca de",
+    "title": "Movilidad Stavanger",
+    "description": "Datos en tiempo real de aparcamiento, bicis, patinetes, carga EV y transporte público en Stavanger — todo en un mapa.",
+    "releaseNotes": "Notas de versión",
+    "close": "Cerrar",
+    "madeWith": "Hecho con ❤️ en Bouvet AI Hack",
+    "team": "Equipo 8"
+  },
+  "release": {
+    "feature": "Nueva función",
+    "improvement": "Mejora",
+    "fix": "Corrección",
+    "1_4_0": {
+      "title": "Carga EV y accesibilidad",
+      "ev_charging": "Mapa de estaciones de carga con disponibilidad",
+      "accessibility": "Auditoría de accesibilidad — WCAG 2.1 AA (Lighthouse 92)",
+      "scooter_layer": "Mapa de patinetes con Voi y Ryde"
+    },
+    "1_3_0": {
+      "title": "Predicciones y modo oscuro",
+      "prediction": "Predicción de disponibilidad para las próximas 8 horas",
+      "dark_mode": "Modo oscuro respetando preferencias del sistema",
+      "favorites": "Guardar ubicaciones favoritas para acceso rápido",
+      "build_version": "Número de versión en barra lateral"
+    },
+    "1_2_0": {
+      "title": "Multiciudad y transporte",
+      "multi_city": "Soporte para Bergen, Trondheim y Oslo",
+      "transit": "Salidas en tiempo real de autobús, tren y ferry",
+      "i18n": "Multilingüe: noruego, inglés y español"
+    },
+    "1_1_0": {
+      "title": "Búsqueda y filtros",
+      "search": "Buscar ubicaciones en todas las categorías",
+      "nearest": "Ordenar por más cercano (requiere ubicación)",
+      "pwa": "Instalable como app móvil (PWA)"
+    },
+    "1_0_0": {
+      "title": "Primera versión",
+      "parking": "Mapa en tiempo real de plazas de aparcamiento",
+      "bikes": "Estaciones de bicicletas con disponibilidad",
+      "map": "Mapa interactivo con marcadores por colores"
+    }
   }
 }

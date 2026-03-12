@@ -14,6 +14,7 @@ import { getChargingColor } from './ChargingMarker'
 import { getTransitColor } from './TransitMarker'
 import { haversineMetres, formatDistance, formatWalkingTime } from '../utils/distance'
 import { useDevCosts } from '../hooks/useDevCosts'
+import { AboutModal } from './AboutModal'
 
 interface SidebarProps {
   // parking
@@ -119,6 +120,7 @@ export function Sidebar({
 }: SidebarProps) {
   const { t, i18n: i18nInstance } = useTranslation()
   const [sortByNearest, setSortByNearest] = useState(false)
+  const [aboutOpen, setAboutOpen] = useState(false)
   const devCosts = useDevCosts()
 
   const isParking = activeTab === 'parking'
@@ -761,6 +763,9 @@ export function Sidebar({
       </div>
 
       <div className="sidebar-footer">
+        <button className="about-btn" onClick={() => setAboutOpen(true)} aria-label={t('about.label')}>
+          ℹ️ {t('about.label')}
+        </button>
         <span className="build-version">v{__BUILD_VERSION__}</span>
         <span>{t('data.label')} </span>
         <a href="https://opencom.no" target="_blank" rel="noopener noreferrer">opencom.no</a>
@@ -770,6 +775,8 @@ export function Sidebar({
           </span>
         )}
       </div>
+
+      <AboutModal isOpen={aboutOpen} onClose={() => setAboutOpen(false)} />
 
       <div
         className="sidebar-resize-handle"

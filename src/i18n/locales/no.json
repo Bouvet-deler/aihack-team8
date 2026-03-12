@@ -128,5 +128,50 @@
     "loadingData": "Laster inn data",
     "tabBadge": "{{count}} steder",
     "favBadge": "{{count}} favoritter"
+  },
+  "about": {
+    "label": "Om",
+    "title": "Stavanger Mobilitet",
+    "description": "Sanntidsdata for parkering, bysykler, sparkesykler, lading og kollektivtransport i Stavanger — alt på ett kart.",
+    "releaseNotes": "Endringslogg",
+    "close": "Lukk",
+    "madeWith": "Laget med ❤️ under Bouvet AI Hack",
+    "team": "Team 8"
+  },
+  "release": {
+    "feature": "Ny funksjon",
+    "improvement": "Forbedring",
+    "fix": "Fiks",
+    "1_4_0": {
+      "title": "EV-lading og tilgjengelighet",
+      "ev_charging": "Ladestasjonskart med tilgjengelighetsstatus",
+      "accessibility": "Tilgjengelighetsrevisjon — WCAG 2.1 AA (Lighthouse 92)",
+      "scooter_layer": "El-sparkesykkelkart med Voi og Ryde"
+    },
+    "1_3_0": {
+      "title": "Prediksjoner og mørk modus",
+      "prediction": "Tilgjengelighetsforutsigelser for neste 8 timer",
+      "dark_mode": "Mørk modus som respekterer systeminnstillinger",
+      "favorites": "Lagre favorittsteder for rask tilgang",
+      "build_version": "Versjonsnummer i sidebar"
+    },
+    "1_2_0": {
+      "title": "Flere byer og kollektivtransport",
+      "multi_city": "Støtte for Bergen, Trondheim og Oslo",
+      "transit": "Sanntidsavganger for buss, tog og ferje",
+      "i18n": "Flerspråklig: norsk, engelsk og spansk"
+    },
+    "1_1_0": {
+      "title": "Søk og filtrering",
+      "search": "Søk etter steder på tvers av alle kategorier",
+      "nearest": "Sorter etter nærmeste (krever posisjon)",
+      "pwa": "Installerbar som app på mobil (PWA)"
+    },
+    "1_0_0": {
+      "title": "Første versjon",
+      "parking": "Sanntidskart over ledige parkeringsplasser",
+      "bikes": "Bysykkelstasjoner med tilgjengelighet",
+      "map": "Interaktivt kart med fargekodede markører"
+    }
   }
 }

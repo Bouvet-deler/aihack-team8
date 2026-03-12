@@ -128,5 +128,50 @@
     "loadingData": "Loading data",
     "tabBadge": "{{count}} locations",
     "favBadge": "{{count}} favorites"
+  },
+  "about": {
+    "label": "About",
+    "title": "Stavanger Mobility",
+    "description": "Real-time data for parking, city bikes, scooters, EV charging, and public transit in Stavanger — all on one map.",
+    "releaseNotes": "Release Notes",
+    "close": "Close",
+    "madeWith": "Made with ❤️ at Bouvet AI Hack",
+    "team": "Team 8"
+  },
+  "release": {
+    "feature": "New feature",
+    "improvement": "Improvement",
+    "fix": "Fix",
+    "1_4_0": {
+      "title": "EV charging & accessibility",
+      "ev_charging": "Charging station map with availability status",
+      "accessibility": "Accessibility audit — WCAG 2.1 AA (Lighthouse 92)",
+      "scooter_layer": "E-scooter map with Voi and Ryde"
+    },
+    "1_3_0": {
+      "title": "Predictions & dark mode",
+      "prediction": "Availability predictions for the next 8 hours",
+      "dark_mode": "Dark mode respecting system preferences",
+      "favorites": "Save favorite locations for quick access",
+      "build_version": "Version number in sidebar"
+    },
+    "1_2_0": {
+      "title": "Multi-city & transit",
+      "multi_city": "Support for Bergen, Trondheim, and Oslo",
+      "transit": "Real-time departures for bus, train, and ferry",
+      "i18n": "Multilingual: Norwegian, English, and Spanish"
+    },
+    "1_1_0": {
+      "title": "Search & filtering",
+      "search": "Search locations across all categories",
+      "nearest": "Sort by nearest (requires location)",
+      "pwa": "Installable as mobile app (PWA)"
+    },
+    "1_0_0": {
+      "title": "First release",
+      "parking": "Real-time map of available parking spots",
+      "bikes": "City bike stations with availability",
+      "map": "Interactive map with color-coded markers"
+    }
   }
 }
