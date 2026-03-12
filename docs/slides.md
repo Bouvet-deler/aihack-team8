@@ -607,6 +607,7 @@ layoutClass: gap-8
 <div v-click class="glass-sm mt-4 text-xs">
 
 📋 **Utviklingsplan:**
+
 - Bygge kompetanse som intern **AI-evangelis** — dele erfaringer med AI-par-programmering på tvers av team
 - Styrke **frontend-arkitektur og testing** for å balansere presentasjonsarbeid med solid kjerneimplementasjon
 
@@ -629,6 +630,7 @@ layoutClass: gap-8
 <div v-click class="glass-sm mt-4 text-xs">
 
 📋 **Utviklingsplan:**
+
 - Ta en mer synlig rolle i **kunnskapsdeling** — presentere tilgjengelighet og PWA-beste-praksis for avdelingen
 - Utforske **backend-arkitektur** — ta med server-side proxy og API-gateway kompetanse for produksjonsklare løsninger
 
