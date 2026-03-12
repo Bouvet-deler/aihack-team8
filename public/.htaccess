@@ -3,6 +3,7 @@ AddType application/json .json
 RewriteEngine On
 RewriteRule ^api/parking$ api/parking.php [L]
 RewriteRule ^api/bikes$ api/bikes.php [L]
+RewriteRule ^api/scooters/(.+)$ api/scooters.php/$1 [L]
 RewriteRule ^api/transit$ api/transit.php [L]
 RewriteRule ^api/gbfs/(.+)$ api/gbfs.php/$1 [L]
 RewriteRule ^api/dev-costs$ api/dev-costs.php [L]
