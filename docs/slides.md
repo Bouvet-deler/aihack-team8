@@ -503,23 +503,27 @@ layoutClass: gap-8
 <div class="space-y-2 mt-3">
 
 <div class="gradient-card">
-🏙️ <b>Multi-city</b> — Bergen, Trondheim, Oslo
-<span class="badge badge-amber ml-1">Phase 4</span>
+
+🏙️ **Multi-city** — Bergen, Trondheim, Oslo [Phase 4]{.badge .badge-amber .ml-1}
+
 </div>
 
 <div class="gradient-card">
-📈 <b>Prediksjon</b> — forutsi tilgjengelighet
-<span class="badge badge-amber ml-1">Phase 3</span>
+
+📈 **Prediksjon** — forutsi tilgjengelighet [Phase 3]{.badge .badge-amber .ml-1}
+
 </div>
 
 <div class="gradient-card">
-🚌 <b>Entur API</b> — buss/ferge-data
-<span class="badge badge-green ml-1">Phase 2</span>
+
+🚌 **Entur API** — buss/ferge-data [Phase 2]{.badge .badge-green .ml-1}
+
 </div>
 
 <div class="gradient-card">
-🔍 <b>CI/CD</b> — Super-linter + Lefthook
-<span class="badge badge-blue ml-1">Infra</span>
+
+🔍 **CI/CD** — Super-linter + Lefthook [Infra]{.badge .badge-blue .ml-1}
+
 </div>
 
 </div>
