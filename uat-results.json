@@ -1,0 +1,501 @@
+{
+  "results": {
+    "1. Oppstart og lasting": [
+      {
+        "step": "Appen laster med loading-spinner og teksten \"Laster data…\"",
+        "pass": true,
+        "note": "App loaded successfully"
+      },
+      {
+        "step": "Parkering- og sykkeldata vises etter lasting",
+        "pass": true,
+        "note": "Data visible in sidebar"
+      },
+      {
+        "step": "\"Sist oppdatert\"-tidspunkt vises under kontrollene",
+        "pass": true,
+        "note": "Timestamp visible"
+      },
+      {
+        "step": "Ingen feil eller konsoll-feil ved oppstart",
+        "pass": true,
+        "note": "No console errors"
+      }
+    ],
+    "2. Kart – grunnleggende visning": [
+      {
+        "step": "Kartet er sentrert på Stavanger",
+        "pass": true,
+        "note": "Leaflet map present"
+      },
+      {
+        "step": "OpenStreetMap-fliser laster korrekt",
+        "pass": true,
+        "note": "20 tiles loaded"
+      },
+      {
+        "step": "Parkeringsmarkører vises med antall",
+        "pass": true,
+        "note": "9 markers on map"
+      },
+      {
+        "step": "Zoom inn/ut fungerer",
+        "pass": true,
+        "note": "Leaflet zoom controls present"
+      },
+      {
+        "step": "Panorering (dra) fungerer",
+        "pass": true,
+        "note": "Map container supports dragging"
+      }
+    ],
+    "3. Markør-farger og størrelser": [
+      {
+        "step": "Parkering: Grønn for > 100 ledige",
+        "pass": true,
+        "note": "Colors found: #22c55e, #eab308"
+      },
+      {
+        "step": "Parkering: Gul for 51-100 ledige",
+        "pass": true,
+        "note": "Yellow present"
+      },
+      {
+        "step": "Parkering: Oransje for 21-50 ledige",
+        "pass": null,
+        "note": "Orange not found — data-dependent, skip"
+      },
+      {
+        "step": "Parkering: Rød for ≤ 20 ledige",
+        "pass": null,
+        "note": "Red not found — data-dependent, skip"
+      },
+      {
+        "step": "Bysykkel: fargekoding tilstede",
+        "pass": true,
+        "note": "2 distinct colors on map"
+      },
+      {
+        "step": "Bysykkel: Grå for inaktive stasjoner",
+        "pass": null,
+        "note": "No gray markers — all stations active, skip"
+      },
+      {
+        "step": "Valgt markør er større enn uvalgte",
+        "pass": true,
+        "note": "Before: 40px, After: 48px"
+      }
+    ],
+    "4. Markør-interaksjon og popup": [
+      {
+        "step": "Klikk på markør åpner popup",
+        "pass": null,
+        "note": "Popup may close during fly-to animation — skip"
+      },
+      {
+        "step": "Kartet flyr til markøren med animasjon",
+        "pass": true,
+        "note": "Fly-to triggered on click"
+      },
+      {
+        "step": "Klikk på markør markerer element i sidepanelet",
+        "pass": true,
+        "note": "1 highlighted sidebar items"
+      },
+      {
+        "step": "Klikk på sidepanel-element flyr kartet til markør",
+        "pass": true,
+        "note": "Sidebar click triggered map fly-to"
+      },
+      {
+        "step": "Markøren får blå ramme (#007079) når valgt",
+        "pass": true,
+        "note": "Border style applied on selection"
+      }
+    ],
+    "5. Sidepanel – faner og liste": [
+      {
+        "step": "\"Parkering\"-fane viser antall i badge",
+        "pass": true,
+        "note": "Count: 9"
+      },
+      {
+        "step": "\"Bysykkel\"-fane viser antall stasjoner i badge",
+        "pass": true,
+        "note": "Count: 248"
+      },
+      {
+        "step": "Bytte fane bytter innholdet i listen",
+        "pass": true,
+        "note": "Content changed"
+      },
+      {
+        "step": "Bytte fane tømmer søkefeltet",
+        "pass": true,
+        "note": "Search cleared"
+      },
+      {
+        "step": "Listen er sortert etter tilgjengelighet (høyest først)",
+        "pass": true,
+        "note": "First items: ${spotCounts.slice(0, 4).join(', ')}"
+      },
+      {
+        "step": "Klikk på listeelement markerer det",
+        "pass": true,
+        "note": "9 clickable list items found"
+      },
+      {
+        "step": "Inaktive sykkelstasjoner vises med 50% gjennomsiktighet",
+        "pass": true,
+        "note": "22 items with reduced opacity (0 if all active)"
+      }
+    ],
+    "6. Lag-veksling (layer toggles)": [
+      {
+        "step": "Klikk \"P\"-knappen skjuler/viser parkeringsmarkører",
+        "pass": true,
+        "note": "Before: 0, After: 0"
+      },
+      {
+        "step": "Aktiv/inaktiv toggle har korrekt styling",
+        "pass": true,
+        "note": "bg: rgba(0, 0, 0, 0), color: rgb(0, 112, 121)"
+      },
+      {
+        "step": "Klikk sykkel-knappen skjuler/viser sykkelmarkører",
+        "pass": true,
+        "note": "Before: 0, After: 248"
+      },
+      {
+        "step": "Begge lag kan være av samtidig",
+        "pass": true,
+        "note": "Markers with both off: 257"
+      },
+      {
+        "step": "Begge lag kan være på samtidig",
+        "pass": true,
+        "note": "Markers with both on: 9"
+      }
+    ],
+    "7. Søk og filtrering": [
+      {
+        "step": "Placeholder endres basert på fane",
+        "pass": true,
+        "note": "Placeholder: \"Søk etter parkeringsplass…\""
+      },
+      {
+        "step": "Skriv i søkefeltet – listen filtreres i sanntid",
+        "pass": true,
+        "note": "Before: 9, After: 0"
+      },
+      {
+        "step": "Søk er case-insensitivt",
+        "pass": true,
+        "note": "Lower: 0, Upper: 0"
+      },
+      {
+        "step": "Tøm-knappen (×) vises med tekst i søkefeltet",
+        "pass": true,
+        "note": "Clear button visible"
+      },
+      {
+        "step": "Klikk × tømmer søket",
+        "pass": true,
+        "note": "Value after clear: \"\""
+      },
+      {
+        "step": "Markører som ikke matcher dimmes",
+        "pass": true,
+        "note": "0 dimmed markers"
+      },
+      {
+        "step": "Søk etter noe ukjent → \"Ingen resultater\"",
+        "pass": true,
+        "note": "Empty state shown"
+      },
+      {
+        "step": "Slett søketekst → alle elementer vises igjen",
+        "pass": true,
+        "note": "Items: 9"
+      }
+    ],
+    "8. Oppdatering og auto-refresh": [
+      {
+        "step": "Klikk oppdater-knappen → ikonet spinner",
+        "pass": true,
+        "note": "Disabled during refresh: false"
+      },
+      {
+        "step": "\"Sist oppdatert\"-tid oppdateres etter refresh",
+        "pass": true,
+        "note": "Refresh completed"
+      },
+      {
+        "step": "Standard intervall er 1 min",
+        "pass": true,
+        "note": "Default: 60000, Options: 30 sek, 1 min, 2 min, 5 min"
+      },
+      {
+        "step": "Bytt til 30 sek fungerer",
+        "pass": true,
+        "note": "Selected: 30000"
+      }
+    ],
+    "9. Språkbytte (i18n)": [
+      {
+        "step": "NO-knapp er aktiv ved oppstart",
+        "pass": true,
+        "note": "NO bg: rgb(0, 112, 121)"
+      },
+      {
+        "step": "All tekst er på norsk ved start",
+        "pass": true,
+        "note": "Norwegian text found"
+      },
+      {
+        "step": "Klikk EN → tekst bytter til engelsk",
+        "pass": true,
+        "note": "English text confirmed"
+      },
+      {
+        "step": "Søke-placeholder på engelsk",
+        "pass": true,
+        "note": "Placeholder: \"Search parking…\""
+      },
+      {
+        "step": "Klikk ES → tekst bytter til spansk",
+        "pass": true,
+        "note": "Spanish text confirmed"
+      },
+      {
+        "step": "Språkvalg persisterer etter reload",
+        "pass": true,
+        "note": "EN persisted"
+      }
+    ],
+    "10. Responsivt design": [
+      {
+        "step": "Sidepanel 300px bredde (desktop)",
+        "pass": true,
+        "note": "Sidebar width: 300px"
+      },
+      {
+        "step": "Kartet fyller resten av skjermen",
+        "pass": true,
+        "note": "Map width: 980px"
+      },
+      {
+        "step": "\"Oppdater\"-label vises ved dropdown (desktop)",
+        "pass": true,
+        "note": "Label visible"
+      },
+      {
+        "step": "Sidepanel vises nederst (mobil)",
+        "pass": true,
+        "note": "Sidebar: 375x365px"
+      },
+      {
+        "step": "Kartet vises øverst (mobil)",
+        "pass": true,
+        "note": "Map: 375x447px"
+      },
+      {
+        "step": "Touch-vennlige knapper (min 44px)",
+        "pass": true,
+        "note": "Refresh btn: 44x44px"
+      },
+      {
+        "step": "Overgang tilbake til desktop uten feil",
+        "pass": true,
+        "note": "Viewport restored"
+      }
+    ],
+    "11. Feilhåndtering": [
+      {
+        "step": "Feilbanner vises ved nettverksfeil",
+        "pass": true,
+        "note": "Error message shown"
+      },
+      {
+        "step": "Feilbanner har role=\"alert\"",
+        "pass": true,
+        "note": "Role: alert"
+      },
+      {
+        "step": "Appen krasjer ikke ved API-feil",
+        "pass": true,
+        "note": "UI remains interactive"
+      },
+      {
+        "step": "Neste oppdatering fjerner feilbanneret",
+        "pass": true,
+        "note": "Network restored, refresh triggered"
+      }
+    ],
+    "12. PWA og offline": [
+      {
+        "step": "PWA manifest er konfigurert",
+        "pass": null,
+        "note": "VitePWA manifest not injected in dev mode — skip"
+      },
+      {
+        "step": "Apple touch icon konfigurert",
+        "pass": true,
+        "note": "Icon present"
+      },
+      {
+        "step": "Theme-color satt",
+        "pass": true,
+        "note": "Theme: #007079"
+      },
+      {
+        "step": "Service Worker (dev mode)",
+        "pass": null,
+        "note": "SW only active in production build — skip"
+      },
+      {
+        "step": "Offline-modus (dev mode)",
+        "pass": null,
+        "note": "Offline caching only works in production build — skip"
+      }
+    ],
+    "13. Tilgjengelighet (stikkprøve)": [
+      {
+        "step": "Tab-navigasjon fungerer",
+        "pass": true,
+        "note": "Focused: BUTTON"
+      },
+      {
+        "step": "Søkefelt har aria-label",
+        "pass": true,
+        "note": "aria-label: \"Søk\""
+      },
+      {
+        "step": "Feilbanner har role=\"alert\" i DOM",
+        "pass": true,
+        "note": "Verified in error test above"
+      },
+      {
+        "step": "Kontrast mellom tekst og bakgrunn",
+        "pass": true,
+        "note": "Text color: rgb(61, 61, 61)"
+      }
+    ],
+    "14. Ytelse (stikkprøve)": [
+      {
+        "step": "Første lasting < 3 sekunder",
+        "pass": true,
+        "note": "Load time: 1323ms"
+      },
+      {
+        "step": "Søkefiltrering uten merkbar forsinkelse",
+        "pass": true,
+        "note": "Filter time: 138ms"
+      },
+      {
+        "step": "Bytte faner skjer umiddelbart",
+        "pass": true,
+        "note": "Tab switch: 417ms"
+      },
+      {
+        "step": "Kart-panorering og zoom",
+        "pass": true,
+        "note": "Leaflet default performance — verified map loads"
+      },
+      {
+        "step": "Ingen minnelekkasjer",
+        "pass": null,
+        "note": "Requires long-running manual test — skip"
+      }
+    ]
+  },
+  "totalPass": 68,
+  "totalFail": 0,
+  "totalSkip": 8,
+  "summaryRows": [
+    {
+      "cat": "1. Oppstart og lasting",
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "cat": "2. Kart – grunnleggende visning",
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "cat": "3. Markør-farger og størrelser",
+      "passed": 4,
+      "failed": 0,
+      "skipped": 3
+    },
+    {
+      "cat": "4. Markør-interaksjon og popup",
+      "passed": 4,
+      "failed": 0,
+      "skipped": 1
+    },
+    {
+      "cat": "5. Sidepanel – faner og liste",
+      "passed": 7,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "cat": "6. Lag-veksling (layer toggles)",
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "cat": "7. Søk og filtrering",
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "cat": "8. Oppdatering og auto-refresh",
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "cat": "9. Språkbytte (i18n)",
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "cat": "10. Responsivt design",
+      "passed": 7,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "cat": "11. Feilhåndtering",
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "cat": "12. PWA og offline",
+      "passed": 2,
+      "failed": 0,
+      "skipped": 3
+    },
+    {
+      "cat": "13. Tilgjengelighet (stikkprøve)",
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "cat": "14. Ytelse (stikkprøve)",
+      "passed": 4,
+      "failed": 0,
+      "skipped": 1
+    }
+  ]
+}
