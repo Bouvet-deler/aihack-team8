@@ -153,6 +153,12 @@ class: text-center
 
 <div class="text-sm opacity-40 mt-8">Bytt til nettleseren og vis appen</div>
 
+<div class="mt-4">
+  <a href="http://localhost:8080" target="_blank" class="px-5 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white text-sm hover:bg-white/10 transition-all inline-flex items-center gap-2">
+    🌐 Åpne appen — localhost:8080
+  </a>
+</div>
+
 <!--
 Presenter notes:
 LIVE DEMO — bytt til nettleseren.
