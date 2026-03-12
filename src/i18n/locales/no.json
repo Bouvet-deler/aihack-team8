@@ -16,14 +16,25 @@
     "toggle": "Vis/skjul bysykler",
     "label": "Bysykkel"
   },
+  "scooters": {
+    "toggle": "Vis/skjul elsparkesykler",
+    "label": "Sparkesykkel"
+  },
+  "scooter": {
+    "battery": "Batteri",
+    "range": "Rekkevidde",
+    "disabled": "Sparkesykkel utilgjengelig"
+  },
   "tab": {
     "parking": "Parkering",
     "bikes": "Bysykkel",
+    "scooters": "Sparkesykkel",
     "transit": "Kollektiv"
   },
   "search": {
     "parking": "Søk etter parkeringsplass…",
     "bikes": "Søk etter sykkelpunkt…",
+    "scooters": "Søk etter sparkesykkel…",
     "transit": "Søk etter holdeplass…",
     "label": "Søk",
     "clear": "Tøm søk"
@@ -38,6 +49,8 @@
     "parking": "Ingen parkeringsdata tilgjengelig",
     "bikesSearch": "Ingen treff på \"{{query}}\"",
     "bikes": "Ingen sykkeldata tilgjengelig",
+    "scootersSearch": "Ingen treff på \"{{query}}\"",
+    "scooters": "Ingen sparkesykkeldata tilgjengelig",
     "transitSearch": "Ingen treff på \"{{query}}\"",
     "transit": "Ingen kollektivdata tilgjengelig"
   },

@@ -3,10 +3,12 @@ import { useTranslation } from 'react-i18next'
 import i18n from '../i18n'
 import type { ParkingSpot } from '../types/parking'
 import type { BikeStation } from '../types/bike'
+import type { Scooter } from '../types/scooter'
 import type { TransitStop } from '../types/transit'
 import type { CityConfig } from '../config/cities'
 import { getColor } from './ParkingMarker'
 import { getBikeColor } from './BikeMarker'
+import { getScooterColor } from './ScooterMarker'
 import { getTransitColor } from './TransitMarker'
 import { haversineMetres, formatDistance, formatWalkingTime } from '../utils/distance'
 import { useDevCosts } from '../hooks/useDevCosts'
@@ -26,6 +28,13 @@ interface SidebarProps {
   bikeLastUpdated: Date | null
   bikeLoading: boolean
   onRefreshBikes: () => void
+  // scooters
+  scooters: Scooter[]
+  selectedScooter: Scooter | null
+  onSelectScooter: (scooter: Scooter) => void
+  scooterLastUpdated: Date | null
+  scooterLoading: boolean
+  onRefreshScooters: () => void
   // transit
   transitStops: TransitStop[]
   selectedTransitStop: TransitStop | null
@@ -38,12 +47,14 @@ interface SidebarProps {
   onIntervalChange: (ms: number) => void
   searchQuery: string
   onSearchChange: (query: string) => void
-  activeTab: 'parking' | 'bikes' | 'transit'
-  onTabChange: (tab: 'parking' | 'bikes' | 'transit') => void
+  activeTab: 'parking' | 'bikes' | 'scooters' | 'transit'
+  onTabChange: (tab: 'parking' | 'bikes' | 'scooters' | 'transit') => void
   showParking: boolean
   onToggleParking: () => void
   showBikes: boolean
   onToggleBikes: () => void
+  showScooters: boolean
+  onToggleScooters: () => void
   showTransit: boolean
   onToggleTransit: () => void
   width: number | undefined
@@ -52,9 +63,9 @@ interface SidebarProps {
   onRequestLocation: () => void
   isDark: boolean
   onToggleDark: () => void
-  favorites: { parking: string[], bikes: string[] }
-  isFavorite: (type: 'parking' | 'bikes', id: string) => boolean
-  onToggleFavorite: (type: 'parking' | 'bikes', id: string) => void
+  favorites: { parking: string[], bikes: string[], scooters: string[] }
+  isFavorite: (type: 'parking' | 'bikes' | 'scooters', id: string) => boolean
+  onToggleFavorite: (type: 'parking' | 'bikes' | 'scooters', id: string) => void
   city: CityConfig
   cities: CityConfig[]
   onSelectCity: (city: CityConfig) => void
@@ -76,12 +87,14 @@ function formatTime(date: Date): string {
 export function Sidebar({
   spots, selectedSpot, onSelectSpot, parkingLastUpdated, parkingLoading, onRefreshParking,
   bikeStations, selectedStation, onSelectStation, bikeLastUpdated, bikeLoading, onRefreshBikes,
+  scooters, selectedScooter, onSelectScooter, scooterLastUpdated, scooterLoading, onRefreshScooters,
   transitStops, selectedTransitStop, onSelectTransitStop, transitLoading, transitLastUpdated, onRefreshTransit,
   refreshInterval, onIntervalChange,
   searchQuery, onSearchChange,
   activeTab, onTabChange,
   showParking, onToggleParking,
   showBikes, onToggleBikes,
+  showScooters, onToggleScooters,
   showTransit, onToggleTransit,
   width, onResizeHandleMouseDown,
   userPosition,
@@ -96,10 +109,11 @@ export function Sidebar({
 
   const isParking = activeTab === 'parking'
   const isBikes = activeTab === 'bikes'
+  const isScooters = activeTab === 'scooters'
   const isTransit = activeTab === 'transit'
-  const loading = isParking ? parkingLoading : isBikes ? bikeLoading : transitLoading
-  const lastUpdated = isParking ? parkingLastUpdated : isBikes ? bikeLastUpdated : transitLastUpdated
-  const onRefresh = isParking ? onRefreshParking : isBikes ? onRefreshBikes : onRefreshTransit
+  const loading = isParking ? parkingLoading : isBikes ? bikeLoading : isScooters ? scooterLoading : transitLoading
+  const lastUpdated = isParking ? parkingLastUpdated : isBikes ? bikeLastUpdated : isScooters ? scooterLastUpdated : transitLastUpdated
+  const onRefresh = isParking ? onRefreshParking : isBikes ? onRefreshBikes : isScooters ? onRefreshScooters : onRefreshTransit
 
   const canSortNearest = sortByNearest && userPosition !== null
 
@@ -135,6 +149,18 @@ export function Sidebar({
         return distA - distB
       }
       return b.num_vehicles_available - a.num_vehicles_available
+    })
+
+  const filteredScooters = scooters
+    .filter((s) => !s.is_reserved && !s.is_disabled)
+    .filter((s) => s.operator.toLowerCase().includes(searchQuery.toLowerCase()))
+    .sort((a, b) => {
+      if (canSortNearest) {
+        const distA = haversineMetres(userPosition!.latitude, userPosition!.longitude, a.lat, a.lon)
+        const distB = haversineMetres(userPosition!.latitude, userPosition!.longitude, b.lat, b.lon)
+        return distA - distB
+      }
+      return b.battery_pct - a.battery_pct
     })
 
   const filteredTransit = transitStops
@@ -237,6 +263,22 @@ export function Sidebar({
             </svg>
             {t('bikes.label')}
           </button>
+          {city.scooters && (
+          <button
+            className={`layer-toggle ${showScooters ? 'active' : ''}`}
+            onClick={onToggleScooters}
+            title={t('scooters.toggle')}
+            aria-label={t('scooters.toggle')}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="7.5" cy="19.5" r="2.5"/>
+              <circle cx="18" cy="19.5" r="2.5"/>
+              <path d="M18 19.5V6l-4 0"/>
+              <path d="M7.5 19.5l3-12h4"/>
+            </svg>
+            {t('scooters.label')}
+          </button>
+          )}
           <button
             className={`layer-toggle ${showTransit ? 'active' : ''}`}
             onClick={onToggleTransit}
@@ -275,6 +317,18 @@ export function Sidebar({
               <span className="tab-fav-badge">★{favorites.bikes.length}</span>
             )}
           </button>
+          {city.scooters && (
+          <button
+            className={`tab ${isScooters ? 'active' : ''}`}
+            onClick={() => { onTabChange('scooters'); onSearchChange('') }}
+          >
+            {t('tab.scooters')}
+            <span className="tab-badge">{scooters.filter((s) => !s.is_reserved && !s.is_disabled).length}</span>
+            {favorites.scooters.length > 0 && (
+              <span className="tab-fav-badge">★{favorites.scooters.length}</span>
+            )}
+          </button>
+          )}
           <button
             className={`tab ${isTransit ? 'active' : ''}`}
             onClick={() => { onTabChange('transit'); onSearchChange('') }}
@@ -293,7 +347,7 @@ export function Sidebar({
           <input
             type="search"
             className="search-input"
-            placeholder={isParking ? t('search.parking') : isTransit ? t('search.transit') : t('search.bikes')}
+            placeholder={isParking ? t('search.parking') : isScooters ? t('search.scooters') : isTransit ? t('search.transit') : t('search.bikes')}
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
             aria-label={t('search.label')}
@@ -398,6 +452,45 @@ export function Sidebar({
                       )}
                     </span>
                   </button>
+                </div>
+              )
+            })}
+          </>
+        ) : isScooters ? (
+          <>
+            {filteredScooters.length === 0 && !loading && (
+              <div className="empty-state">
+                {searchQuery
+                  ? t('empty.scootersSearch', { query: searchQuery })
+                  : t('empty.scooters')}
+              </div>
+            )}
+            {filteredScooters.map((scooter) => {
+              const isSelected = selectedScooter?.vehicle_id === scooter.vehicle_id
+              const color = getScooterColor(scooter)
+              const fav = isFavorite('scooters', scooter.vehicle_id)
+              const dist = userPosition
+                ? haversineMetres(userPosition.latitude, userPosition.longitude, scooter.lat, scooter.lon)
+                : null
+              return (
+                <div key={scooter.vehicle_id} className={`spot-item ${isSelected ? 'selected' : ''}`}>
+                  <button className="spot-item-main" onClick={() => onSelectScooter(scooter)}>
+                    <span className="spot-indicator" style={{ background: color, borderRadius: '3px' }} aria-hidden="true" />
+                    <span className="spot-name">
+                      {scooter.operator}
+                      {dist !== null && (
+                        <span className="spot-walk-row">
+                          {formatDistance(dist)} · {formatWalkingTime(dist)}
+                        </span>
+                      )}
+                    </span>
+                    <span className="spot-count" style={{ color }}>{scooter.battery_pct}%</span>
+                  </button>
+                  <button
+                    className={`fav-btn ${fav ? 'active' : ''}`}
+                    onClick={() => onToggleFavorite('scooters', scooter.vehicle_id)}
+                    aria-label={fav ? t('favorites.remove') : t('favorites.add')}
+                  >{fav ? '★' : '☆'}</button>
                 </div>
               )
             })}

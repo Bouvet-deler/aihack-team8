@@ -69,6 +69,16 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: () => '/journey-planner/v3/graphql',
       },
+      '/api/scooters/voi': {
+        target: 'https://api.entur.io',
+        changeOrigin: true,
+        rewrite: () => '/mobility/v2/gbfs/v3/voistavanger/vehicle_status',
+      },
+      '/api/scooters/ryde': {
+        target: 'https://api.entur.io',
+        changeOrigin: true,
+        rewrite: () => '/mobility/v2/gbfs/v3/rydestavanger/vehicle_status',
+      },
       '/api/gbfs': {
         target: 'https://gbfs.urbansharing.com',
         changeOrigin: true,

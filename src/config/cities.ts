@@ -9,6 +9,13 @@ export interface BikesConfig {
   url: string
 }
 
+export interface ScooterOperatorConfig {
+  operator: string
+  url: string
+  /** Max range in meters for battery estimation when current_fuel_percent is absent */
+  maxRange: number
+}
+
 export interface TransitConfig {
   lat: number
   lon: number
@@ -22,6 +29,7 @@ export interface CityConfig {
   zoom: number
   parking?: ParkingConfig
   bikes?: BikesConfig
+  scooters?: ScooterOperatorConfig[]
   transit: TransitConfig
 }
 
@@ -33,6 +41,10 @@ export const CITIES: CityConfig[] = [
     zoom: 13,
     parking: { url: '/api/parking' },
     bikes: { type: 'opencom', url: '/api/bikes' },
+    scooters: [
+      { operator: 'Voi', url: '/api/scooters/voi', maxRange: 64000 },
+      { operator: 'Ryde', url: '/api/scooters/ryde', maxRange: 56000 },
+    ],
     transit: { lat: 58.97, lon: 5.73, radius: 8000 },
   },
   {
