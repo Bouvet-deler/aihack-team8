@@ -113,6 +113,11 @@
     "now": "Nå",
     "best": "Beste tidspunkt: {{time}} — ca. {{count}} ledige"
   },
+  "pwa": {
+    "updateAvailable": "Ny versjon tilgjengelig!",
+    "reload": "Oppdater",
+    "dismiss": "Lukk"
+  },
   "a11y": {
     "skipToMap": "Hopp til kart",
     "skipToSidebar": "Hopp til sidepanel",

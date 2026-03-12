@@ -113,6 +113,11 @@
     "now": "Ahora",
     "best": "Mejor momento: {{time}} — ~{{count}} libres"
   },
+  "pwa": {
+    "updateAvailable": "¡Nueva versión disponible!",
+    "reload": "Recargar",
+    "dismiss": "Cerrar"
+  },
   "a11y": {
     "skipToMap": "Saltar al mapa",
     "skipToSidebar": "Saltar al panel lateral",
