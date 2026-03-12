@@ -136,7 +136,9 @@
     "releaseNotes": "Notas de versión",
     "close": "Cerrar",
     "madeWith": "Hecho con ❤️ en Bouvet AI Hack",
-    "team": "Equipo 8"
+    "team": "Equipo 8",
+    "video": "Ver video de presentación",
+    "slides": "Abrir presentación"
   },
   "release": {
     "feature": "Nueva función",

@@ -63,6 +63,15 @@ export function AboutModal({ isOpen, onClose }: AboutModalProps) {
 
         <p className="about-description">{t('about.description')}</p>
 
+        <div className="about-links">
+          <a href="/assets/presentation-video.mp4" target="_blank" rel="noopener noreferrer">
+            🎬 {t('about.video')}
+          </a>
+          <a href="http://localhost:8081" target="_blank" rel="noopener noreferrer">
+            📊 {t('about.slides')}
+          </a>
+        </div>
+
         <div className="about-meta">
           <span>{t('about.madeWith')}</span>
           <span>•</span>

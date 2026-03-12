@@ -136,7 +136,9 @@
     "releaseNotes": "Release Notes",
     "close": "Close",
     "madeWith": "Made with ❤️ at Bouvet AI Hack",
-    "team": "Team 8"
+    "team": "Team 8",
+    "video": "Watch presentation video",
+    "slides": "Open presentation"
   },
   "release": {
     "feature": "New feature",

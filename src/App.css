@@ -756,6 +756,31 @@ body {
   line-height: 1.5;
 }
 
+.about-links {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.about-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--eds-text-on-interactive);
+  background: var(--eds-interactive-primary);
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.about-links a:hover {
+  background: var(--eds-interactive-primary-hover);
+}
+
 .about-meta {
   text-align: center;
   font-size: 11px;
