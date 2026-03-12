@@ -20,6 +20,13 @@
           "inputTokens": 980000,
           "outputTokens": 210000,
           "costUSD": 30.45
+        },
+        {
+          "date": "2026-03-12",
+          "description": "Build version number (DDMMYY-HHMM) in sidebar footer via Vite define",
+          "inputTokens": 45000,
+          "outputTokens": 8000,
+          "costUSD": 1.28
         }
       ]
     },
