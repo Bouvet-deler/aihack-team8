@@ -3,21 +3,53 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
     <meta name="theme-color" content="#007079" />
     <link rel="apple-touch-icon" href="/icons/icon-180.png" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
     <!-- NOTE: frame-ancestors must be set via HTTP header in production (ignored in meta tags) -->
-    <meta http-equiv="Content-Security-Policy" content="
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
       default-src 'self';
       script-src 'self';
       style-src 'self' 'unsafe-inline' https://cdn.eds.equinor.com;
       font-src 'self' https://cdn.eds.equinor.com;
       img-src 'self' https://*.tile.openstreetmap.org data: blob:;
       connect-src 'self';
-    " />
-    <link rel="stylesheet" href="https://cdn.eds.equinor.com/font/eds-uprights-vf.css" />
-    <meta name="description" content="Real-time parking, bike, scooter and transit availability in Stavanger" />
+    "
+    />
+    <link rel="preconnect" href="https://cdn.eds.equinor.com" crossorigin />
+    <link
+      rel="preconnect"
+      href="https://a.tile.openstreetmap.org"
+      crossorigin
+    />
+    <link
+      rel="preconnect"
+      href="https://b.tile.openstreetmap.org"
+      crossorigin
+    />
+    <link
+      rel="preconnect"
+      href="https://c.tile.openstreetmap.org"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="https://cdn.eds.equinor.com/font/eds-uprights-vf.css"
+      as="style"
+    />
+    <meta
+      name="description"
+      content="Real-time parking, bike, scooter and transit availability in Stavanger"
+    />
     <title>Stavanger Mobilitet — Parkering, sykler og kollektiv</title>
   </head>
   <body>

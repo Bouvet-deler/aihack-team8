@@ -38,7 +38,7 @@ export function useGeolocation(): UseGeolocationResult {
   }, [])
 
   useEffect(() => {
-    startWatch()
+    // Don't request geolocation on page load - wait for explicit user action
     return () => {
       if (watchIdRef.current !== null) {
         navigator.geolocation.clearWatch(watchIdRef.current)

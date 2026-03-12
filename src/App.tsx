@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useState, lazy, Suspense } from 'react'
 import { useRegisterSW } from 'virtual:pwa-register/react'
 import { useTranslation } from 'react-i18next'
-import { Map } from './components/Map'
+const Map = lazy(() => import('./components/Map').then(m => ({ default: m.Map })))
 import { Sidebar } from './components/Sidebar'
 import { useParking } from './hooks/useParking'
 import { useBikes } from './hooks/useBikes'
@@ -187,35 +187,37 @@ export default function App() {
         aria-label={t('a11y.mapArea')}
         tabIndex={-1}
       >
-        <Map
-          spots={parking.data}
-          selectedSpot={selectedSpot}
-          onSelectSpot={setSelectedSpot}
-          bikeStations={bikes.data}
-          selectedStation={selectedStation}
-          onSelectStation={setSelectedStation}
-          scooters={scooters.data}
-          selectedScooter={selectedScooter}
-          onSelectScooter={setSelectedScooter}
-          chargingStations={charging.data}
-          selectedChargingStation={selectedChargingStation}
-          onSelectChargingStation={setSelectedChargingStation}
-          transitStops={transit.data}
-          selectedTransitStop={selectedTransitStop}
-          onSelectTransitStop={setSelectedTransitStop}
-          searchQuery={searchQuery}
-          activeTab={activeTab}
-          showParking={showParking}
-          showBikes={showBikes}
-          showScooters={showScooters}
-          showCharging={showCharging}
-          showTransit={showTransit}
-          userPosition={geo.position}
-          reCenterKey={reCenterKey}
-          isFavorite={isFavorite}
-          onToggleFavorite={toggleFavorite}
-          city={city}
-        />
+        <Suspense fallback={<div className="loading-overlay" role="status"><div className="spinner" /><span>{t('loading')}</span></div>}>
+          <Map
+            spots={parking.data}
+            selectedSpot={selectedSpot}
+            onSelectSpot={setSelectedSpot}
+            bikeStations={bikes.data}
+            selectedStation={selectedStation}
+            onSelectStation={setSelectedStation}
+            scooters={scooters.data}
+            selectedScooter={selectedScooter}
+            onSelectScooter={setSelectedScooter}
+            chargingStations={charging.data}
+            selectedChargingStation={selectedChargingStation}
+            onSelectChargingStation={setSelectedChargingStation}
+            transitStops={transit.data}
+            selectedTransitStop={selectedTransitStop}
+            onSelectTransitStop={setSelectedTransitStop}
+            searchQuery={searchQuery}
+            activeTab={activeTab}
+            showParking={showParking}
+            showBikes={showBikes}
+            showScooters={showScooters}
+            showCharging={showCharging}
+            showTransit={showTransit}
+            userPosition={geo.position}
+            reCenterKey={reCenterKey}
+            isFavorite={isFavorite}
+            onToggleFavorite={toggleFavorite}
+            city={city}
+          />
+        </Suspense>
 
         {geo.position && (
           <button
