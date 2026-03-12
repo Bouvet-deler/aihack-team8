@@ -4,6 +4,7 @@ import { Map } from './components/Map'
 import { Sidebar } from './components/Sidebar'
 import { useParking } from './hooks/useParking'
 import { useBikes } from './hooks/useBikes'
+import { useScooters } from './hooks/useScooters'
 import { useTransit } from './hooks/useTransit'
 import { useGeolocation } from './hooks/useGeolocation'
 import { useSidebarResize } from './hooks/useSidebarResize'
@@ -12,6 +13,7 @@ import { useFavorites } from './hooks/useFavorites'
 import { useCity } from './hooks/useCity'
 import type { ParkingSpot } from './types/parking'
 import type { BikeStation } from './types/bike'
+import type { Scooter } from './types/scooter'
 import type { TransitStop } from './types/transit'
 import './App.css'
 
@@ -22,12 +24,14 @@ export default function App() {
   const [refreshInterval, setRefreshInterval] = useState(DEFAULT_INTERVAL)
   const [selectedSpot, setSelectedSpot] = useState<ParkingSpot | null>(null)
   const [selectedStation, setSelectedStation] = useState<BikeStation | null>(null)
+  const [selectedScooter, setSelectedScooter] = useState<Scooter | null>(null)
   const [selectedTransitStop, setSelectedTransitStop] = useState<TransitStop | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
-  const [activeTab, setActiveTab] = useState<'parking' | 'bikes' | 'transit'>('parking')
+  const [activeTab, setActiveTab] = useState<'parking' | 'bikes' | 'scooters' | 'transit'>('parking')
   const [showParking, setShowParking] = useState(true)
-  const [showBikes, setShowBikes] = useState(true)
-  const [showTransit, setShowTransit] = useState(true)
+  const [showBikes, setShowBikes] = useState(false)
+  const [showScooters, setShowScooters] = useState(false)
+  const [showTransit, setShowTransit] = useState(false)
   const [reCenterKey, setReCenterKey] = useState(0)
 
   const { city, selectCity, cities } = useCity()
@@ -41,18 +45,20 @@ export default function App() {
     // Clear selections when switching cities
     setSelectedSpot(null)
     setSelectedStation(null)
+    setSelectedScooter(null)
     setSelectedTransitStop(null)
     setSearchQuery('')
   }
   const parking = useParking(refreshInterval, city)
   const bikes = useBikes(refreshInterval, city)
+  const scooters = useScooters(refreshInterval, city)
   const transit = useTransit(refreshInterval, city)
   const geo = useGeolocation()
   const { width: sidebarWidth, isDragging, handleMouseDown: handleResizeMouseDown } = useSidebarResize()
   const { isDark, toggle: toggleDark } = useDarkMode()
   const { favorites, isFavorite, toggle: toggleFavorite } = useFavorites()
 
-  const anyError = parking.error || bikes.error || transit.error
+  const anyError = parking.error || bikes.error || scooters.error || transit.error
 
   function handleReCenter() {
     geo.request()
@@ -74,6 +80,7 @@ export default function App() {
 
       {((city.parking ? parking.loading && parking.data.length === 0 : false) ||
         (city.bikes ? bikes.loading && bikes.data.length === 0 : false) ||
+        (city.scooters ? scooters.loading && scooters.data.length === 0 : false) ||
         (transit.loading && transit.data.length === 0)) && (
         <div className="loading-overlay">
           <div className="spinner" />
@@ -94,6 +101,12 @@ export default function App() {
         bikeLastUpdated={bikes.lastUpdated}
         bikeLoading={bikes.loading}
         onRefreshBikes={bikes.refresh}
+        scooters={scooters.data}
+        selectedScooter={selectedScooter}
+        onSelectScooter={setSelectedScooter}
+        scooterLastUpdated={scooters.lastUpdated}
+        scooterLoading={scooters.loading}
+        onRefreshScooters={scooters.refresh}
         transitStops={transit.data}
         selectedTransitStop={selectedTransitStop}
         onSelectTransitStop={setSelectedTransitStop}
@@ -110,6 +123,8 @@ export default function App() {
         onToggleParking={() => setShowParking((v) => !v)}
         showBikes={showBikes}
         onToggleBikes={() => setShowBikes((v) => !v)}
+        showScooters={showScooters}
+        onToggleScooters={() => setShowScooters((v) => !v)}
         showTransit={showTransit}
         onToggleTransit={() => setShowTransit((v) => !v)}
         width={sidebarWidth}
@@ -137,6 +152,9 @@ export default function App() {
           bikeStations={bikes.data}
           selectedStation={selectedStation}
           onSelectStation={setSelectedStation}
+          scooters={scooters.data}
+          selectedScooter={selectedScooter}
+          onSelectScooter={setSelectedScooter}
           transitStops={transit.data}
           selectedTransitStop={selectedTransitStop}
           onSelectTransitStop={setSelectedTransitStop}
@@ -144,6 +162,7 @@ export default function App() {
           activeTab={activeTab}
           showParking={showParking}
           showBikes={showBikes}
+          showScooters={showScooters}
           showTransit={showTransit}
           userPosition={geo.position}
           reCenterKey={reCenterKey}

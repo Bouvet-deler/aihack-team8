@@ -27,14 +27,25 @@
       "tram": "Tranvía"
     }
   },
+  "scooters": {
+    "toggle": "Mostrar/ocultar patinetes",
+    "label": "Patinete"
+  },
+  "scooter": {
+    "battery": "Batería",
+    "range": "Autonomía",
+    "disabled": "Patinete no disponible"
+  },
   "tab": {
     "parking": "Aparcamiento",
     "bikes": "Bicicleta",
+    "scooters": "Patinete",
     "transit": "Transporte"
   },
   "search": {
     "parking": "Buscar aparcamiento…",
     "bikes": "Buscar estación…",
+    "scooters": "Buscar patinete…",
     "transit": "Buscar paradas…",
     "label": "Buscar",
     "clear": "Limpiar búsqueda"
@@ -49,6 +60,8 @@
     "parking": "Sin datos de aparcamiento",
     "bikesSearch": "Sin resultados para \"{{query}}\"",
     "bikes": "Sin datos de bicicletas",
+    "scootersSearch": "Sin resultados para \"{{query}}\"",
+    "scooters": "Sin datos de patinetes",
     "transitSearch": "Sin resultados para \"{{query}}\"",
     "transit": "Sin datos de transporte"
   },

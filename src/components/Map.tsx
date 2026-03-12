@@ -5,8 +5,10 @@ import type { Map as LeafletMap } from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import type { ParkingSpot } from '../types/parking'
 import type { BikeStation } from '../types/bike'
+import type { Scooter } from '../types/scooter'
 import { ParkingMarker } from './ParkingMarker'
 import { BikeMarker } from './BikeMarker'
+import { ScooterMarker } from './ScooterMarker'
 import { TransitMarker } from './TransitMarker'
 import type { TransitStop } from '../types/transit'
 import type { CityConfig } from '../config/cities'
@@ -111,18 +113,22 @@ interface MapProps {
   bikeStations: BikeStation[]
   selectedStation: BikeStation | null
   onSelectStation: (station: BikeStation) => void
+  scooters: Scooter[]
+  selectedScooter: Scooter | null
+  onSelectScooter: (scooter: Scooter) => void
   transitStops: TransitStop[]
   selectedTransitStop: TransitStop | null
   onSelectTransitStop: (stop: TransitStop) => void
   searchQuery: string
-  activeTab: 'parking' | 'bikes' | 'transit'
+  activeTab: 'parking' | 'bikes' | 'scooters' | 'transit'
   showParking: boolean
   showBikes: boolean
+  showScooters: boolean
   showTransit: boolean
   userPosition: GeolocationCoordinates | null
   reCenterKey: number
-  isFavorite: (type: 'parking' | 'bikes', id: string) => boolean
-  onToggleFavorite: (type: 'parking' | 'bikes', id: string) => void
+  isFavorite: (type: 'parking' | 'bikes' | 'scooters', id: string) => boolean
+  onToggleFavorite: (type: 'parking' | 'bikes' | 'scooters', id: string) => void
   city: CityConfig
 }
 
@@ -133,6 +139,9 @@ export function Map({
   bikeStations,
   selectedStation,
   onSelectStation,
+  scooters,
+  selectedScooter,
+  onSelectScooter,
   transitStops,
   selectedTransitStop,
   onSelectTransitStop,
@@ -140,6 +149,7 @@ export function Map({
   activeTab,
   showParking,
   showBikes,
+  showScooters,
   showTransit,
   userPosition,
   reCenterKey,
@@ -207,6 +217,24 @@ export function Map({
             isFavorite={isFavorite('bikes', station.station_id)}
             onClick={() => onSelectStation(station)}
             onToggleFavorite={() => onToggleFavorite('bikes', station.station_id)}
+          />
+        )
+      })}
+
+      {showScooters && scooters.map((scooter) => {
+        const matches =
+          activeTab !== 'scooters' ||
+          !searchQuery ||
+          scooter.operator.toLowerCase().includes(searchQuery.toLowerCase())
+        return (
+          <ScooterMarker
+            key={scooter.vehicle_id}
+            scooter={scooter}
+            isSelected={selectedScooter?.vehicle_id === scooter.vehicle_id}
+            dimmed={!matches}
+            isFavorite={isFavorite('scooters', scooter.vehicle_id)}
+            onClick={() => onSelectScooter(scooter)}
+            onToggleFavorite={() => onToggleFavorite('scooters', scooter.vehicle_id)}
           />
         )
       })}

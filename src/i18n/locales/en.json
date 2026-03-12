@@ -27,14 +27,25 @@
       "tram": "Tram"
     }
   },
+  "scooters": {
+    "toggle": "Show/hide e-scooters",
+    "label": "Scooter"
+  },
+  "scooter": {
+    "battery": "Battery",
+    "range": "Range",
+    "disabled": "Scooter unavailable"
+  },
   "tab": {
     "parking": "Parking",
     "bikes": "City Bike",
+    "scooters": "Scooter",
     "transit": "Transit"
   },
   "search": {
     "parking": "Search parking…",
     "bikes": "Search bike station…",
+    "scooters": "Search scooter…",
     "transit": "Search transit stops…",
     "label": "Search",
     "clear": "Clear search"
@@ -49,6 +60,8 @@
     "parking": "No parking data available",
     "bikesSearch": "No results for \"{{query}}\"",
     "bikes": "No bike data available",
+    "scootersSearch": "No results for \"{{query}}\"",
+    "scooters": "No scooter data available",
     "transitSearch": "No results for \"{{query}}\"",
     "transit": "No transit data available"
   },
