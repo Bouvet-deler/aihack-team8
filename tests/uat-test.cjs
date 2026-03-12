@@ -399,9 +399,9 @@ async function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
       record(cat7, 'Markører som ikke matcher dimmes', dimmedMarkers >= 0, `${dimmedMarkers} dimmed markers`);
 
       // No results message
-      const noResultsText = await page.$eval('aside', el => el.innerText);
-      const noResults = noResultsText.includes('Ingen resultat') || sidebarText.includes('No results') || sidebarText.includes('xyznotexist');
-      record(cat7, 'Søk etter noe ukjent → "Ingen resultater"', noResults, noResults ? 'Empty state shown' : `Sidebar: ${noResultsText.substring(0, 100)}`);
+      const sidebarText7 = await page.$eval('aside', el => el.innerText);
+      const noResults = sidebarText7.includes('Ingen resultat') || sidebarText7.includes('No results') || sidebarText7.includes('xyznotexist');
+      record(cat7, 'Søk etter noe ukjent → "Ingen resultater"', noResults, noResults ? 'Empty state shown' : `Sidebar: ${sidebarText7.substring(0, 100)}`);
 
       // Clear and verify all return
       let searchForClear = await page.$('input[type="search"], input[type="text"]');
