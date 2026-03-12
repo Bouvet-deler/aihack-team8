@@ -100,5 +100,16 @@
     "title": "Disponibilidad prevista (próximas 8h)",
     "now": "Ahora",
     "best": "Mejor momento: {{time}} — ~{{count}} libres"
+  },
+  "a11y": {
+    "skipToMap": "Saltar al mapa",
+    "skipToSidebar": "Saltar al panel lateral",
+    "mapArea": "Mapa interactivo que muestra disponibilidad de aparcamiento, bicicletas, patinetes y transporte",
+    "sidebarNav": "Navegación de tipos de transporte",
+    "langNav": "Selección de idioma",
+    "dataUpdated": "Datos actualizados",
+    "loadingData": "Cargando datos",
+    "tabBadge": "{{count}} ubicaciones",
+    "favBadge": "{{count}} favoritos"
   }
 }

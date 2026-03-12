@@ -100,5 +100,16 @@
     "title": "Expected availability (next 8h)",
     "now": "Now",
     "best": "Best time: {{time}} — ~{{count}} free"
+  },
+  "a11y": {
+    "skipToMap": "Skip to map",
+    "skipToSidebar": "Skip to sidebar",
+    "mapArea": "Interactive map showing availability for parking, bikes, scooters, and transit",
+    "sidebarNav": "Transport type navigation",
+    "langNav": "Language selection",
+    "dataUpdated": "Data updated",
+    "loadingData": "Loading data",
+    "tabBadge": "{{count}} locations",
+    "favBadge": "{{count}} favorites"
   }
 }

@@ -100,5 +100,16 @@
     "title": "Forventet tilgjengelighet (neste 8t)",
     "now": "Nå",
     "best": "Beste tidspunkt: {{time}} — ca. {{count}} ledige"
+  },
+  "a11y": {
+    "skipToMap": "Hopp til kart",
+    "skipToSidebar": "Hopp til sidepanel",
+    "mapArea": "Interaktivt kart som viser tilgjengelighet for parkering, sykler, sparkesykler og kollektivtransport",
+    "sidebarNav": "Navigasjon for transporttyper",
+    "langNav": "Språkvalg",
+    "dataUpdated": "Data oppdatert",
+    "loadingData": "Laster inn data",
+    "tabBadge": "{{count}} steder",
+    "favBadge": "{{count}} favoritter"
   }
 }
