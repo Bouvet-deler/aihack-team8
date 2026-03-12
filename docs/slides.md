@@ -236,10 +236,11 @@ layoutClass: gap-5
 | Konkurrentanalyse | 7 plattformer analysert         |
 | Prosjektplan      | 26 Issues m/ akseptansekriterier |
 | CI/CD             | Super-linter + Lefthook         |
-| Kodekvalitet      | CSS + alle lint-feil fikset     |
+| Kodekvalitet      | CSS nesting, OKLCH, @property   |
 | Dokumentasjon     | README, CONTRIBUTING, Slidev    |
 | Testing           | UAT-template + Playwright       |
 | Deep research     | 5 rapporter, 80 000+ ord        |
+| Video             | TTS + Playwright screen-capture |
 
 ::right::
 
@@ -361,7 +362,7 @@ layoutClass: gap-6
 | Copilot × 2 seter       |  $38/mnd  |
 | Hosting                 |       $0  |
 
-<div class="text-xs opacity-50 mt-1">* Copilot Business inkludert i abonnement</div>
+<div class="text-xs opacity-50 mt-1">* Copilot Business inkludert — tilsvarende API-kost: ~$207</div>
 
 ::right::
 
@@ -371,15 +372,17 @@ layoutClass: gap-6
 
 | Metrikk          |      Verdi |
 | ---------------- | ---------: |
-| Totale commits   |         74 |
-| AI co-authored   |   57 (77%) |
-| — Copilot        |         39 |
-| — Claude         |         18 |
-| Kodelinjer (src) |      3 500 |
+| Totale commits   |         78 |
+| AI co-authored   |   43 (55%) |
+| — Copilot CLI    |         43 |
+| — Claude API     |         34 |
+| Kodelinjer (src) |      2 963 |
+| Premium requests |        279 |
+| Tokens prosessert | 64M+ inn  |
 
 <div class="gradient-card mt-2 text-center">
 <b class="text-lg">~$81 + $38/mnd</b><br>
-<span class="text-xs opacity-60">→ 3 500 LOC, full CI/CD, 4 byer</span>
+<span class="text-xs opacity-60">→ 3 000 LOC, full CI/CD, 4 byer (~$250 i API-verdi)</span>
 </div>
 
 </div>
@@ -387,7 +390,9 @@ layoutClass: gap-6
 <!--
 Presenter notes:
 Total kostnad er ~$81 + $38/mnd for Copilot-abonnement.
-77% av commits er AI co-authored. Copilot CLI var gratis (inkludert i Business).
+Copilot CLI alene brukte 174 premium requests og 64M tokens — tilsvarende ~$207 i API-kost.
+55% av commits er AI co-authored via Copilot CLI. Knut brukte Claude API direkte for $43.
+Samlet AI-verdi: ~$250 i API-kostnader, levert for $81 + abonnement.
 -->
 
 ---

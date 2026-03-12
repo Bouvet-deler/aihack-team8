@@ -32,7 +32,7 @@
     },
     "einar": {
       "tool": "GitHub Copilot CLI",
-      "model": "claude-opus-4-6 / claude-sonnet-4.5",
+      "model": "claude-opus-4.6 / claude-haiku-4.5",
       "pricingNote": "Included in Copilot Business subscription ($19/seat/month)",
       "sessions": [
         {
@@ -45,6 +45,20 @@
           "date": "2026-03-11",
           "description": "Lefthook pre-commit hooks, dev cost research, Slidev refresh, commit conventions",
           "premiumRequests": 60,
+          "costUSD": 0
+        },
+        {
+          "date": "2026-03-11",
+          "description": "Deep code review, CSS modernization (nesting/OKLCH/@property), slides narrative refresh, presentation video with TTS",
+          "premiumRequests": 174,
+          "apiTimeMinutes": 202,
+          "sessionTimeMinutes": 724,
+          "codeChanges": "+6725 -1192",
+          "tokens": {
+            "opus": { "input": 60800000, "output": 490700, "cached": 56600000 },
+            "haiku": { "input": 3000000, "output": 92800, "cached": 2500000 }
+          },
+          "equivalentAPICostUSD": 207,
           "costUSD": 0
         }
       ]
