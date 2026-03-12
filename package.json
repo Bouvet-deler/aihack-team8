@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "slides": "slidev docs/slides.md --open",
+    "slides": "slidev docs/slides.md --port 8081 --open",
     "slides:build": "slidev build docs/slides.md --base /aihack-team8/ --out dist-slides"
   },
   "dependencies": {

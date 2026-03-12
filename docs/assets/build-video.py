@@ -9,7 +9,7 @@ import subprocess
 import os
 import sys
 
-SLIDES_URL = "http://localhost:3031"
+SLIDES_URL = "http://localhost:8081"
 BUILD_DIR = os.path.join(os.path.dirname(__file__), "video-build")
 OUTPUT = os.path.join(os.path.dirname(__file__), "presentation-video.mp4")
 VOICE = "nb-NO-FinnNeural"
