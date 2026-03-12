@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.58.2",
-    "@slidev/cli": "^52.14.1",
+    "@slidev/cli": "^52.9.1",
     "@slidev/theme-default": "^0.25.0",
     "@types/leaflet": "^1.9.14",
     "@types/react": "^19.0.0",
@@ -40,6 +40,6 @@
     "stylelint-config-standard": "^40.0.0",
     "typescript": "~5.7.2",
     "vite": "^6.0.5",
-    "vite-plugin-pwa": "^1.2.0"
+    "vite-plugin-pwa": "^0.19.8"
   }
 }
