@@ -137,7 +137,7 @@
       {
         "step": "Listen er sortert etter tilgjengelighet (høyest først)",
         "pass": true,
-        "note": "First items: 13, 13, 11, 10"
+        "note": "First items: 13, 13, 12, 11"
       },
       {
         "step": "Klikk på listeelement markerer det",
@@ -385,17 +385,17 @@
       {
         "step": "Første lasting < 3 sekunder",
         "pass": true,
-        "note": "Load time: 1389ms"
+        "note": "Load time: 1469ms"
       },
       {
         "step": "Søkefiltrering uten merkbar forsinkelse",
         "pass": true,
-        "note": "Filter time: 129ms"
+        "note": "Filter time: 134ms"
       },
       {
         "step": "Bytte faner skjer umiddelbart",
         "pass": true,
-        "note": "Tab switch: 450ms"
+        "note": "Tab switch: 417ms"
       },
       {
         "step": "Kart-panorering og zoom",
