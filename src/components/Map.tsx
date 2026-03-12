@@ -6,9 +6,11 @@ import 'leaflet/dist/leaflet.css'
 import type { ParkingSpot } from '../types/parking'
 import type { BikeStation } from '../types/bike'
 import type { Scooter } from '../types/scooter'
+import type { ChargingStation } from '../types/charging'
 import { ParkingMarker } from './ParkingMarker'
 import { BikeMarker } from './BikeMarker'
 import { ScooterMarker } from './ScooterMarker'
+import { ChargingMarker } from './ChargingMarker'
 import { TransitMarker } from './TransitMarker'
 import type { TransitStop } from '../types/transit'
 import type { CityConfig } from '../config/cities'
@@ -116,19 +118,23 @@ interface MapProps {
   scooters: Scooter[]
   selectedScooter: Scooter | null
   onSelectScooter: (scooter: Scooter) => void
+  chargingStations: ChargingStation[]
+  selectedChargingStation: ChargingStation | null
+  onSelectChargingStation: (station: ChargingStation) => void
   transitStops: TransitStop[]
   selectedTransitStop: TransitStop | null
   onSelectTransitStop: (stop: TransitStop) => void
   searchQuery: string
-  activeTab: 'parking' | 'bikes' | 'scooters' | 'transit'
+  activeTab: 'parking' | 'bikes' | 'scooters' | 'charging' | 'transit'
   showParking: boolean
   showBikes: boolean
   showScooters: boolean
+  showCharging: boolean
   showTransit: boolean
   userPosition: GeolocationCoordinates | null
   reCenterKey: number
-  isFavorite: (type: 'parking' | 'bikes' | 'scooters', id: string) => boolean
-  onToggleFavorite: (type: 'parking' | 'bikes' | 'scooters', id: string) => void
+  isFavorite: (type: 'parking' | 'bikes' | 'scooters' | 'charging', id: string) => boolean
+  onToggleFavorite: (type: 'parking' | 'bikes' | 'scooters' | 'charging', id: string) => void
   city: CityConfig
 }
 
@@ -142,6 +148,9 @@ export function Map({
   scooters,
   selectedScooter,
   onSelectScooter,
+  chargingStations,
+  selectedChargingStation,
+  onSelectChargingStation,
   transitStops,
   selectedTransitStop,
   onSelectTransitStop,
@@ -150,6 +159,7 @@ export function Map({
   showParking,
   showBikes,
   showScooters,
+  showCharging,
   showTransit,
   userPosition,
   reCenterKey,
@@ -164,6 +174,15 @@ export function Map({
     if (!mapRef.current) return
     mapRef.current.flyTo(city.center, city.zoom, { duration: 1.0 })
   }, [city])
+
+  useEffect(() => {
+    if (!selectedChargingStation || !mapRef.current) return
+    mapRef.current.flyTo(
+      [selectedChargingStation.lat, selectedChargingStation.lon],
+      15,
+      { duration: 0.8 },
+    )
+  }, [selectedChargingStation])
 
   useEffect(() => {
     if (!selectedTransitStop || !mapRef.current) return
@@ -235,6 +254,24 @@ export function Map({
             isFavorite={isFavorite('scooters', scooter.vehicle_id)}
             onClick={() => onSelectScooter(scooter)}
             onToggleFavorite={() => onToggleFavorite('scooters', scooter.vehicle_id)}
+          />
+        )
+      })}
+
+      {showCharging && chargingStations.map((station) => {
+        const matches =
+          activeTab !== 'charging' ||
+          !searchQuery ||
+          station.name.toLowerCase().includes(searchQuery.toLowerCase())
+        return (
+          <ChargingMarker
+            key={station.id}
+            station={station}
+            isSelected={selectedChargingStation?.id === station.id}
+            dimmed={!matches}
+            isFavorite={isFavorite('charging', station.id)}
+            onClick={() => onSelectChargingStation(station)}
+            onToggleFavorite={() => onToggleFavorite('charging', station.id)}
           />
         )
       })}

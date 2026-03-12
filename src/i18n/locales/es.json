@@ -27,6 +27,14 @@
       "tram": "Tranvía"
     }
   },
+  "charging": {
+    "toggle": "Mostrar/ocultar carga EV",
+    "label": "Carga",
+    "available": "Disponibles",
+    "power": "Potencia",
+    "connectors": "Conectores",
+    "public": "Público"
+  },
   "scooters": {
     "toggle": "Mostrar/ocultar patinetes",
     "label": "Patinete"
@@ -40,9 +48,11 @@
     "parking": "Aparcamiento",
     "bikes": "Bicicleta",
     "scooters": "Patinete",
+    "charging": "Carga",
     "transit": "Transporte"
   },
   "search": {
+    "charging": "Buscar estación de carga…",
     "parking": "Buscar aparcamiento…",
     "bikes": "Buscar estación…",
     "scooters": "Buscar patinete…",
@@ -62,6 +72,8 @@
     "bikes": "Sin datos de bicicletas",
     "scootersSearch": "Sin resultados para \"{{query}}\"",
     "scooters": "Sin datos de patinetes",
+    "chargingSearch": "Sin resultados para \"{{query}}\"",
+    "charging": "Sin datos de carga",
     "transitSearch": "Sin resultados para \"{{query}}\"",
     "transit": "Sin datos de transporte"
   },

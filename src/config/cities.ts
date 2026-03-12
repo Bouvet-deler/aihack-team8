@@ -22,6 +22,12 @@ export interface TransitConfig {
   radius: number
 }
 
+export interface ChargingConfig {
+  /** Bounding box for NOBIL rectangle search */
+  northeast: [number, number]
+  southwest: [number, number]
+}
+
 export interface CityConfig {
   id: string
   name: string
@@ -30,6 +36,7 @@ export interface CityConfig {
   parking?: ParkingConfig
   bikes?: BikesConfig
   scooters?: ScooterOperatorConfig[]
+  charging?: ChargingConfig
   transit: TransitConfig
 }
 
@@ -45,6 +52,10 @@ export const CITIES: CityConfig[] = [
       { operator: 'Voi', url: '/api/scooters/voi', maxRange: 64000 },
       { operator: 'Ryde', url: '/api/scooters/ryde', maxRange: 56000 },
     ],
+    charging: {
+      northeast: [59.05, 5.85],
+      southwest: [58.88, 5.60],
+    },
     transit: { lat: 58.97, lon: 5.73, radius: 8000 },
   },
   {

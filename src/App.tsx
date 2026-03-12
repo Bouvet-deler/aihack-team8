@@ -6,6 +6,7 @@ import { useParking } from './hooks/useParking'
 import { useBikes } from './hooks/useBikes'
 import { useScooters } from './hooks/useScooters'
 import { useTransit } from './hooks/useTransit'
+import { useCharging } from './hooks/useCharging'
 import { useGeolocation } from './hooks/useGeolocation'
 import { useSidebarResize } from './hooks/useSidebarResize'
 import { useDarkMode } from './hooks/useDarkMode'
@@ -15,6 +16,7 @@ import type { ParkingSpot } from './types/parking'
 import type { BikeStation } from './types/bike'
 import type { Scooter } from './types/scooter'
 import type { TransitStop } from './types/transit'
+import type { ChargingStation } from './types/charging'
 import './App.css'
 
 const DEFAULT_INTERVAL = 60_000
@@ -26,11 +28,13 @@ export default function App() {
   const [selectedStation, setSelectedStation] = useState<BikeStation | null>(null)
   const [selectedScooter, setSelectedScooter] = useState<Scooter | null>(null)
   const [selectedTransitStop, setSelectedTransitStop] = useState<TransitStop | null>(null)
+  const [selectedChargingStation, setSelectedChargingStation] = useState<ChargingStation | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
-  const [activeTab, setActiveTab] = useState<'parking' | 'bikes' | 'scooters' | 'transit'>('parking')
+  const [activeTab, setActiveTab] = useState<'parking' | 'bikes' | 'scooters' | 'charging' | 'transit'>('parking')
   const [showParking, setShowParking] = useState(true)
   const [showBikes, setShowBikes] = useState(false)
   const [showScooters, setShowScooters] = useState(false)
+  const [showCharging, setShowCharging] = useState(false)
   const [showTransit, setShowTransit] = useState(false)
   const [reCenterKey, setReCenterKey] = useState(0)
 
@@ -47,18 +51,20 @@ export default function App() {
     setSelectedStation(null)
     setSelectedScooter(null)
     setSelectedTransitStop(null)
+    setSelectedChargingStation(null)
     setSearchQuery('')
   }
   const parking = useParking(refreshInterval, city)
   const bikes = useBikes(refreshInterval, city)
   const scooters = useScooters(refreshInterval, city)
   const transit = useTransit(refreshInterval, city)
+  const charging = useCharging(refreshInterval, city)
   const geo = useGeolocation()
   const { width: sidebarWidth, isDragging, handleMouseDown: handleResizeMouseDown, nudge: nudgeResize } = useSidebarResize()
   const { isDark, toggle: toggleDark } = useDarkMode()
   const { favorites, isFavorite, toggle: toggleFavorite } = useFavorites()
 
-  const anyError = parking.error || bikes.error || scooters.error || transit.error
+  const anyError = parking.error || bikes.error || scooters.error || transit.error || charging.error
 
   function handleReCenter() {
     geo.request()
@@ -68,6 +74,7 @@ export default function App() {
   const isInitialLoading = (city.parking ? parking.loading && parking.data.length === 0 : false) ||
     (city.bikes ? bikes.loading && bikes.data.length === 0 : false) ||
     (city.scooters ? scooters.loading && scooters.data.length === 0 : false) ||
+    (city.charging ? charging.loading && charging.data.length === 0 : false) ||
     (transit.loading && transit.data.length === 0)
 
   return (
@@ -118,6 +125,12 @@ export default function App() {
         scooterLastUpdated={scooters.lastUpdated}
         scooterLoading={scooters.loading}
         onRefreshScooters={scooters.refresh}
+        chargingStations={charging.data}
+        selectedChargingStation={selectedChargingStation}
+        onSelectChargingStation={setSelectedChargingStation}
+        chargingLastUpdated={charging.lastUpdated}
+        chargingLoading={charging.loading}
+        onRefreshCharging={charging.refresh}
         transitStops={transit.data}
         selectedTransitStop={selectedTransitStop}
         onSelectTransitStop={setSelectedTransitStop}
@@ -136,6 +149,8 @@ export default function App() {
         onToggleBikes={() => setShowBikes((v) => !v)}
         showScooters={showScooters}
         onToggleScooters={() => setShowScooters((v) => !v)}
+        showCharging={showCharging}
+        onToggleCharging={() => setShowCharging((v) => !v)}
         showTransit={showTransit}
         onToggleTransit={() => setShowTransit((v) => !v)}
         width={sidebarWidth}
@@ -170,6 +185,9 @@ export default function App() {
           scooters={scooters.data}
           selectedScooter={selectedScooter}
           onSelectScooter={setSelectedScooter}
+          chargingStations={charging.data}
+          selectedChargingStation={selectedChargingStation}
+          onSelectChargingStation={setSelectedChargingStation}
           transitStops={transit.data}
           selectedTransitStop={selectedTransitStop}
           onSelectTransitStop={setSelectedTransitStop}
@@ -178,6 +196,7 @@ export default function App() {
           showParking={showParking}
           showBikes={showBikes}
           showScooters={showScooters}
+          showCharging={showCharging}
           showTransit={showTransit}
           userPosition={geo.position}
           reCenterKey={reCenterKey}

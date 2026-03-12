@@ -20,6 +20,14 @@
     "toggle": "Vis/skjul elsparkesykler",
     "label": "Sparkesykkel"
   },
+  "charging": {
+    "toggle": "Vis/skjul ladestasjoner",
+    "label": "Lading",
+    "available": "Ledige",
+    "power": "Effekt",
+    "connectors": "Kontakter",
+    "public": "Offentlig"
+  },
   "scooter": {
     "battery": "Batteri",
     "range": "Rekkevidde",
@@ -29,9 +37,11 @@
     "parking": "Parkering",
     "bikes": "Bysykkel",
     "scooters": "Sparkesykkel",
+    "charging": "Lading",
     "transit": "Kollektiv"
   },
   "search": {
+    "charging": "Søk etter ladestasjon…",
     "parking": "Søk etter parkeringsplass…",
     "bikes": "Søk etter sykkelpunkt…",
     "scooters": "Søk etter sparkesykkel…",
@@ -51,6 +61,8 @@
     "bikes": "Ingen sykkeldata tilgjengelig",
     "scootersSearch": "Ingen treff på \"{{query}}\"",
     "scooters": "Ingen sparkesykkeldata tilgjengelig",
+    "chargingSearch": "Ingen treff på \"{{query}}\"",
+    "charging": "Ingen ladedata tilgjengelig",
     "transitSearch": "Ingen treff på \"{{query}}\"",
     "transit": "Ingen kollektivdata tilgjengelig"
   },

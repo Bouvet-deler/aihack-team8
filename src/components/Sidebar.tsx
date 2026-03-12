@@ -5,10 +5,12 @@ import type { ParkingSpot } from '../types/parking'
 import type { BikeStation } from '../types/bike'
 import type { Scooter } from '../types/scooter'
 import type { TransitStop } from '../types/transit'
+import type { ChargingStation } from '../types/charging'
 import type { CityConfig } from '../config/cities'
 import { getColor } from './ParkingMarker'
 import { getBikeColor } from './BikeMarker'
 import { getScooterColor } from './ScooterMarker'
+import { getChargingColor } from './ChargingMarker'
 import { getTransitColor } from './TransitMarker'
 import { haversineMetres, formatDistance, formatWalkingTime } from '../utils/distance'
 import { useDevCosts } from '../hooks/useDevCosts'
@@ -35,6 +37,13 @@ interface SidebarProps {
   scooterLastUpdated: Date | null
   scooterLoading: boolean
   onRefreshScooters: () => void
+  // charging
+  chargingStations: ChargingStation[]
+  selectedChargingStation: ChargingStation | null
+  onSelectChargingStation: (station: ChargingStation) => void
+  chargingLastUpdated: Date | null
+  chargingLoading: boolean
+  onRefreshCharging: () => void
   // transit
   transitStops: TransitStop[]
   selectedTransitStop: TransitStop | null
@@ -47,14 +56,16 @@ interface SidebarProps {
   onIntervalChange: (ms: number) => void
   searchQuery: string
   onSearchChange: (query: string) => void
-  activeTab: 'parking' | 'bikes' | 'scooters' | 'transit'
-  onTabChange: (tab: 'parking' | 'bikes' | 'scooters' | 'transit') => void
+  activeTab: 'parking' | 'bikes' | 'scooters' | 'charging' | 'transit'
+  onTabChange: (tab: 'parking' | 'bikes' | 'scooters' | 'charging' | 'transit') => void
   showParking: boolean
   onToggleParking: () => void
   showBikes: boolean
   onToggleBikes: () => void
   showScooters: boolean
   onToggleScooters: () => void
+  showCharging: boolean
+  onToggleCharging: () => void
   showTransit: boolean
   onToggleTransit: () => void
   width: number | undefined
@@ -64,9 +75,9 @@ interface SidebarProps {
   onRequestLocation: () => void
   isDark: boolean
   onToggleDark: () => void
-  favorites: { parking: string[], bikes: string[], scooters: string[] }
-  isFavorite: (type: 'parking' | 'bikes' | 'scooters', id: string) => boolean
-  onToggleFavorite: (type: 'parking' | 'bikes' | 'scooters', id: string) => void
+  favorites: { parking: string[], bikes: string[], scooters: string[], charging: string[] }
+  isFavorite: (type: 'parking' | 'bikes' | 'scooters' | 'charging', id: string) => boolean
+  onToggleFavorite: (type: 'parking' | 'bikes' | 'scooters' | 'charging', id: string) => void
   city: CityConfig
   cities: CityConfig[]
   onSelectCity: (city: CityConfig) => void
@@ -89,6 +100,7 @@ export function Sidebar({
   spots, selectedSpot, onSelectSpot, parkingLastUpdated, parkingLoading, onRefreshParking,
   bikeStations, selectedStation, onSelectStation, bikeLastUpdated, bikeLoading, onRefreshBikes,
   scooters, selectedScooter, onSelectScooter, scooterLastUpdated, scooterLoading, onRefreshScooters,
+  chargingStations, selectedChargingStation, onSelectChargingStation, chargingLastUpdated, chargingLoading, onRefreshCharging,
   transitStops, selectedTransitStop, onSelectTransitStop, transitLoading, transitLastUpdated, onRefreshTransit,
   refreshInterval, onIntervalChange,
   searchQuery, onSearchChange,
@@ -96,6 +108,7 @@ export function Sidebar({
   showParking, onToggleParking,
   showBikes, onToggleBikes,
   showScooters, onToggleScooters,
+  showCharging, onToggleCharging,
   showTransit, onToggleTransit,
   width, onResizeHandleMouseDown, onResizeNudge,
   userPosition,
@@ -111,10 +124,11 @@ export function Sidebar({
   const isParking = activeTab === 'parking'
   const isBikes = activeTab === 'bikes'
   const isScooters = activeTab === 'scooters'
+  const isCharging = activeTab === 'charging'
   const isTransit = activeTab === 'transit'
-  const loading = isParking ? parkingLoading : isBikes ? bikeLoading : isScooters ? scooterLoading : transitLoading
-  const lastUpdated = isParking ? parkingLastUpdated : isBikes ? bikeLastUpdated : isScooters ? scooterLastUpdated : transitLastUpdated
-  const onRefresh = isParking ? onRefreshParking : isBikes ? onRefreshBikes : isScooters ? onRefreshScooters : onRefreshTransit
+  const loading = isParking ? parkingLoading : isBikes ? bikeLoading : isScooters ? scooterLoading : isCharging ? chargingLoading : transitLoading
+  const lastUpdated = isParking ? parkingLastUpdated : isBikes ? bikeLastUpdated : isScooters ? scooterLastUpdated : isCharging ? chargingLastUpdated : transitLastUpdated
+  const onRefresh = isParking ? onRefreshParking : isBikes ? onRefreshBikes : isScooters ? onRefreshScooters : isCharging ? onRefreshCharging : onRefreshTransit
 
   const canSortNearest = sortByNearest && userPosition !== null
 
@@ -162,6 +176,17 @@ export function Sidebar({
         return distA - distB
       }
       return b.battery_pct - a.battery_pct
+    })
+
+  const filteredCharging = chargingStations
+    .filter((s) => s.name.toLowerCase().includes(searchQuery.toLowerCase()))
+    .sort((a, b) => {
+      if (canSortNearest) {
+        const distA = haversineMetres(userPosition!.latitude, userPosition!.longitude, a.lat, a.lon)
+        const distB = haversineMetres(userPosition!.latitude, userPosition!.longitude, b.lat, b.lon)
+        return distA - distB
+      }
+      return b.availablePoints - a.availablePoints
     })
 
   const filteredTransit = transitStops
@@ -282,6 +307,19 @@ export function Sidebar({
             {t('scooters.label')}
           </button>
           )}
+          {city.charging && (
+          <button
+            className={`layer-toggle ${showCharging ? 'active' : ''}`}
+            onClick={onToggleCharging}
+            title={t('charging.toggle')}
+            aria-label={t('charging.toggle')}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+            {t('charging.label')}
+          </button>
+          )}
           <button
             className={`layer-toggle ${showTransit ? 'active' : ''}`}
             onClick={onToggleTransit}
@@ -339,6 +377,20 @@ export function Sidebar({
             )}
           </button>
           )}
+          {city.charging && (
+          <button
+            role="tab"
+            aria-selected={isCharging}
+            className={`tab ${isCharging ? 'active' : ''}`}
+            onClick={() => { onTabChange('charging'); onSearchChange('') }}
+          >
+            {t('tab.charging')}
+            <span className="tab-badge" aria-label={t('a11y.tabBadge', { count: chargingStations.length })}>{chargingStations.length}</span>
+            {favorites.charging.length > 0 && (
+              <span className="tab-fav-badge" aria-label={t('a11y.favBadge', { count: favorites.charging.length })}>★{favorites.charging.length}</span>
+            )}
+          </button>
+          )}
           <button
             role="tab"
             aria-selected={isTransit}
@@ -360,7 +412,7 @@ export function Sidebar({
           <input
             type="search"
             className="search-input"
-            placeholder={isParking ? t('search.parking') : isScooters ? t('search.scooters') : isTransit ? t('search.transit') : t('search.bikes')}
+            placeholder={isParking ? t('search.parking') : isScooters ? t('search.scooters') : isCharging ? t('search.charging') : isTransit ? t('search.transit') : t('search.bikes')}
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
             aria-label={t('search.label')}
@@ -433,7 +485,46 @@ export function Sidebar({
 
       {/* List */}
       <div className="spot-list">
-        {isTransit ? (
+        {isCharging ? (
+          <>
+            {filteredCharging.length === 0 && !loading && (
+              <div className="empty-state">
+                {searchQuery
+                  ? t('empty.chargingSearch', { query: searchQuery })
+                  : t('empty.charging')}
+              </div>
+            )}
+            {filteredCharging.map((station) => {
+              const isSelected = selectedChargingStation?.id === station.id
+              const color = getChargingColor(station)
+              const fav = isFavorite('charging', station.id)
+              const dist = userPosition
+                ? haversineMetres(userPosition.latitude, userPosition.longitude, station.lat, station.lon)
+                : null
+              return (
+                <div key={station.id} className={`spot-item ${isSelected ? 'selected' : ''}`}>
+                  <button className="spot-item-main" onClick={() => onSelectChargingStation(station)}>
+                    <span className="spot-indicator" style={{ background: color, borderRadius: '50% 50% 50% 4px' }} aria-hidden="true" />
+                    <span className="spot-name">
+                      {station.name}
+                      {dist !== null && (
+                        <span className="spot-walk-row">
+                          {formatDistance(dist)} · {formatWalkingTime(dist)}
+                        </span>
+                      )}
+                    </span>
+                    <span className="spot-count" style={{ color }}>{station.availablePoints}/{station.numPoints}</span>
+                  </button>
+                  <button
+                    className={`fav-btn ${fav ? 'active' : ''}`}
+                    onClick={() => onToggleFavorite('charging', station.id)}
+                    aria-label={fav ? t('favorites.remove') : t('favorites.add')}
+                  >{fav ? '★' : '☆'}</button>
+                </div>
+              )
+            })}
+          </>
+        ) : isTransit ? (
           <>
             {filteredTransit.length === 0 && !loading && (
               <div className="empty-state">

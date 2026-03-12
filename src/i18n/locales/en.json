@@ -27,6 +27,14 @@
       "tram": "Tram"
     }
   },
+  "charging": {
+    "toggle": "Show/hide EV charging",
+    "label": "Charging",
+    "available": "Available",
+    "power": "Power",
+    "connectors": "Connectors",
+    "public": "Public"
+  },
   "scooters": {
     "toggle": "Show/hide e-scooters",
     "label": "Scooter"
@@ -40,9 +48,11 @@
     "parking": "Parking",
     "bikes": "City Bike",
     "scooters": "Scooter",
+    "charging": "Charging",
     "transit": "Transit"
   },
   "search": {
+    "charging": "Search charging station…",
     "parking": "Search parking…",
     "bikes": "Search bike station…",
     "scooters": "Search scooter…",
@@ -62,6 +72,8 @@
     "bikes": "No bike data available",
     "scootersSearch": "No results for \"{{query}}\"",
     "scooters": "No scooter data available",
+    "chargingSearch": "No results for \"{{query}}\"",
+    "charging": "No charging data available",
     "transitSearch": "No results for \"{{query}}\"",
     "transit": "No transit data available"
   },
