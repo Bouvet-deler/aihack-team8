@@ -23,10 +23,10 @@
         },
         {
           "date": "2026-03-12",
-          "description": "Build version number (DDMMYY-HHMM) in sidebar footer, prediction chart bar labels",
-          "inputTokens": 75000,
-          "outputTokens": 12000,
-          "costUSD": 2.03
+          "description": "Build version, prediction labels, e-scooter layer (Voi+Ryde GBFS, markers, sidebar, i18n, proxy)",
+          "inputTokens": 350000,
+          "outputTokens": 55000,
+          "costUSD": 9.38
         }
       ]
     },
