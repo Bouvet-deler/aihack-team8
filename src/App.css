@@ -590,6 +590,12 @@ body {
 }
 /* stylelint-enable no-descending-specificity */
 
+.build-version {
+  opacity: 0.5;
+  font-size: 10px;
+  margin-right: auto;
+}
+
 .dev-cost-label {
   margin-left: auto;
   font-size: 10px;

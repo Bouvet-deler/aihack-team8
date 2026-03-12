@@ -2,7 +2,20 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
+const now = new Date()
+const buildVersion = [
+  String(now.getDate()).padStart(2, '0'),
+  String(now.getMonth() + 1).padStart(2, '0'),
+  String(now.getFullYear()).slice(-2),
+  '-',
+  String(now.getHours()).padStart(2, '0'),
+  String(now.getMinutes()).padStart(2, '0'),
+].join('')
+
 export default defineConfig({
+  define: {
+    __BUILD_VERSION__: JSON.stringify(buildVersion),
+  },
   plugins: [
     react(),
     VitePWA({

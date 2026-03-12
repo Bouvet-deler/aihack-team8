@@ -564,6 +564,7 @@ export function Sidebar({
       </div>
 
       <div className="sidebar-footer">
+        <span className="build-version">v{__BUILD_VERSION__}</span>
         <span>{t('data.label')} </span>
         <a href="https://opencom.no" target="_blank" rel="noopener noreferrer">opencom.no</a>
         {devCosts && (
