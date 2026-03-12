@@ -103,7 +103,7 @@ layoutClass: gap-8
 
 <div class="mt-3 space-y-2 text-sm">
   <div v-click>🗺️ Interaktivt kart — <b>parkering + sykkel + buss</b></div>
-  <div v-click>🎨 Fargekodede markører [grønn]{.text-green-400} → [rød]{.text-red-400}</div>
+  <div v-click>🎨 Fargekodede markører <span class="text-green-400">grønn</span> → <span class="text-red-400">rød</span></div>
   <div v-click>🔍 Søk og filtrering</div>
   <div v-click>📱 PWA — installerbar på mobil</div>
   <div v-click>🌍 Flerspråklig (NO / EN / ES)</div>
@@ -504,22 +504,22 @@ layoutClass: gap-8
 
 <div class="gradient-card">
 🏙️ <b>Multi-city</b> — Bergen, Trondheim, Oslo
-[Phase 4]{.badge .badge-amber .ml-1}
+<span class="badge badge-amber ml-1">Phase 4</span>
 </div>
 
 <div class="gradient-card">
 📈 <b>Prediksjon</b> — forutsi tilgjengelighet
-[Phase 3]{.badge .badge-amber .ml-1}
+<span class="badge badge-amber ml-1">Phase 3</span>
 </div>
 
 <div class="gradient-card">
 🚌 <b>Entur API</b> — buss/ferge-data
-[Phase 2]{.badge .badge-green .ml-1}
+<span class="badge badge-green ml-1">Phase 2</span>
 </div>
 
 <div class="gradient-card">
 🔍 <b>CI/CD</b> — Super-linter + Lefthook
-[Infra]{.badge .badge-blue .ml-1}
+<span class="badge badge-blue ml-1">Infra</span>
 </div>
 
 </div>
