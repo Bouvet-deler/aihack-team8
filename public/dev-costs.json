@@ -60,6 +60,14 @@
           },
           "equivalentAPICostUSD": 207,
           "costUSD": 0
+        },
+        {
+          "date": "2026-03-12",
+          "description": "About modal with release notes, team slide, video rebuild with live demo, UAT test fixes (68 pass), Lighthouse optimization, dependabot fixes",
+          "premiumRequests": 85,
+          "apiTimeMinutes": 95,
+          "sessionTimeMinutes": 180,
+          "costUSD": 0
         }
       ]
     }

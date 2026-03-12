@@ -3,6 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "overrides": {
+    "serialize-javascript": ">=7.0.3",
+    "dompurify": ">=3.3.2"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -40,6 +44,6 @@
     "stylelint-config-standard": "^40.0.0",
     "typescript": "~5.7.2",
     "vite": "^6.0.5",
-    "vite-plugin-pwa": "^0.19.8"
+    "vite-plugin-pwa": "^1.2.0"
   }
 }
