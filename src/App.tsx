@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useRegisterSW } from 'virtual:pwa-register/react'
 import { useTranslation } from 'react-i18next'
 import { Map } from './components/Map'
 import { Sidebar } from './components/Sidebar'
@@ -23,6 +24,17 @@ const DEFAULT_INTERVAL = 60_000
 
 export default function App() {
   const { t } = useTranslation()
+  const {
+    needRefresh: [needRefresh, setNeedRefresh],
+    updateServiceWorker,
+  } = useRegisterSW({
+    onRegisteredSW(_url, registration) {
+      // Check for updates every 60 seconds
+      if (registration) {
+        setInterval(() => registration.update(), 60_000)
+      }
+    },
+  })
   const [refreshInterval, setRefreshInterval] = useState(DEFAULT_INTERVAL)
   const [selectedSpot, setSelectedSpot] = useState<ParkingSpot | null>(null)
   const [selectedStation, setSelectedStation] = useState<BikeStation | null>(null)
@@ -220,6 +232,22 @@ export default function App() {
           </button>
         )}
       </main>
+
+      {needRefresh && (
+        <div className="update-toast" role="alert">
+          <span>{t('pwa.updateAvailable')}</span>
+          <button className="update-toast-btn" onClick={() => updateServiceWorker(true)}>
+            {t('pwa.reload')}
+          </button>
+          <button
+            className="update-toast-dismiss"
+            onClick={() => setNeedRefresh(false)}
+            aria-label={t('pwa.dismiss')}
+          >
+            ✕
+          </button>
+        </div>
+      )}
     </div>
   )
 }
