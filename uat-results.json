@@ -63,12 +63,12 @@
       {
         "step": "Parkering: Oransje for 21-50 ledige",
         "pass": null,
-        "note": "Orange not found — data-dependent, skip"
+        "note": "Orange not found -- data-dependent, skip"
       },
       {
         "step": "Parkering: Rød for ≤ 20 ledige",
         "pass": null,
-        "note": "Red not found — data-dependent, skip"
+        "note": "Red not found -- data-dependent, skip"
       },
       {
         "step": "Bysykkel: fargekoding tilstede",
@@ -78,7 +78,7 @@
       {
         "step": "Bysykkel: Grå for inaktive stasjoner",
         "pass": null,
-        "note": "No gray markers — all stations active, skip"
+        "note": "No gray markers -- all stations active, skip"
       },
       {
         "step": "Valgt markør er større enn uvalgte",
@@ -90,7 +90,7 @@
       {
         "step": "Klikk på markør åpner popup",
         "pass": null,
-        "note": "Popup may close during fly-to animation — skip"
+        "note": "Popup may close during fly-to -- skip"
       },
       {
         "step": "Kartet flyr til markøren med animasjon",
@@ -137,12 +137,12 @@
       {
         "step": "Listen er sortert etter tilgjengelighet (høyest først)",
         "pass": true,
-        "note": "First items: ${spotCounts.slice(0, 4).join(', ')}"
+        "note": "First items: 13, 13, 11, 10"
       },
       {
         "step": "Klikk på listeelement markerer det",
         "pass": true,
-        "note": "9 clickable list items found"
+        "note": "248 clickable list items found"
       },
       {
         "step": "Inaktive sykkelstasjoner vises med 50% gjennomsiktighet",
@@ -154,7 +154,7 @@
       {
         "step": "Klikk \"P\"-knappen skjuler/viser parkeringsmarkører",
         "pass": true,
-        "note": "Before: 0, After: 0"
+        "note": "Before: 9, After: 9"
       },
       {
         "step": "Aktiv/inaktiv toggle har korrekt styling",
@@ -164,7 +164,7 @@
       {
         "step": "Klikk sykkel-knappen skjuler/viser sykkelmarkører",
         "pass": true,
-        "note": "Before: 0, After: 248"
+        "note": "Before: 9, After: 257"
       },
       {
         "step": "Begge lag kan være av samtidig",
@@ -186,12 +186,12 @@
       {
         "step": "Skriv i søkefeltet – listen filtreres i sanntid",
         "pass": true,
-        "note": "Before: 9, After: 0"
+        "note": "Before: 9, After: 5"
       },
       {
         "step": "Søk er case-insensitivt",
         "pass": true,
-        "note": "Lower: 0, Upper: 0"
+        "note": "Lower: 5, Upper: 5"
       },
       {
         "step": "Tøm-knappen (×) vises med tekst i søkefeltet",
@@ -216,7 +216,7 @@
       {
         "step": "Slett søketekst → alle elementer vises igjen",
         "pass": true,
-        "note": "Items: 9"
+        "note": "Items: 14"
       }
     ],
     "8. Oppdatering og auto-refresh": [
@@ -336,7 +336,7 @@
       {
         "step": "PWA manifest er konfigurert",
         "pass": null,
-        "note": "VitePWA manifest not injected in dev mode — skip"
+        "note": "VitePWA manifest not injected in dev mode -- skip"
       },
       {
         "step": "Apple touch icon konfigurert",
@@ -385,17 +385,17 @@
       {
         "step": "Første lasting < 3 sekunder",
         "pass": true,
-        "note": "Load time: 1323ms"
+        "note": "Load time: 1389ms"
       },
       {
         "step": "Søkefiltrering uten merkbar forsinkelse",
         "pass": true,
-        "note": "Filter time: 138ms"
+        "note": "Filter time: 129ms"
       },
       {
         "step": "Bytte faner skjer umiddelbart",
         "pass": true,
-        "note": "Tab switch: 417ms"
+        "note": "Tab switch: 450ms"
       },
       {
         "step": "Kart-panorering og zoom",
