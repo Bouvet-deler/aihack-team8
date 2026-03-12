@@ -59,6 +59,7 @@ interface SidebarProps {
   onToggleTransit: () => void
   width: number | undefined
   onResizeHandleMouseDown: (e: React.MouseEvent) => void
+  onResizeNudge: (delta: number) => void
   userPosition: GeolocationCoordinates | null
   onRequestLocation: () => void
   isDark: boolean
@@ -96,7 +97,7 @@ export function Sidebar({
   showBikes, onToggleBikes,
   showScooters, onToggleScooters,
   showTransit, onToggleTransit,
-  width, onResizeHandleMouseDown,
+  width, onResizeHandleMouseDown, onResizeNudge,
   userPosition,
   onRequestLocation,
   isDark, onToggleDark,
@@ -175,14 +176,14 @@ export function Sidebar({
     })
 
   return (
-    <aside className="sidebar" style={width !== undefined ? { width } : undefined}>
+    <aside id="sidebar" className="sidebar" style={width !== undefined ? { width } : undefined} tabIndex={-1}>
       <div className="sidebar-header">
         <div className="sidebar-title">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#007079" strokeWidth="2.5">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#007079" strokeWidth="2.5" aria-hidden="true">
             <circle cx="12" cy="12" r="10" />
             <path d="M8 12h8M12 8v8" />
           </svg>
-          <span>{t('header.title')}</span>
+          <h1 className="sidebar-title-text">{t('header.title')}</h1>
 
           {/* Dark mode toggle */}
           <button
@@ -204,17 +205,19 @@ export function Sidebar({
           </button>
 
           {/* Language switcher */}
-          <div className="lang-switcher">
+          <nav className="lang-switcher" aria-label={t('a11y.langNav')}>
             {LANGUAGES.map((lng) => (
               <button
                 key={lng}
                 className={`lang-btn ${i18nInstance.language === lng ? 'active' : ''}`}
                 onClick={() => i18n.changeLanguage(lng)}
+                aria-label={lng.toUpperCase()}
+                aria-current={i18nInstance.language === lng ? 'true' : undefined}
               >
                 {lng.toUpperCase()}
               </button>
             ))}
-          </div>
+          </nav>
 
           {/* City selector */}
           <select
@@ -294,49 +297,59 @@ export function Sidebar({
         </div>
 
         {/* Tabs */}
-        <div className="tabs">
+        <nav aria-label={t('a11y.sidebarNav')}>
+        <div className="tabs" role="tablist">
           {city.parking && (
           <button
+            role="tab"
+            aria-selected={isParking}
             className={`tab ${isParking ? 'active' : ''}`}
             onClick={() => { onTabChange('parking'); onSearchChange('') }}
           >
             {t('tab.parking')}
-            <span className="tab-badge">{spots.length}</span>
+            <span className="tab-badge" aria-label={t('a11y.tabBadge', { count: spots.length })}>{spots.length}</span>
             {favorites.parking.length > 0 && (
-              <span className="tab-fav-badge">★{favorites.parking.length}</span>
+              <span className="tab-fav-badge" aria-label={t('a11y.favBadge', { count: favorites.parking.length })}>★{favorites.parking.length}</span>
             )}
           </button>
           )}
           <button
+            role="tab"
+            aria-selected={isBikes}
             className={`tab ${isBikes ? 'active' : ''}`}
             onClick={() => { onTabChange('bikes'); onSearchChange('') }}
           >
             {t('tab.bikes')}
-            <span className="tab-badge">{bikeStations.length}</span>
+            <span className="tab-badge" aria-label={t('a11y.tabBadge', { count: bikeStations.length })}>{bikeStations.length}</span>
             {favorites.bikes.length > 0 && (
-              <span className="tab-fav-badge">★{favorites.bikes.length}</span>
+              <span className="tab-fav-badge" aria-label={t('a11y.favBadge', { count: favorites.bikes.length })}>★{favorites.bikes.length}</span>
             )}
           </button>
           {city.scooters && (
           <button
+            role="tab"
+            aria-selected={isScooters}
             className={`tab ${isScooters ? 'active' : ''}`}
             onClick={() => { onTabChange('scooters'); onSearchChange('') }}
           >
             {t('tab.scooters')}
-            <span className="tab-badge">{scooters.filter((s) => !s.is_reserved && !s.is_disabled).length}</span>
+            <span className="tab-badge" aria-label={t('a11y.tabBadge', { count: scooters.filter((s) => !s.is_reserved && !s.is_disabled).length })}>{scooters.filter((s) => !s.is_reserved && !s.is_disabled).length}</span>
             {favorites.scooters.length > 0 && (
-              <span className="tab-fav-badge">★{favorites.scooters.length}</span>
+              <span className="tab-fav-badge" aria-label={t('a11y.favBadge', { count: favorites.scooters.length })}>★{favorites.scooters.length}</span>
             )}
           </button>
           )}
           <button
+            role="tab"
+            aria-selected={isTransit}
             className={`tab ${isTransit ? 'active' : ''}`}
             onClick={() => { onTabChange('transit'); onSearchChange('') }}
           >
             {t('tab.transit')}
-            <span className="tab-badge">{transitStops.length}</span>
+            <span className="tab-badge" aria-label={t('a11y.tabBadge', { count: transitStops.length })}>{transitStops.length}</span>
           </button>
         </div>
+        </nav>
 
         {/* Search */}
         <div className="search-wrapper">
@@ -414,7 +427,7 @@ export function Sidebar({
         )}
 
         {lastUpdated && (
-          <div className="last-updated">{t('lastUpdated')} {formatTime(lastUpdated)}</div>
+          <div className="last-updated" aria-live="polite" aria-atomic="true">{t('lastUpdated')} {formatTime(lastUpdated)}</div>
         )}
       </div>
 
@@ -673,6 +686,14 @@ export function Sidebar({
         role="separator"
         aria-orientation="vertical"
         aria-label="Resize sidebar"
+        tabIndex={0}
+        aria-valuenow={width ?? 300}
+        onKeyDown={(e) => {
+          if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+            e.preventDefault()
+            onResizeNudge(e.key === 'ArrowRight' ? 20 : -20)
+          }
+        }}
       />
     </aside>
   )

@@ -27,6 +27,7 @@ interface UseSidebarResizeResult {
   width: number | undefined
   isDragging: boolean
   handleMouseDown: (e: React.MouseEvent) => void
+  nudge: (delta: number) => void
 }
 
 export function useSidebarResize(): UseSidebarResizeResult {
@@ -94,5 +95,16 @@ export function useSidebarResize(): UseSidebarResizeResult {
     document.addEventListener('mouseup', onMouseUp)
   }, [])
 
-  return { width, isDragging, handleMouseDown }
+  const nudge = useCallback((delta: number) => {
+    setWidth((prev) => {
+      const current = prev ?? DEFAULT
+      const next = Math.max(MIN, Math.min(MAX, current + delta))
+      try {
+        localStorage.setItem(STORAGE_KEY, String(next))
+      } catch { /* ignore */ }
+      return next
+    })
+  }, [])
+
+  return { width, isDragging, handleMouseDown, nudge }
 }

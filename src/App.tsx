@@ -54,7 +54,7 @@ export default function App() {
   const scooters = useScooters(refreshInterval, city)
   const transit = useTransit(refreshInterval, city)
   const geo = useGeolocation()
-  const { width: sidebarWidth, isDragging, handleMouseDown: handleResizeMouseDown } = useSidebarResize()
+  const { width: sidebarWidth, isDragging, handleMouseDown: handleResizeMouseDown, nudge: nudgeResize } = useSidebarResize()
   const { isDark, toggle: toggleDark } = useDarkMode()
   const { favorites, isFavorite, toggle: toggleFavorite } = useFavorites()
 
@@ -65,11 +65,25 @@ export default function App() {
     setReCenterKey((k) => k + 1)
   }
 
+  const isInitialLoading = (city.parking ? parking.loading && parking.data.length === 0 : false) ||
+    (city.bikes ? bikes.loading && bikes.data.length === 0 : false) ||
+    (city.scooters ? scooters.loading && scooters.data.length === 0 : false) ||
+    (transit.loading && transit.data.length === 0)
+
   return (
     <div className="app">
+      {/* Skip links */}
+      <a href="#sidebar" className="skip-link">{t('a11y.skipToSidebar')}</a>
+      <a href="#map" className="skip-link">{t('a11y.skipToMap')}</a>
+
+      {/* Live region for screen reader announcements */}
+      <div className="sr-only" aria-live="polite" aria-atomic="true">
+        {isInitialLoading && t('a11y.loadingData')}
+      </div>
+
       {anyError && (
-        <div className="error-banner" role="alert">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <div className="error-banner" role="alert" aria-live="assertive">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
             <circle cx="12" cy="12" r="10" />
             <line x1="12" y1="8" x2="12" y2="12" />
             <line x1="12" y1="16" x2="12.01" y2="16" />
@@ -78,11 +92,8 @@ export default function App() {
         </div>
       )}
 
-      {((city.parking ? parking.loading && parking.data.length === 0 : false) ||
-        (city.bikes ? bikes.loading && bikes.data.length === 0 : false) ||
-        (city.scooters ? scooters.loading && scooters.data.length === 0 : false) ||
-        (transit.loading && transit.data.length === 0)) && (
-        <div className="loading-overlay">
+      {isInitialLoading && (
+        <div className="loading-overlay" role="status">
           <div className="spinner" />
           <span>{t('loading')}</span>
         </div>
@@ -129,6 +140,7 @@ export default function App() {
         onToggleTransit={() => setShowTransit((v) => !v)}
         width={sidebarWidth}
         onResizeHandleMouseDown={handleResizeMouseDown}
+        onResizeNudge={nudgeResize}
         userPosition={geo.position}
         onRequestLocation={geo.request}
         isDark={isDark}
@@ -142,8 +154,11 @@ export default function App() {
       />
 
       <main
+        id="map"
         className="map-container"
         style={isDragging ? { pointerEvents: 'none' } : undefined}
+        aria-label={t('a11y.mapArea')}
+        tabIndex={-1}
       >
         <Map
           spots={parking.data}
