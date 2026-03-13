@@ -44,7 +44,18 @@ NARRATIONS = [
     # Slide 4: Demo
     (
         "Nå er det tid for demo! "
-        "Vi bytter over til nettleseren og viser appen i aksjon."
+        "Vi bytter over til nettleseren og viser appen i aksjon. "
+        "Her ser vi kartet med parkering i Stavanger. "
+        "Fargekodede markører viser ledig kapasitet i sanntid. "
+        "La oss prøve søket — vi skriver Valberget. "
+        "Der finner vi parkeringshuset. "
+        "Vi bytter til sykkel-fanen — og ser bysykkelstasjoner med ledige sykler. "
+        "Så lading — her er alle ladestasjonene i området. "
+        "Og kollektivtransport med Entur-data. "
+        "La oss prøve mørk modus — veldig stilig! "
+        "Vi kan også bytte by — Bergen for eksempel. "
+        "Og tilbake til Stavanger igjen. "
+        "Det er Stavanger Mobilitet i aksjon!"
     ),
     # Slide 5: Tech Stack
     (

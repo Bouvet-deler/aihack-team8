@@ -27,38 +27,38 @@ async def record_demo():
 
         # 1. Show the map (initial parking view)
         print("  🗺️  Showing map with parking data...")
+        await asyncio.sleep(4)
+
+        # 2. Click on a marker area
+        print("  🅿️  Clicking on map area...")
+        await page.mouse.click(960, 540)
         await asyncio.sleep(3)
 
-        # 2. Click on map center area to interact with a marker
-        print("  🅿️  Clicking on map area...")
-        # Click in the center of the map area (right side of screen)
-        await page.mouse.click(960, 540)
-        await asyncio.sleep(2)
-
-        # 3. Try search functionality
-        print("  🔍 Using search...")
+        # 3. Search for Valberget
+        print("  🔍 Searching for Valberget...")
         search = await page.query_selector('input[type="search"], .search-input')
         if search:
             await search.click()
             await asyncio.sleep(0.5)
-            await search.type("Valberget", delay=80)
-            await asyncio.sleep(2)
-            # Clear search using keyboard
+            await search.type("Valberget", delay=100)
+            await asyncio.sleep(3)
             await page.keyboard.press("Control+a")
             await page.keyboard.press("Backspace")
             await asyncio.sleep(1)
         else:
             print("    (no search input found)")
 
-        # 4. Switch tabs (parking → bike → transit)
-        print("  🚲 Switching tabs...")
+        # 4. Switch tabs: parking → bikes → charging → transit (SKIP scooters index 2)
+        print("  🚲 Switching tabs (skipping scooters)...")
         tabs = await page.query_selector_all(".tab")
-        for i, tab in enumerate(tabs[:3]):
-            try:
-                await tab.click(timeout=3000)
-                await asyncio.sleep(2.5)
-            except Exception:
-                pass
+        # Tab order: 0=parking, 1=bikes, 2=scooters, 3=charging, 4=transit
+        for i in [1, 3, 4]:
+            if i < len(tabs):
+                try:
+                    await tabs[i].click(timeout=3000)
+                    await asyncio.sleep(3.5)
+                except Exception:
+                    pass
 
         # 5. Toggle dark mode
         print("  🌙 Toggling dark mode...")
@@ -70,7 +70,7 @@ async def record_demo():
             except Exception:
                 pass
 
-        # 6. Switch city
+        # 6. Switch city (Bergen and back)
         print("  🏙️  Switching city...")
         city_select = await page.query_selector("select.city-select, .city-select")
         if city_select:
@@ -91,7 +91,7 @@ async def record_demo():
             except Exception:
                 pass
 
-        # 8. Back to first tab, final view
+        # 8. Back to parking tab, final view
         print("  🗺️  Final map view...")
         if tabs:
             try:
